@@ -486,7 +486,7 @@
                             <div class="row justify-content-center justify-content-sm-between align-items-center g-lg-4 g-0">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-5">
                                     <div class="logo">
-                                        <a href="">
+                                        <a href="{{route("salon-&-spa")}}">
                                             <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 148% !important;">
                                         </a>
                                     </div>
@@ -554,7 +554,7 @@
                                             $count = isset($count) ? $count : 0;
                                             $count2 = isset($count2) ? $count2 : 0;
                                             @endphp
-                                            <a href="">
+                                            <a href="{{ url('/showwishlist', Auth::user()->id) }}">
                                             <i class="fa-light fa-heart"></i>
                                             @auth
                                                 <span class="quantity">{{ $count2 }}</span>
@@ -563,7 +563,7 @@
                                             <span class="quantity">0</span>
                                             @endguest
                                             </a>
-                                            <a href="">
+                                            <a href="{{ url('/showcart', Auth::user()->id) }}">
                                                 <i class="fa-light fa-cart-shopping"></i>
                                                 @auth
                                                 <span class="quantity">{{ $count }}</span>

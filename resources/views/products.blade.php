@@ -1,39 +1,69 @@
-<section class="section" id="menu">
-    <div class="menu-item-carousel">
-        <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
-
-
-
-<!-- Product with add to cart -->
-
-            @foreach($data as $data)
-                <div style="width:calc(33.33% - 10px); margin-bottom:20px; padding:10px; box-sizing:border-box; background-image:url('/product/{{$data->image}}'); background-size:cover; background-position:center; position:relative; height:25rem;">
-                <form action="{{url('/addcart',$data->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div style="position:absolute; bottom:0; left:0; right:0; background-color:white; color:white !important; padding:10px;">
-                            <h6 style="margin:0; display:flex; justify-content:center;">{{$data->price}}$</h6>
-                            <h1 style="margin:0; font-size:18px; display:flex; justify-content:center;">{{$data->title}}</h1>
-                            <p style="margin:0; font-size:14px; display:flex; justify-content:center;">{{$data->description}}</p>
-                        </div>
-                        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:100%;">
-                            <div style="display:flex; align-items:center;">
-                                <input type="number" name="quantity" min="1" value="1" max="999999" required style="display:block; width:50px; padding: 8px; border: 1px solid #ccc; border-radius: 3px; text-align:center;">
-                                <div style="display:flex; flex-direction:column; margin-left:10px;">
-                                    <button type="button" onclick="if (this.previousElementSibling.value > 1) {this.previousElementSibling.value--;}" style="padding: 0.5rem;">&nbsp</button>
-                                    <button type="button" onclick="this.nextElementSibling.value++" style="padding: 0.5rem;">&nbsp</button>
-                                </div>
-                            </div>
-                            <input type="submit" value="ADD TO CART" style="background-color: #4CAF50; color: white; border: none; border-radius: 3px; cursor: pointer;width: 35%; border-radius:50px;padding: 2%;">
-                        </div>
-                    </form>
-                    
-                     <!-- Wishlist form -->
-                    <form action="{{url('/addwishlist',$data->id)}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                    <input type="submit" value="ADD TO WISHLIST" style="background-color: #4285F4; color: white; border: none; border-radius: 3px; cursor: pointer; margin-top: 10px;border-radius: 50px; margin-top: -17%;width: 35%; position: absolute;  margin-left: 22%;padding: 2%;">
+<div class="row g-lg-4 g-3">
+    @foreach($data as $data)
+        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
+            <div class="single-product-card">
+                <div class="part-img">
+                    <a href="#"><img src="/product/{{$data->image}}" alt="Product"></a>
+                    <div class="cart-option cart-option-bottom">
+                        <ul>
+                            <li>
+                            <form action="{{url('/addcart',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-cart-form">
+    @csrf
+    <a role="button" class="add-to-cart" onclick="document.getElementById('add-to-cart-form').submit();">
+        <i class="fa-light fa-cart-shopping"></i>
+    </a>
+</form>
+</li>
+<li>
+    <form action="{{url('/addwishlist',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-wishlist-form">
+        @csrf
+        <a role="button" class="add-to-wish" onclick="document.getElementById('add-to-wishlist-form').submit();">
+            <i class="fa-light fa-heart"></i>
+        </a>
+    </form>
+                            </li>
+                            <li>
+                                <a role="button" class="quick-view">
+                                    <i class="fa-light fa-image"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="view-product">
+                                    <i class="fa-light fa-eye"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="part-txt">
+                    <h4 class="product-name"><a href="#">{{$data->title}}</a></h4>
+                    <p class="dscr">{{$data->description}}</p>
+                    <p class="price">{{$data->price}}$</p>
+                     <div class="star">
+                        <i class="fa-solid fa-star-sharp rated"></i>
+                        <i class="fa-solid fa-star-sharp rated"></i>
+                        <i class="fa-solid fa-star-sharp rated"></i>
+                        <i class="fa-solid fa-star-sharp rated"></i>
+                        <i class="fa-solid fa-star-sharp"></i>
+                     </div>
+                     <form action="{{url('/addcart',$data->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="add-to-cart-btn">
+                        <input type="number" name="quantity" min="1" value="1" max="999999" required>
+                        <select name="quantity" id="quantity-select">
+                            @for ($i = 1; $i <= 10; $i++)
+                                <option value="{{$i}}">{{$i}}</option>
+                            @endfor
+                        </select>
+                        <button type="submit">Add to Cart</button>
+                    </div>
                     </form>
                 </div>
-            @endforeach
+            </div>
         </div>
-    </div>
-</section>
+    @endforeach
+</div>
+
+
+
+
