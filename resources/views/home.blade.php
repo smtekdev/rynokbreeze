@@ -74,14 +74,12 @@
 
 <body class="rev-7-body">
 
+
 <!-- Header Started -->
 
 @include('components.navbar')
 
-  
-
 <!-- Header Ended -->
-
 
         <section class="rev-6-banner">
             <div class="container">
@@ -1070,8 +1068,6 @@ span.onclick = function() {
   }
 }
   </script>
-
-
 
 </body>
 

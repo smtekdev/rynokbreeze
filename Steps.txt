@@ -1,0 +1,91 @@
+Steps Taken: 
+
+1st June: 
+
+1- Installed project.
+2- Copied public folder and pasted. 
+3- Pasted views files inside view.
+4- Make Controller (Home, Admin, User, Admin & Vendor).
+5- After setup the project we replace welcome to index view. 
+6- We were getting error of app-layout issue which was due to app-layout was been called in the index.blade.php file (in the preview project) so after remove it error gone.
+7- There were few other errors for variable which were used for products,add to carts and some other function including user auth etc. so we remove all of such things from index.blade.php and also from navbar.blade.php component.
+8- Now we are going to install Breeze.
+9- Run command: composer require laravel/breeze --dev
+10- run command: php artisan breeze:install
+when we run above command default there will be new controller inside controllers by folder name Auth and also there will be new migration files. 
+11- I removed node.js version and installed old version v16.13.0
+12- run command: npm install
+13- run command: npm run dev
+14- We were gtting layout issue that for we run commmand (for run this command we shall run migration before): composer require laravel/breeze:1.9.2
+15- Then run Command:  php artisan breeze:install
+16- Then Run command: npm install
+17- Then run command: npm run dev
+18- Customized Login Page. 
+
+2nd June: 
+19- Customized register page. 
+20- Properly arranged function on the HomeController and AdminController also commented according to the category.
+
+5th June:
+21- Properly arranged Web.php all routes and commented according to the category. 
+22- User Auth Work in progress. 
+
+6th June: 
+23- Auth is working now and users are able to login according to the usertype i.e. vendor or user etc.
+24- Start work on Vendor Dashboard. 
+25- Craete product model and migration. 
+26- Created carts model and migration. 
+27- Created Wishlist model and migration. 
+28- Created Order table and migration.
+29- Created Image controller for uploading profile image. 
+30- Created profile controller for editing profile and other profile related functions. 
+31- Added routes for Add to cart, Add wishlist, Confirmorder, delete order, remove from cart, remove from wishlist and also activated functions for this in the related controller and web.php.
+
+7th June: 
+32- Activated cart and wishlist functionality on the github related project. 
+33- Replaced featured products with original layout.
+
+8th June:
+34- Logout option and user info area showing next add to cart. 
+35- Dashboard route to redirect at user-dashboard when click on dashboard at homepage. 
+36- Added navbar at user-dashboard. 
+37- Fied error for : Unable to utilize logo for coming at home page because of redirects route is not working to bring user/vendor at related homepage.  By giving login route as it's use logic if user is login it'll redirect to concern page. 
+38- Fixed error for: no user id assigned after logout by adding code for check if user id assigned or not logic. 
+39- Without login when click on add to cart on product it'll bring at login page. 
+40- Added navbar and footer at add cart and add wishlist pages. 
+41- Forget password. (Updated .env file with my mailtrap so will get reset password link on my mail trap id with user id). 
+42- Fixed profile picture upload and get in the user dashboard. By adding code: 'avatar', in the user model.
+43- Confirm Order was giving error for quantity is 0 not acceptable so gave default quantity as one. 
+44- Get and show loged in user name and id at user/vendor dashboard. 
+45- Add to cart/wishlist error fixed for always adding same product even when adding other. 
+46- Created function for when user confirm order cart page should come empty.
+
+47- Login with Google ID. (Followed chatGPT guide and updated old project of jetstraem according to breeze and it's working now).
+A- Ran command for google login: composer require laravel/socialite 
+B- From  google client id and secret copied the Credentials (in client id inside the google app account).
+C- Updated code in the services (config) file and also updated migration, user (model) and web.php file
+D- Create/Edit GoogleController.php. And login.blade.php file was already updated with the view related to google login so as now not updated there just added related route. 
+
+48- Getting confirmed order details at user dashboard.
+49- Order confirmation email. 
+ 
+
+
+
+Required Functions: 
+1- Multi User authentication and authorization
+2- Product management
+3- Order management
+4- Rating and review system
+5- Shipping and logistics
+6- Reporting and analytics
+7- Customer support
+8- Graph should be working via backend in real.
+9- Related product machanism need to make. 
+10- Need to add support with icon (help). 
+
+
+Remain/Issue: 
+
+1- Admin will approve new vendor.
+2- Admin will have seperate url for login. 

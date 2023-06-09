@@ -56,7 +56,7 @@
             </div>
 
             <div class="flex items-center center mt-4">
-                <a href="">
+                <a href="{{ route('login.google') }}">
                     <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 7em;position: absolute;margin-top: 5%;">
                 </a>
             </div>

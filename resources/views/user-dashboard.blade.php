@@ -240,13 +240,21 @@
 
             <li>
                 <a href="#">
-                    <i class="iconly-Bag-2 icli fly-cate"></i>
+                    <i class="iconly-Bag-2 icli fly-cate"></i>f
                     <span>Cart</span>
                 </a>
             </li>
         </ul>
     </div>
     <!-- mobile fix menu end -->
+
+    <!-- Header Started -->
+
+@include('components.navbar')
+
+<!-- Header Ended -->
+
+
 
     <!-- Breadcrumb Section Start -->
     <section class="breadscrumb-section pt-0">
@@ -257,12 +265,8 @@
                         <h2>User Dashboard</h2>
                         <nav>
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="index-7.html">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
+                                
+                                <li class="breadcrumb-item active" aria-current="page"></li>
                             </ol>
                         </nav>
                     </div>
@@ -341,8 +345,8 @@
                                 </div>
 
                                 <div class="profile-name">
-                                    <h3>Vicki E.</h3>
-                                    <h6 class="text-content">vicki.pope@gmail.com</h6>
+                                    <h3>{{ Auth::user()->name }} </h3>
+                                    <h6 class="text-content">{{ Auth::user()->email }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -389,7 +393,7 @@
                                     </div>
 
                                     <div class="dashboard-user-name">
-                                        <h6 class="text-content">Hello, <b class="text-title">Vicki E.</b></h6>
+                                        <h6 class="text-content">Hello, <b class="text-title"></b></h6>
                                         <p class="text-content">From your My Account Dashboard you have the ability to
                                             view a snapshot of your recent account activity and update your account
                                             information. Select a link below to view or edit information.</p>
@@ -439,19 +443,17 @@
                                     <div class="row g-4">
                                         <div class="col-xxl-6">
                                             <div class="dashboard-contant-title">
-                                                <h4>Contact Information <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile">Edit</a>
+                                                <h4>Contact Information <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile"></a>
                                                 </h4>
                                             </div>
                                             <div class="dashboard-detail">
-                                                <h6 class="text-content">MARK JECNO</h6>
-                                                <h6 class="text-content">vicki.pope@gmail.com</h6>
-                                                <a href="javascript:void(0)">Change Password</a>
+                                                <h6 class="text-content">{{ Auth::user()->name }}</h6>
+                                                <h6 class="text-content">{{ Auth::user()->email }}</h6>
                                             </div>
                                         </div>
-
                                         <div class="col-xxl-6">
                                             <div class="dashboard-contant-title">
-                                                <h4>Newsletters <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile">Edit</a></h4>
+                                                <h4>Newsletters <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile"></a></h4>
                                             </div>
                                             <div class="dashboard-detail">
                                                 <h6 class="text-content">You are currently not subscribed to any
@@ -461,7 +463,7 @@
 
                                         <div class="col-12">
                                             <div class="dashboard-contant-title">
-                                                <h4>Address Book <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile">Edit</a></h4>
+                                                <h4>Address Book <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile"></a></h4>
                                             </div>
 
                                             <div class="row g-4">
@@ -510,6 +512,7 @@
                                     <div class="title">
                                         <h2>My Orders History</h2>
                                         
+                                        
 <!-- Orders Details -->
 
 
@@ -528,9 +531,10 @@
   </thead>
   <tbody>
     
-@php 
-$data=isset($data) ? $data : [];
+@php
+$data= App\Models\Order::all();
 @endphp
+
 
   @foreach($data as $data)
     <tr>

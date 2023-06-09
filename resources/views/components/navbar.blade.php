@@ -486,7 +486,7 @@
                             <div class="row justify-content-center justify-content-sm-between align-items-center g-lg-4 g-0">
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-5">
                                     <div class="logo">
-                                        <a href="{{route("salon-&-spa")}}">
+                                        <a href="{{ route('login') }}">
                                             <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 148% !important;">
                                         </a>
                                     </div>
@@ -523,8 +523,19 @@
                                             <a role="button" class="search-open d-sm-none"><i class="fa-light fa-magnifying-glass"></i></a>
                                             @if (Route::has('login'))
                                             <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
-                                            @auth
-                                            <a href="" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                            @auth                            
+                                            <a href="{{route("user-dashboard")}}"  class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                                            <!-- logout and user info -->
+                                            <div>                                               
+                                                <p class="font-semibold text-xl text-gray-800 leading-tight">
+                                                    Welcome, {{ Auth::user()->name }} <!-- User Name -->
+                                                    <form method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                        <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
+                                                    </form>
+                                                </hp>
+                                            </div>
+                                            <!-- logout and user info end -->
                                             @else
                                             <a href="{{ route('login') }}" class="compare-list-btn">
                                              Sign in
@@ -554,7 +565,7 @@
                                             $count = isset($count) ? $count : 0;
                                             $count2 = isset($count2) ? $count2 : 0;
                                             @endphp
-                                            <a href="{{ url('/showwishlist', Auth::user()->id) }}">
+                                            <a href="{{ Auth::check() ? url('/showwishlist', Auth::user()->id) : '#' }}">
                                             <i class="fa-light fa-heart"></i>
                                             @auth
                                                 <span class="quantity">{{ $count2 }}</span>
@@ -562,8 +573,9 @@
                                             @guest
                                             <span class="quantity">0</span>
                                             @endguest
-                                            </a>
-                                            <a href="{{ url('/showcart', Auth::user()->id) }}">
+                                            </a>                                        
+                                            <a href="{{ Auth::check() ? url('/showcart', Auth::user()->id) : '#' }}">
+
                                                 <i class="fa-light fa-cart-shopping"></i>
                                                 @auth
                                                 <span class="quantity">{{ $count }}</span>
@@ -676,7 +688,7 @@
                                                                 <li><a class="dropdown-item" href="{{route("medical-services")}}">Medical Services</a></li>
                                                                 <li><a class="dropdown-item" href="{{route("orthopaedic-therapy")}}">Orthopaedic Therapy</a></li>
                                                                 <li><a class="dropdown-item" href="{{route("dance-sessions")}}">	Dance Sessions</a></li>
-                                                                <li><a class="dropdown-item" href="{{route("fitness-classes")}}">Fitness Classes</a></li>
+                                                                <li><a class="dropdown-item" href="{{route("fitness-classes")}}">Fitness Classes</a></li>                                                                
                                                             </ul>
                                                         </li>
                                                         <!-- <li class="nav-item dropdown">

@@ -29,6 +29,30 @@
             <!-- Font Awesome Icons -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
+             <!-- new -->
+
+
+             <link rel="icon" type="image/x-icon" href="assets/images/logos/logo-6s.png">
+    <link rel="stylesheet" href="assets/vendor/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/flaticon/flaticon.css">
+    <link rel="stylesheet" href="assets/vendor/css/nice-select.css">
+    <link rel="stylesheet" href="assets/vendor/css/flags.css">
+    <link rel="stylesheet" href="assets/vendor/css/slick.css">
+    <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/css/meanmenu.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="grid/css/style.css">
+    <link rel="stylesheet" href="demos/">
+
+            <!-- Google Font -->
+            <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800&display=swap" rel="stylesheet"> 
+
+            <!-- Font Awesome Icons -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            
     <style>
         #button{
             background-color: #F8F8F8 !important;
@@ -102,15 +126,13 @@
 <!-- Header Ended -->
 
 
-<x-app-layout>
-
-<a href="">
-<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+<a href="{{ route('login') }}">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -19%;position: relative; z-index: 10; background: white; margin-left:1%;">
 </a>
 
 <div id="top" style="">
 
-<div style="display: flex;">
+<div class="cartalign">
 
 <table style="border-collapse: collapse; width: 100%; height:100%; margin: 0 auto;">
   <thead>  
@@ -136,12 +158,16 @@
       <td style="padding: 10px; border: 1px solid #ddd;">
       <input type="text" name="price[]" value="{{$data->price}}" hidden="">
       {{$data->price}} $
-    </td>      
-      <td style="padding: 10px; border: 1px solid #ddd; ">
-      <input type="text" name="quantity[]" value="{{$data->quantity_id}}" hidden="">
-      {{$data->quantity_id}}
+    </td>
+    <td style="padding: 10px; border: 1px solid #ddd; ">
+      <input type="text" name="quantity[]" value="{{$data->quantity_id}}">
+      {{$data->quantity}}
     </td>  
-      @endforeach  
+  
+  
+</tr>
+@endforeach  
+     
   </tbody>
 </table>
 
@@ -201,8 +227,176 @@
 
 </div>
 
+<div class="footer rev-7-footer">
+        <div class="container">
+            <div class="footer-subscribe">
+                <div class="row align-items-center">
+                    <div class="col-xxl-3 col-xl-4">
+                        <h3>Subscribe Our Newsletter Now</h3>
+                    </div>
 
-</x-app-layout>
+                    <div class="col-xxl-4 col-xl-4 col-lg-9 col-11 col-xs-12">
+                        <form action="#" class="footer-subs-form">
+                            <input type="text" name="Subscription-form" id="footer-subscribe-input" placeholder="Your Email Address">
+                            <button class="subs-btn">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <div class="col-xxl-5 col-xl-4">
+                        <div class="footer-socials">
+                            <h3 class="footer-title">Join us on</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <img src="../assets/images/socials/fb.png" alt="facebook logo">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <img src="../assets/images/socials/pt.png" alt="pinterest logo">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <img src="../assets/images/socials/lk.png" alt="linkedin logo">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <img src="../assets/images/socials/tw.png" alt="twitter logo">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">
+                                        <img src="../assets/images/socials/in.png" alt="instagram logo">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-footer">
+            <div class="container">
+                <div class="custom-row">
+                    <div class="custom-col-2">
+                        <div class="footer-about">
+                            <div class="footer-logo">
+                                <img src="../assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="icon">
+                                        <span><i class="flaticon-map"></i></span>
+                                    </div>
+                                    <div class="txt">
+                                        <span>4920 Trails End Road Ft United States, FL 33311</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <span><i class="flaticon-email"></i></span>
+                                    </div>
+                                    <div class="txt">
+                                        <a href="#">info@example.com</a>
+                                        <a href="#">test@example.com</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="icon">
+                                        <span><i class="flaticon-telephone"></i></span>
+                                    </div>
+                                    <div class="txt">
+                                        <a href="#">+123 456 679 123</a>
+                                        <!-- <a href="tel:+123456789">+123 456 789</a> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="custom-col-2">
+                        <div class="link-wrap">
+                            <div class="footer-link">
+                                <h3 class="footer-title">My Account</h3>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Blogs</a></li>
+                                    <li><a href="#">Terms Of Use</a></li>
+                                    <li><a href="#">Privacy Policies</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-link">
+                                <h3 class="footer-title">Information</h3>
+                                <ul>
+                                    <li><a href="#">My Order</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">My Credit</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li>
+                                    @if (Route::has('login'))
+                                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                                     @auth
+                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                                    @else
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+
+                                    @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                     @endif
+                                    @endauth
+                                    </div>
+                                    @endif
+                                    </li>
+                                    <li><a href="#">Personal Info</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custom-col-2">
+                        <div class="link-wrap">
+                            <div class="footer-link">
+                                <h3 class="footer-title">Custom Links</h3>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Contact Us</a></li>
+                                    <li><a href="#">Blogs</a></li>
+                                    <li><a href="#">Terms Of Use</a></li>
+                                    <li><a href="#">Privacy Policies</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-link">
+                                <h3 class="footer-title">Categories</h3>
+                                <ul>
+                                    <li><a href="#">My Order</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">My Credit</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Personal Info</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p>© Copyright Westcoast Animations All Right Reserved</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="part-img d-flex justify-content-center">
+                            <img src="../assets/images/payment-gateway.png" alt="Image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <script src="../assets/vendor/js/jquery-3.6.0.min.js"></script>
     <script src="../assets/vendor/js/jquery.nice-select.min.js"></script>
@@ -251,9 +445,19 @@ span.onclick = function() {
     );
 </script>
 
+<script>
+function incrementQuantity(button) {
+  var input = button.parentNode.querySelector(".quantity-input");
+  input.stepUp();
+}
+
+function decrementQuantity(button) {
+  var input = button.parentNode.querySelector(".quantity-input");
+  input.stepDown();
+}
+</script>
+
 
 </body>
 
-
-<!-- Mirrored from revelecommerce.codebasket.net/revel/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:46:44 GMT -->
 </html>

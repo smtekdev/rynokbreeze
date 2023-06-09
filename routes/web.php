@@ -9,6 +9,8 @@ use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GoogleAuthController;
+use Laravel\Socialite\Facades\Socialite;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +132,12 @@ route::get('/shop', [HomeController::class, 'shop'])->name('shop');
 route::get('/listing', [HomeController::class, 'listing'])->name('listing');
 route::get('/product-review', [HomeController::class, 'product_review'])->name('product-review');
 route::get('/products', [HomeController::class, 'products'])->name('products');
+Route::get('/home', [HomeController::class, 'homeview'])->name('home');
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle']);
+Route::get('/login/google', function () {return Socialite::driver('google')->redirect();})->name('login.google');
+Route::get('/login/google/callback', function () {$user = Socialite::driver('google')->user();return redirect('/home');});
+Route::get('/admin/orders/{orderId}/send-email', [AdminController::class, 'sendOrderConfirmationEmail']);
 
 // Profile Picture Upload
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');

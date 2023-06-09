@@ -7,6 +7,10 @@ use App\Models\Products;
 use App\Models\Carts;
 use App\Models\WishList;
 use App\Models\Order;
+use App\Mail\OrderMail;
+use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class HomeController extends Controller
 {
@@ -110,13 +114,35 @@ class HomeController extends Controller
              
              $data->productname=$productname;
              $data->price=$request->price[$key] ?? 0.00;
-             $data->quantity=$request->quantity[$key];
+             $data->quantity = $request->quantity[$key] ?? 1;
+
              $data->name=$request->name ?? 0.00;
              $data->phone=$request->phone ?? 0.00;
              $data->address=$request->address ?? 0.00;
              $data->save();
  
          }
+
+         
+        // Order confirmation email
+
+        // Send email
+        $orderItems = Order::all(); // Retrieve all order items
+
+        // Customize the email view according to your needs
+        $emailData = [
+        'orderItems' => $orderItems,
+        ];
+
+        // Send the order confirmation email. We can replace below email with $user->email so it'll get user email and send confirmation on the user email as now mailtrap in use. 
+        
+        Mail::to('farhan.sparklab@gmail.com')->send(new OrderConfirmationMail($emailData));
+
+
+
+
+         Carts::truncate();
+
          return redirect()->back();
         }
 
@@ -193,6 +219,18 @@ public function showUserDashboard()
 }
 
 
+// below function to show user orders
+
+
+public function showOrders()
+{
+    $data = Order::all();
+    return view('admin.orders', compact('data'));
+}
+
+
+
+
 
 
     // Add Cart Functions
@@ -241,15 +279,6 @@ public function showUserDashboard()
     
 
 
-// below function to show user orders
-
-
-    public function showOrders()
-{
-    $data = Order::all();
-    return view('admin.orders', compact('data'));
-}
-
 
 
 
@@ -283,6 +312,7 @@ public function showUserDashboard()
     public function fun_and_entertainment(){return view("fun-&-entertainment");}
     public function sports_and_fitness(){return view("sports-&-fitness");}
     public function department_stores(){return view("department-stores");}
+    public function costco_promo_code(){return view("costco-promo-code");}
 
     //Nav Bar -> LISTINGS
     public function rent_a_house(){return view("rent-a-house");}
@@ -310,6 +340,7 @@ public function showUserDashboard()
     public function listing(){return view("listing");}
     public function product_review(){return view("product-review");}
     public function products(){return view("products");}
+    public function homeview(){return view("home");}
     
     //Single Inner Pages
     public function chicagoland_counselors(){return view("chicagoland-counselors");}

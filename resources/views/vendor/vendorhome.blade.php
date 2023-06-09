@@ -1,4 +1,4 @@
-<x-app-layout>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,29 +156,29 @@
 
 
 
-    <!-- Breadcrumb Section Start -->
-    <section class="breadscrumb-section pt-0">
-        <div class="container-fluid-lg">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadscrumb-contain">
-                        <h2>Seller Dashboard</h2>
-                        <nav>
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item">
-                                    <a href="#">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Seller Dashboard</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+
+
+<!-- logout and user info -->
+<div class="vendorwelcome">                                    
+    <p class="font-semibold text-xl text-gray-800 leading-tight">
+        Welcome, {{ Auth::user()->name }} <!-- User Name -->
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
+        </form>
+    </hp>
+</div>
+<!-- logout and user info end -->
+
+
+<div class="vendorlg">
+<a href="{{ route('login') }}">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+</a>
+</div>
+<!-- Header Ended -->
+
+
 
     <!-- User Dashboard Section Start -->
     <section class="user-dashboard-section section-b-space">
@@ -247,8 +247,8 @@
                                 </div>
 
                                 <div class="profile-name">
-                                    <h3>Joshua D. Bass</h3>
-                                    <h6 class="text-content">joshuadbass@rhyta.com</h6>
+                                    <h3>{{ Auth::user()->name }} </h3>
+                                    <h6 class="text-content">{{ Auth::user()->email }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -308,7 +308,7 @@
                                     </div>
 
                                     <div class="dashboard-user-name">
-                                        <h6 class="text-content">Hello, <b class="text-title">Vicki E. Pope</b></h6>
+                                        <h6 class="text-content">Hello, <b class="text-title"></b></h6>
                                         <p class="text-content">From your My Account Dashboard you have the ability to
                                             view a snapshot of your recent account activity and update your account
                                             information. Select a link below to view or edit information.</p>
@@ -1232,7 +1232,7 @@
     </div>
     <!-- Edit Profile Modal End -->
 
-    </x-app-layout>
+
     
     <!-- latest jquery-->
     <script src="assets/js2/jquery-3.6.0.min.js"></script>

@@ -22489,3 +22489,41 @@ div.product-title a:hover {
 .mrrtp{
   margin-top: 3%;
 }
+
+.btnst{
+  padding: 6px 14px !important;
+  position: absolute;
+  margin-top: -3.5%;
+  margin-left: -9%;
+}
+
+.vlogout{
+    background: #B43434;
+    padding: 0.7% !important;
+    border-radius: 2rem;
+    width: 6rem;
+    color: white;
+    font-weight: bolder;
+    position: absolute;
+    margin-top: -4%;
+    margin-left: -10%;
+}
+
+
+.cartalign  {
+    display: flex;
+    margin-bottom: 15%;
+    margin-top: 5%;
+}
+
+.vendorwelcome{
+  margin-left: 10%;
+  margin-top: 2%;
+}
+
+.vendorlg{
+  position: absolute;
+  margin-top: 6%;
+  margin-left: 40%;
+  width: 80rem;
+}
