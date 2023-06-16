@@ -98,3 +98,105 @@
         </div>
     </div>
 </section>
+
+
+
+
+
+// All users data function
+
+
+
+
+@foreach($data as $data)
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->name}}</td>
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->email}}</td>
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->phone}}</td>
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->usertype}}</td>      
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center; width:200px;">{{$data->password}}</td>
+  @if($data->usertype=="0" || $data->usertype=="2")
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color:orange;"><a href="{{url('/deleteuser',$data->id)}}">Delete</a></td>     
+  @else
+  <td style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color:orange;"><a>Not Allowed</a></td>
+  @endif
+  <!-- <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->avatar}}</td>
+  <td style="border: 1px solid #ddd;">Empty</td> -->
+</tr>
+
+
+
+
+<!-- 12th June -->
+
+
+<div class="row g-lg-4 g-3">
+    <?php for ($i = 0; $i < count($data); $i++) { 
+        $item = $data[$i];
+    ?>
+    <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
+        <div class="single-product-card">
+            <div class="part-img">
+                <a href="{{ route('edit') }}"><img src="/product/<?php echo $item->image; ?>" alt="Product"></a>
+                <div class="cart-option cart-option-bottom">
+                    <ul>
+                        <li>
+                            <form action="{{url('/addcart',$item->id)}}" method="post" enctype="multipart/form-data" id="add-to-cart-form-<?php echo $item->id; ?>">
+                                @csrf
+                                <a role="button" class="add-to-cart" onclick="document.getElementById('add-to-cart-form-<?php echo $item->id; ?>').submit();">
+                                    <i class="fa-light fa-cart-shopping"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <li>
+                            <form action="{{url('/addwishlist',$item->id)}}" method="post" enctype="multipart/form-data" id="add-to-wishlist-form-<?php echo $item->id; ?>">
+                                @csrf
+                                <a role="button" class="add-to-wish" onclick="document.getElementById('add-to-wishlist-form-<?php echo $item->id; ?>').submit();">
+                                    <i class="fa-light fa-heart"></i>
+                                </a>
+                            </form>
+                        </li>
+                        <li>
+                            <a role="button" class="quick-view">
+                                <i class="fa-light fa-image"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="view-product">
+                                <i class="fa-light fa-eye"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="part-txt">
+                <h4 class="product-name"><a href="#"><?php echo $item->title; ?></a></h4>
+                <p class="dscr"><?php echo $item->description; ?></p>
+                <p class="price"><?php echo $item->price; ?>$</p>
+                <div class="star">
+                    <i class="fa-solid fa-star-sharp rated"></i>
+                    <i class="fa-solid fa-star-sharp rated"></i>
+                    <i class="fa-solid fa-star-sharp rated"></i>
+                    <i class="fa-solid fa-star-sharp rated"></i>
+                    <i class="fa-solid fa-star-sharp"></i>
+                </div>
+                <form action="{{ url('/addcart', $item->id) }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="add-to-cart-btn">
+                        <input type="hidden" name="quantity" value="1" min="1">
+                        <button type="submit">Add to Cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>
+In this modified code, I used a for loop to iterate over the $data array and accessed each element using its index $i. The $item variable is assigned the value
+
+
+
+
+
+

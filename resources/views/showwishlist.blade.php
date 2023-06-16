@@ -104,9 +104,6 @@
 
 
 
-<a href="{{ route('login') }}">
-<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -19%;position: relative; z-index: 10; background: white; margin-left:1%;">
-</a>
 
 <div id="top" style="">
 
@@ -131,7 +128,7 @@
         </td>
       <td style="padding: 10px; border: 1px solid #ddd;">
       <input type="text" name="price[]" value="{{$data4->price}}" hidden="">
-      {{$data4->price}} $
+      {{ $data4->discounted_price ?? $data4->price }} $
     </td>      
       @endforeach  
   </tbody>
@@ -221,9 +218,11 @@
                 <div class="custom-row">
                     <div class="custom-col-2">
                         <div class="footer-about">
-                            <div class="footer-logo">
-                                <img src="../assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                            </div>
+                        <div class="footer-logo">
+                            <a href="{{route('login')}}">
+                            <img src="../assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
+                            </a>
+                         </div>
                             <ul>
                                 <li>
                                     <div class="icon">

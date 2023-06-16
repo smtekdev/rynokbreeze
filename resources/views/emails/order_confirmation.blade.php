@@ -27,7 +27,7 @@
             @endforeach
             <tr>
                 <td colspan="3"></td>
-                <td>Subtotal: ${{ $emailData['orderItems']->sum('price') }}</td>
+                <td>Item Price: ${{ $emailData['orderItems']->sum('price') }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>

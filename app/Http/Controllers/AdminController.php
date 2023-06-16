@@ -10,17 +10,45 @@ use Illuminate\Support\Facades\Auth;
 
 
 class AdminController extends Controller
-{
- 
-
+{ 
     
-    //Add New
+    // Add New
     public function Add_New_Category(){return view("admin.Add_New_Category");}
     public function Add_New_Product(){return view("admin.Add_New_Product");}
     public function Add_new_user(){return view("admin.Add_new_user");}
     public function Add_new_vendor(){return view("admin.Add_new_vendor");}
 
-    //E-commerce
+    // Cancel Order
+
+    public function cancelOrder($id)
+    {
+    $data = Order::findOrFail($id);
+    $data->delete();
+    return redirect()->back();
+    }
+
+    public function refundOrder($id)
+    {
+        $data = Order::findOrFail($id);
+        if ($data->refund_status !== null) {
+            return redirect()->back()->with('error', 'Order is already refunded.');
+        }
+        $data->refund_status = 'refunded';
+        $data->save();
+        return redirect()->back()->with('message', 'Refund processed successfully.');
+    }
+
+    // Delete User
+
+    public function deleteuser($id)
+    {
+        $data=user::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+ 
+    // E-commerce
+
     public function apps_ecommerce(){return view("admin.apps_ecommerce");}
     public function apps_ecommerce_add_category(){return view("admin.apps_ecommerce_add_category");}
     public function apps_ecommerce_add_customer(){return view("admin.apps_ecommerce_add_customer");}
@@ -39,6 +67,7 @@ class AdminController extends Controller
     public function apps_ecommerce_vendor(){return view("admin.apps_ecommerce_vendor");}
 
     // Others
+    
     public function All_users(){return view("admin.All_users");}
     public function apps_companies(){return view("admin.apps_companies");}
     public function apps_company_details(){return view("admin.apps_company_details");}
@@ -48,6 +77,7 @@ class AdminController extends Controller
     public function basic_ui_lightbox(){return view("admin.basic_ui_lightbox");}
     public function Category_List(){return view("admin.Category_List");}
     public function Invoices(){return view("admin.Invoices");}
+    public function admin_dashboard(){return view("admin.admin-dashboard");}
 
     // View Orders
 
@@ -55,17 +85,6 @@ class AdminController extends Controller
     {
         $data=order::all();
         return view('admin.orders' ,compact('data'));
-    }
-
-    // Cancel Order
-
-    public function cancelOrder($id)
-    {
-    $data = Order::findOrFail($id);
-    $data->delete();
-
-    return redirect()->back();
-    }
-
+    }  
     
 }

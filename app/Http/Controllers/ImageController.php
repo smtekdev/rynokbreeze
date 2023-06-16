@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
+
+    // User Dashboard
+
     public function index()
     {
         return view('user-dashboard');
     }
+
+    // Update profile Image
 
     public function store(Request $request)
     {

@@ -86,7 +86,8 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>      
     </tr>
   </thead>
   <tbody>
@@ -99,15 +100,25 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price * $data->quantity}} $</td>
-      <td style="border: 1px solid #ddd;">
-            @if (!$data->canceled)
-            <form action="{{ route('cancel-data', ['id' => $data->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="cncl">Cancel</button>
-                </form>
-            @endif
-        </td>
-    </tr>
+      <td style="border: 1px solid #ddd;" class="text-center">{{$data->delivery_status}}</td>
+<td style="border: 1px solid #ddd; width: 7rem !important;">
+    @if ($data->delivery_status === 'delivered')
+        @if ($data->refund_status === null)
+            <form action="{{ route('refund-data', ['id' => $data->id]) }}" method="POST">
+                @csrf
+                <button type="submit" class="cncl">Refund</button>
+            </form>
+        @else
+            <button class="cncl cncl-disabled" disabled>Refunded</button>
+        @endif
+    @elseif ($data->delivery_status !== 'delivered' && !$data->canceled)
+        <form action="{{ route('cancel-data', ['id' => $data->id]) }}" method="POST">
+            @csrf
+            <button type="submit" class="cncl">Cancel</button>
+        </form>
+    @endif
+</td>
+</tr>
     @endforeach
 </tbody>
 <!-- below code new added need to remove if any issue -->

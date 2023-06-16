@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Rynok Bay</title>
 
     <link rel="icon" type="image/x-icon" href="../assets/images/logos/logo-6s.png">
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="grid/css/style.css">
     <link rel="stylesheet" href="demos/">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
             <!-- Google Font -->
@@ -114,6 +116,26 @@
     border-radius: 2rem;
 }
 
+.prices{
+    font-size: 1.25rem;
+    position: relative;
+    bottom: 75px;
+    margin-left: 36%;
+    border: 1px solid black;
+    width: 20%;
+    text-align: center;
+}
+
+.coupons{
+    font-size: 1rem;
+    position: relative;
+    bottom: 75px;
+    margin-left: 36%;
+    border: 1px solid black;
+    width: 20%;
+    text-align: center;
+}
+
     </style>
 </head>
 
@@ -126,9 +148,6 @@
 <!-- Header Ended -->
 
 
-<a href="{{ route('login') }}">
-<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -19%;position: relative; z-index: 10; background: white; margin-left:1%;">
-</a>
 
 <div id="top" style="">
 
@@ -144,66 +163,78 @@
     </tr>  
   </thead>
   <tbody>
-    <form action="{{url('orderconfirm')}}" method="POST">
-    @csrf
-  @foreach($data as $data)
-    <tr style="text-align: center;">
-    <!-- <td style="padding: 10px; border: 1px solid #ddd;">
-        <img src="{{asset('$data->public/images/products')}}" alt="{{ $data->title }}" width="50px">
-      </td>   -->
-    <td style="padding: 10px; border: 1px solid #ddd;">
-      <input type="text" name="productname[]" value="{{$data->title}}" hidden="">
-      {{$data->title}}
-        </td>
-      <td style="padding: 10px; border: 1px solid #ddd;">
-      <input type="text" name="price[]" value="{{$data->price}}" hidden="">
-      {{$data->price}} $
-    </td>
-    <td style="padding: 10px; border: 1px solid #ddd; ">
-      <input type="text" name="quantity[]" value="{{$data->quantity_id}}">
-      {{$data->quantity}}
-    </td>  
-  
-  
-</tr>
-@endforeach  
-     
-  </tbody>
-</table>
+
+  <!-- Order confirm Form -->
+
+  <form action="{{ url('orderconfirm') }}" method="POST">
+
+  <!-- Discount Function related -->
+    @csrf  
+    @php
+    $totalPrice = 0; // Initialize total price variable
+    @endphp  
+    @foreach($data as $item)
+
+    @php
+        $itemPrice = $item->discounted_price ?? $item->price;
+        $quantity = $item->quantity_id;
+        $subtotal = $itemPrice * $quantity;
+        $totalPrice += $subtotal; 
+    @endphp
+
+
+            <tr style="text-align: center;">
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    {{ $item->title }}
+                    <input type="hidden" name="productname[]" value="{{ $item->title }}">
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    <input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0">
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd;width: 11%;">
+                    <input class="quantity-input qnty" type="number" name="quantity[]" value="{{ $item->quantity_id }}" min="1" data-price="{{ $itemPrice }}">
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+
+    <button class="btn" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-5%;">Confirm Order</button>
 
 
 
 
 
-<button class="btn" type="button" id="order" style="background-color:#136ABF; color:white;     margin-left: 49%;position: absolute;margin-top:-5%;">Confirm Order</button>
+<!-- Hidden div to show form after clicking Confirm Order button -->
+<div style="margin-top: -1%; position: absolute; margin-left: 40%; display:none;" id="appear" class="boxset">
+  <form>
+    <div style="display:flex; justify-content:center;align-items: center; margin-bottom: 10px;">
+      <label style="font-size: 16px; color: #fff; margin-bottom: 5px; margin-right:1%; background:transparent" class="btnnc">Name:</label>
+      <input type="text" name="name" placeholder="Enter your Name" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
+    </div>
 
+    <div style="display:flex; justify-content:center; align-items: center; margin-bottom: 10px;">
+      <label style="font-size: 16px; color: #333; margin-bottom: 5px; margin-right:1%;" class="btnnc">Phone:</label>
+      <input type="text" name="phone" placeholder="Enter your Phone Number" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
+    </div>
 
+    <div style="display:flex; justify-content:center; align-items: center; margin-bottom: 10px;">
+      <label style="font-size: 16px; color: #333; margin-bottom: 5px; margin-right:1%;" class="btnnc">Address:</label>
+      <input type="text" name="address" placeholder="Enter your Address" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
+    </div>
 
+    <div style ="display :flex ;justify-content :center ;margin-top :20 px ;">
+      <input type ="submit" value ="Confirm Order" style ="background-color:#65b25e;color:#fff;border:none;padding:10px 20px;border-radius:5px;margin-left:-3%;">
+    </div>
 
-<div style="margin-top: -1%;position: absolute;margin-left: 40%;display:none;" id="appear" class="boxset">
-<div style="display:flex; justify-content:center;align-items: center; margin-bottom: 10px;">
-  <label style="font-size: 16px; color: #fff; margin-bottom: 5px; margin-right:1%; background:transparent" class="btnnc">Name:</label>
-  <input   type="text" name="name" placeholder="Enter your Name" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
+    <button class ="btn" id ="close"type ="button"style="margin-left:72%;margin-top:-21.5%;padding:9px;background-color:#D10102;color:white;"> X </button>
+  </form>
 </div>
 
-<div style="display:flex; justify-content:center; align-items: center; margin-bottom: 10px;">
-  <label style="font-size: 16px; color: #333; margin-bottom: 5px; margin-right:1%;" class="btnnc">Phone:</label>
-  <input  type="text" name="phone" placeholder="Enter your Phone Number" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
-</div>
 
-<div style="display:flex; justify-content:center; align-items: center; margin-bottom: 10px;">
-  <label style="font-size: 16px; color: #333; margin-bottom: 5px; margin-right:1%;" class="btnnc">Address:</label>
-  <input type="text" name="address" placeholder="Enter your Address" style="padding: 5px; border-radius: 5px; border: 2px solid #ddd; width: 250px;">
-</div>
 
-<div style="display: flex; justify-content: center; margin-top: 20px;">
-  <input type="submit" value="Confirm Order" style="background-color: #65b25e; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; margin-left: -3%;">
-</div>
 
-<button class="btn" id="close" type="button" style="margin-left: 72%; margin-top: -21.5%; padding: 9px; background-color:#D10102; color:white;"> X </button>
-</div>
-
-</form>
 
 <table style="border-collapse: collapse; width: 12%; height:100%; margin: 0 auto;">
   <thead>
@@ -226,6 +257,42 @@
 </table>
 
 </div>
+
+
+<!-- Discount Coupon -->
+
+<br>
+
+
+<?php
+    $egtotalPrice = $totalPrice;
+    $discountAmount = session('discountAmount') ?? 0;
+    $newTotalPrice = $egtotalPrice - floatval($discountAmount); 
+?>
+
+<div class="prices">
+    Subtotal: <span id="subtotalPrice">{{ $egtotalPrice }}</span>
+</div>
+
+<div class="coupons">
+    <form method="POST" action="{{ route('apply_coupon') }}">
+        @csrf
+        <input type="text" id="couponCode" name="couponCode" placeholder="Enter coupon code">
+        <button type="submit">Apply</button>
+    </form>
+</div>
+
+@if (session()->has('discountAmount'))    
+    <div class="prices">            
+        Discount: <span id="discountAmount">{{ $discountAmount }}</span>
+    </div>
+@endif
+
+<div class="prices">            
+    Total: <span id="egtotalPrice">{{ $newTotalPrice }}</span>
+</div>
+
+
 
 <div class="footer rev-7-footer">
         <div class="container">
@@ -283,9 +350,11 @@
                 <div class="custom-row">
                     <div class="custom-col-2">
                         <div class="footer-about">
-                            <div class="footer-logo">
-                                <img src="../assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                            </div>
+                        <div class="footer-logo">
+                            <a href="{{route('login')}}">
+                            <img src="../assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
+                            </a>
+                         </div>
                             <ul>
                                 <li>
                                     <div class="icon">
@@ -456,6 +525,35 @@ function decrementQuantity(button) {
   input.stepDown();
 }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Function to calculate total price
+        function calculateTotalPrice() {
+            var totalPrice = 0;
+            $('.quantity-input').each(function() {
+                var quantity = $(this).val();
+                var price = parseFloat($(this).data('price'));
+                var subtotal = quantity * price;
+                totalPrice += subtotal;
+            });
+            $('#totalPrice').text(totalPrice.toFixed(2));
+        }
+
+        // Calculate total price initially
+        calculateTotalPrice();
+
+        // Listen for changes in quantity inputs
+        $('.quantity-input').on('input', function() {
+            calculateTotalPrice();
+        });
+    });
+</script>
+
+
+
+<!-- JavaScript code for applying coupon -->
 
 
 </body>

@@ -6,6 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ChartController;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GoogleAuthController;
@@ -26,13 +30,11 @@ use Laravel\Socialite\Facades\Socialite;
 // HomePage redirection route
 Route::get("/",[HomeController::class,"index"]);
 
+// Dashboard 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
-
-// new routes down below
 
 // Admin->Add New
 Route::get('Add_New_Category', [AdminController::class, 'Add_New_Category'])->name('Add_New_Category');
@@ -70,19 +72,27 @@ Route::get('Category_List', [AdminController::class, 'Category_List'])->name('Ca
 Route::get('Invoices', [AdminController::class, 'Invoices'])->name('Invoices');
 route::get('/seller', [HomeController::class, 'seller'])->name('seller');  
 Route::get('/users', [AdminController::class, 'users'])->name('users');
+Route::get('/vendors', [AdminController::class, 'vendors'])->name('vendors');
+Route::get('/admin-dashboard', [AdminController::class, 'admin_dashboard'])->name('admin-dashboard');
+Route::get('/chart', [ChartController::class, 'show'])->name('chart');
 
 //Functions & Component
 route::get('/navbar', [HomeController::class, 'navbar'])->name('navbar');
 Route::get("/deleteuser/{id}",[AdminController::class,"deleteuser"]);
 Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+// Below cart/wishlist function for main page
 Route::post("/addcart/{id}",[HomeController::class,"addcart"]);
 Route::post("/addwishlist/{id}",[HomeController::class,"addwishlist"]);
+// Below cart/wishlist function for single product page
+Route::post('/add-to-cart/{id}', [HomeController::class, 'addcart'])->name('add-to-cart');
+Route::post('/add-to-wishlist/{id}', [HomeController::class, 'addwishlist'])->name('add-to-wishlist');
 Route::get("/showcart/{id}",[HomeController::class,"showcart"]);
 Route::get("/showwishlist/{id}",[HomeController::class,"showwishlist"]);
 Route::match(['get', 'post'], '/remove/{id}', [HomeController::class, 'remove']);
 Route::match(['get', 'post'], '/remove2/{id}', [HomeController::class, 'remove2']);
 Route::get('/orders', [AdminController::class, 'orders']);
 Route::post('/cancel/{id}', [AdminController::class, 'cancelOrder'])->name('cancel-data');
+Route::post('/refund/{id}', [AdminController::class, 'refundOrder'])->name('refund-data');
 
 //Nav Bar->AFTERMARKET
  route::get('/home-appliances', [HomeController::class, 'home_appliances'])->name('home-appliances');
@@ -138,6 +148,10 @@ Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogl
 Route::get('/login/google', function () {return Socialite::driver('google')->redirect();})->name('login.google');
 Route::get('/login/google/callback', function () {$user = Socialite::driver('google')->user();return redirect('/home');});
 Route::get('/admin/orders/{orderId}/send-email', [AdminController::class, 'sendOrderConfirmationEmail']);
+Route::get('/aproducts/template', function () {return view('aproducts.template');})->name('aproducts.template');
+Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
+
+
 
 // Profile Picture Upload
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');
@@ -170,9 +184,15 @@ Route::post("/uploadproducts",[VendorController::class,"upload"]);
 Route::get("/vendor_products",[VendorController::class,"vendor_products"]);
 Route::get('/vendor', [VendorController::class, 'index']);
 Route::get("/deletemenu/{id}",[VendorController::class,"deletemenu"]);
-Route::get("/updateview/{id}",[VendorController::class,"updateview"]);
+Route::get('/updateview/{id}', [VendorController::class, 'updateview'])->name('vendor.updateview');
 Route::post("/update/{id}",[VendorController::class,"update"]);
 Route::match(['get', 'post'], '/productdelete/{id}', [VendorController::class, 'productdelete']);
+Route::post('/update-delivery-status', [VendorController::class, 'updateDeliveryStatus'])->name('updateDeliveryStatus');
+Route::post('/coupons', [VendorController::class, 'storeCoupon'])->name('vendor.coupons.store');
+Route::get('/coupons', [VendorController::class, 'coupons'])->name('vendor.coupons');
+Route::delete('/coupons/{id}', '\App\Http\Controllers\VendorController@destroy')->name('coupons.destroy');
+Route::post('/coupons/apply', [VendorController::class, 'applyCoupon'])->name('apply_coupon');
+
 
 //Vendors (These are view files related to vendors which were on the HTML file)
 route::get('/ben-haul', [HomeController::class, 'ben_haul'])->name('ben-haul');
@@ -181,3 +201,9 @@ route::get('/harry-donald', [HomeController::class, 'harry_donald'])->name('harr
 route::get('/james-lincoln', [HomeController::class, 'james_lincoln'])->name('james-lincoln');
 route::get('/john-ceamus', [HomeController::class, 'john_ceamus'])->name('john-ceamus');
 route::get('/robert-kane', [HomeController::class, 'robert_kane'])->name('robert-kane');
+
+// Payments
+Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
+Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
+
+

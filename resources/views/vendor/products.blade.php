@@ -2,7 +2,7 @@
 
 
 
-<div style="background-color: #f7f7f7; padding: 20px;">
+<div style="background-color: #f7f7f7; padding: 20px;" class="text-center">
 <h1>Add New Product</h1><br>
 <form action="{{url('/uploadproducts')}}" method="post" enctype="multipart/form-data">
 

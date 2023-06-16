@@ -322,7 +322,11 @@
                                                     <img src="assets/images2/svg/01.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Total Products</h5>
-                                                        <h3>25</h3>
+                                                        @php
+                                                        $count7 = App\Models\Products::all();
+                                                        $totalCount = count($count7);
+                                                        @endphp
+                                                        <h3>{{ $totalCount }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -333,38 +337,55 @@
                                                     <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Total Sales</h5>
-                                                        <h3>12550</h3>
+                                                        @php
+                                                        $count8 = App\Models\Order::all();
+                                                        $totalCount1 = count($count8);
+                                                        @endphp
+                                                        <h3>{{ $totalCount1 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
+                                                    <img src="assets/images2/svg/02.png" class="img-1 blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
+                                                    <div class="totle-detail">
+                                                        <h5>Order Delivered</h5>
+                                                        @php
+                                                        $pendingOrders = App\Models\Order::where('delivery_status', 'delivered')->get();
+                                                        $totalCount1 = count($count8);
+                                                        @endphp
+                                                        <h3>{{ $totalCount1 }}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
                                                     <img src="assets/images2/svg/03.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Order Pending</h5>
-                                                        <h3>36</h3>
+                                                        @php
+                                                        $pendingOrders = App\Models\Order::whereNull('delivery_status')->get();
+                                                        $totalCount2 = $pendingOrders->count();
+                                                        @endphp
+
+
+                                                        <h3>{{ $totalCount2 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row g-4">
-                                        <div class="col-xxl-6">
-                                            <div class="dashboard-bg-box">
-                                                <div id="chart"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-6">
-                                            <div class="dashboard-bg-box">
-                                                <div id="sale"></div>
-                                            </div>
-                                        </div>
-
-                                       
+                                    <!-- Calling Live Chart For Orders -->
+                    
+                    <iframe src="{{ route('chart') }}" frameborder="0" width="100%" height="500"></iframe>
+                          
                                         
                                     </div>
                                 </div>
@@ -375,7 +396,7 @@
                             <!--Produts Area-->
 
 
-                            <div class="tab-pane fade" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                            <div class="tab-pane fade text-center" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
                                 <h1>All Products</h1>
                             @include("vendor.vendor_products")
                             </div>
@@ -400,7 +421,8 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Refund</th>
     </tr>
   </thead>
   <tbody>
@@ -414,8 +436,18 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->price * $data6->quantity}} $</td>
       <td style="border: 1px solid #ddd; width: 7rem !important;">
-            
-        </td>
+      <form action="{{ route('updateDeliveryStatus') }}" method="POST">
+        @csrf
+        <input type="hidden" name="orderId" value="{{ $data6->id }}">
+        <input type="hidden" name="email" value="{{$data6->email}}">
+        <select name="delivery_status" onchange="this.form.submit()">
+            <option value="pending" {{ $data6->delivery_status === 'pending' ? 'selected' : '' }}>Pending</option>
+            <option value="delivered" {{ $data6->delivery_status === 'delivered' ? 'selected' : '' }}>Delivered</option>
+            <option value="cancelled" {{ $data6->delivery_status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+        </select>
+    </form>
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->refund_status}}</td>
     </tr>
     @endforeach
 </tbody>
@@ -446,7 +478,7 @@
                                         </span>
                                     </div>
 
-                                    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update') }}" method="POST">
     @csrf
     <div class="form-group">
         <label for="name">Name:</label>

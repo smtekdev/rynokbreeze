@@ -3,7 +3,7 @@
         <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
             <div class="single-product-card">
                 <div class="part-img">
-                    <a href="#"><img src="/product/{{$data->image}}" alt="Product"></a>
+                    <a href="{{ route('edit', ['id' => $data->id]) }}"><img src="/product/{{$data->image}}" alt="Product"></a>
                     <div class="cart-option cart-option-bottom">
                         <ul>
                             <li>
@@ -38,7 +38,12 @@
                 <div class="part-txt">
                     <h4 class="product-name"><a href="#">{{$data->title}}</a></h4>
                     <p class="dscr">{{$data->description}}</p>
-                    <p class="price">{{$data->price}}$</p>
+                    @if ($data->discounted_price)
+                      <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">{{$data->price}}$</p>
+                      <p class="price" style="display: inline-block;">{{$data->discounted_price}}$</p>
+                    @else
+                      <p class="price" style="display: inline-block;">{{$data->price}}$</p>
+                    @endif
                      <div class="star">
                         <i class="fa-solid fa-star-sharp rated"></i>
                         <i class="fa-solid fa-star-sharp rated"></i>

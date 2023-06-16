@@ -1081,9 +1081,11 @@
                 <div class="custom-row">
                     <div class="custom-col-2">
                         <div class="footer-about">
-                            <div class="footer-logo">
-                                <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                            </div>
+                        <div class="footer-logo">
+                            <a href="{{route('login')}}">
+                            <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
+                            </a>
+                         </div>
                             <ul>
                                 <li>
                                     <div class="icon">

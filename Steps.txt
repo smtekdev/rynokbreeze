@@ -69,9 +69,17 @@ D- Create/Edit GoogleController.php. And login.blade.php file was already update
 48- Getting confirmed order details at user dashboard.
 49- Order confirmation email. 
  
+9th June:
 
+50- Cart quantity Increment and Decrement function. 
+51- Added logic for delete user and vendor and not allowed to delete admin id. 
+52- Created seperate blade (view) files for users and vendor (before all were in one) with function to show only related data on each view. 
+53- For admin Edit profile (with image change, edit password and other profile update functions). 
+54- For Vendor getting real numbers/count of orders (from backend) and products at below icons below. 
+55- For User getting real numbers/count of orders and wishlist (from backend) below dashboard icons. 
+56- Working for order status update by vendor. 
 
-
+s
 Required Functions: 
 1- Multi User authentication and authorization
 2- Product management

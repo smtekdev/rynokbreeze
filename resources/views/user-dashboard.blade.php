@@ -61,6 +61,12 @@
   display: inline-block;
 }
 
+.cncl-disabled {
+        background-color: #ccc;
+        color: #888;
+        cursor: not-allowed;
+    }
+
 .ibtn {
     width: 2px;
   border: 2px solid #980506;
@@ -148,6 +154,8 @@
     width: 5rem;
     font-weight: bold;
     margin-left: 15%;
+    font-size: small;
+    width: 4rem;
 }
 
 .cncl:hover  {
@@ -407,7 +415,11 @@
                                                     <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Total Order</h5>
-                                                        <h3>3658</h3>
+                                                        @php
+                                                        $count8 = App\Models\Order::all();
+                                                        $totalCount1 = count($count8);
+                                                        @endphp
+                                                        <h3>{{ $totalCount1 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -418,7 +430,11 @@
                                                     <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Total Pending Order</h5>
-                                                        <h3>254</h3>
+                                                        @php
+                                                        $count8 = App\Models\Order::all();
+                                                        $totalCount1 = count($count8);
+                                                        @endphp
+                                                        <h3>{{ $totalCount1 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -428,8 +444,11 @@
                                                     <img src="assets/images2/svg/01.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/01.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Total Wishlist</h5>
-                                                        <h3>32158</h3>
+                                                    @php
+                                                    $count10 = App\Models\WishList::all();
+                                                    $totalCount3 = count($count10);
+                                                    @endphp
+                                                    <h3>{{ $totalCount3 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -526,6 +545,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
     </tr>
   </thead>
@@ -545,14 +565,27 @@ $data= App\Models\Order::all();
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price * $data->quantity}} $</td>
-      <td style="border: 1px solid #ddd; width: 7rem !important;">
-            @if (!$data->canceled)
-            <form action="{{ route('cancel-data', ['id' => $data->id]) }}" method="POST">
+
+      <td style="border: 1px solid #ddd;" class="text-center">{{$data->delivery_status}}</td>
+        <td style="border: 1px solid #ddd; width: 7rem !important;">
+            @if ($data->delivery_status === 'delivered')
+                @if ($data->refund_status === null)
+                    <form action="{{ route('refund-data', ['id' => $data->id]) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="cncl">Refund</button>
+                    </form>
+                @else
+                    <button class="cncl cncl-disabled" disabled>Refunded</button>
+                @endif
+            @elseif (!$data->canceled)
+                <form action="{{ route('cancel-data', ['id' => $data->id]) }}" method="POST">
                     @csrf
                     <button type="submit" class="cncl">Cancel</button>
                 </form>
             @endif
         </td>
+
+        
     </tr>
     @endforeach
 </tbody>
@@ -797,9 +830,11 @@ $data= App\Models\Order::all();
             <div class="custom-row">
                 <div class="custom-col-2">
                     <div class="footer-about">
-                        <div class="footer-logo">
+                       <div class="footer-logo">
+                            <a href="{{route('login')}}">
                             <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                        </div>
+                            </a>
+                         </div>
                         <ul>
                             <li>
                                 <div class="icon">

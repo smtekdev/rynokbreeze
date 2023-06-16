@@ -9,7 +9,8 @@ use App\Models\Order;
 
 class ProfileController extends Controller
 {
-    //
+    // Edit profile
+
     public function edit()
     {
     $user = Auth::user();
@@ -17,6 +18,25 @@ class ProfileController extends Controller
     dd($userorders);
     return view('profiles.edit', compact('user', 'orders'));
     }
+
+    // Show Users
+
+    public function show()
+    {
+        $user = auth()->user();
+        return view('profile.show', compact('user'));
+    }
+
+    // Show Orders
+
+    public function orders()
+    {
+        $userorders = all();
+        dd($userorders);
+        return view('user-dashboard', compact('userorders'));
+    }
+
+    //  Update Password
 
     public function update(Request $request)
     {
@@ -33,27 +53,12 @@ class ProfileController extends Controller
             // Update the new password
             $user->password = Hash::make($request->input('password'));
         }    
-
-        // add more fields here as per your requirements
         $user->save();
 
         return redirect()->back()->with('success', 'Profile updated successfully');
-    }
-
-    public function show()
-    {
-        $user = auth()->user();
-        return view('profile.show', compact('user'));
-    }
-
-
-    public function orders()
-{
-    $userorders = all();
-    dd($userorders);
-    return view('user-dashboard', compact('userorders'));
-}
-
+    }    
+   
+    // Update profile Image
 
     public function store(Request $request)
     {

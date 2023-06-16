@@ -384,7 +384,7 @@
             <ul class="menu-bar">
                 <li class="logo">
                     
-                    <img src="assets/images/logos/logo-6.png" alt="Logo" style="max-width: 148% !important;">
+                    <img src="{{ asset('assets/images/logos/logo-6.png') }}" alt="Logo" style="max-width: 148% !important;">
                
                 </li>
                 <li class="nav-item dropdown">
@@ -487,7 +487,7 @@
                                 <div class="col-lg-2 col-md-3 col-sm-3 col-5">
                                     <div class="logo">
                                         <a href="{{ route('login') }}">
-                                            <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 148% !important;">
+                                            <img src="{{ asset('assets/images/logos/logo-6.png') }}" alt="logo" style="max-width: 148% !important;">
                                         </a>
                                     </div>
                                 </div>

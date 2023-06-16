@@ -22471,8 +22471,16 @@ div.product-title a:hover {
 
 .btncr{
   position: absolute;
-    left: 33%;
-    bottom: 50%;
+  left: 7%;
+  bottom: 42%;
+}
+
+.btanc{
+  position: absolute;
+  margin-left: 46%;
+  border-radius: 50px;
+  padding: 5%;
+  margin-top: -2%;
 }
 
 .sbmbtn{
@@ -22526,4 +22534,38 @@ div.product-title a:hover {
   margin-top: 6%;
   margin-left: 40%;
   width: 80rem;
+}
+
+.btnp{
+    margin-right: 26%;
+}
+
+.btnn{
+  margin-left: 36%;
+}
+
+.qnty{
+  margin-left: 8%;
+}
+
+.admnlg{
+  position: absolute;
+  margin-top: 3%;
+  margin-left: 45%;
+  width: 80rem;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.cparea{
+  padding: 2%;
+  border: 1px solid black;
+  width: 34% !important;
+  height: 3rem;
+  border-radius: 1rem;
+  text-align: center !important;
+  margin-top: 1%;
 }

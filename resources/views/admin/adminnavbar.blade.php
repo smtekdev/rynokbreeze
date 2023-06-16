@@ -35,6 +35,13 @@
 
 <!-- must revert this  -->
 
+
+<div class="vendorlg">
+<a href="{{ route('login') }}">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+</a>
+</div>
+
     <!--  Navbar Starts  -->
     <!-- <div class="header-container fixed-top">
         <header class="header navbar navbar-expand-sm">
@@ -332,32 +339,17 @@
             <nav id="sidebar">
                 <ul class="list-unstyled menu-categories" id="accordionExample">
                     <li class="menu">
-                        <a href="" data-active="true"  class="dropdown-toggle">
+                        <a href="{{ route('login') }}" data-active="true"  class="dropdown-toggle">
                             <div class="">
                                 <i class="las la-home"></i>
                                 <span>Dashboards</span>
                             </div>
-                    </li>
-                    <li class="menu">
-                        <a href="#charts" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <div class="">
-                                <i class="las la-chart-pie"></i>
-                                <span>Option1</span>
-                            </div>
-                            <div>
-                                <i class="las la-angle-right sidemenu-right-icon"></i>
-                            </div>
-                        </a>
-                        <ul class="collapse submenu list-unstyled" id="charts" data-parent="#accordionExample" style="visibility: visible;">
-                            <li>
-                                <a href="{{ route('apps_ecommerce_products') }}">Products</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('apps_ecommerce_add_product') }}">Add New Products</a>
-                            </li>                    
-                        </ul>
-                    </li>
-                    <li class="menu">
+                    </li>      
+
+                    
+
+                                  <!-- use below for new work -->
+                    <!-- <li class="menu">
                         <a href="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <i class="las la-file"></i>
@@ -375,7 +367,7 @@
                                 <a href="{{ route('apps_ecommerce_add_category') }}">Add New Category</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- <li class="menu">
                         <a href="#components" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
@@ -440,7 +432,7 @@
                         <a href="apps_ecommerce_refund" class="dropdown-toggle">
                             <div class="">
                                 <i class="las la-copy"></i>
-                                <span>Option 5</span>
+                                <span>Vendors</span>
                             </div>
                             <div>
                                 <i class="las la-angle-right sidemenu-right-icon"></i>
@@ -452,6 +444,17 @@
                             <div class="">
                                 <i class="las la-copy"></i>
                                 <span>Orders</span>
+                            </div>
+                            <div>
+                                <i class="las la-angle-right sidemenu-right-icon"></i>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu">
+                        <a href="{{ route('admin-dashboard') }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i class="las la-chart-pie"></i>
+                                <span>Profile</span>
                             </div>
                             <div>
                                 <i class="las la-angle-right sidemenu-right-icon"></i>

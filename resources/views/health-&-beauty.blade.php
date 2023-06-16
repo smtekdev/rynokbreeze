@@ -2,12 +2,11 @@
 <html lang="en">
 
 
-<!-- Mirrored from revelecommerce.codebasket.net/revel/# by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:48:25 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RynokBay - Automotive</title>
+    <title>RynokBay</title>
 
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">     
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
@@ -74,9 +73,9 @@
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6 col-md-9 col-8">
                     <div class="breadcrumb-txt">
-                        <h1>Health & Beauty</h1>
+                        <h1>Products</h1>
                         <ul>
-                            <li><a href="index-7.html"><i class="fa-regular fa-house"></i></a></li>
+                            <li><a href=""><i class="fa-regular fa-house"></i></a></li>
                             <li>/</li>
                             <li>Home</li>
                         </ul>
@@ -947,9 +946,11 @@
             <div class="custom-row">
                 <div class="custom-col-2">
                     <div class="footer-about">
-                        <div class="footer-logo">
+                    <div class="footer-logo">
+                            <a href="{{route('login')}}">
                             <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                        </div>
+                            </a>
+                         </div>
                         <ul>
                             <li>
                                 <div class="icon">

@@ -93,7 +93,7 @@
                                     <div class="banner-txt">
                                         <h6>Get your Shopping Bags Ready</h6>
                                         <h1>New Products <br> Collection</h1>
-                                        <a href="health-&-beauty.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{ route('health-&-beauty') }}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                     <div class="banner-txt">
                                         <h6>Discount Prices</h6>
                                         <h1>Discount <br> Coupons</h1>
-                                        <a href="salon-&-spa.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{ route('salon-&-spa') }}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                                     <div class="banner-txt">
                                         <h6>Used Products at the Best Price</h6>
                                         <h1>Aftermarket <br> Used</h1>
-                                        <a href="home-appliances.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{ route('home-appliances') }}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                     <div class="banner-txt">
                                         <h6>Listings at the Best Price</h6>
                                         <h1>Listings <br> </h1>
-                                        <a href="rent-a-chair-in-salon.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{ route('rent-an-office') }}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                                     <div class="banner-txt">
                                         <h6 style="color:white;">All Types of Services Available</h6>
                                         <h1 style="color: white;">Services <br></h1>
-                                        <a href="digital-world.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{route('digital-world')}}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,7 @@
                                     <div class="banner-txt">
                                         <h6>All Types of Consultations Available</h6>
                                         <h1>Consultations <br></h1>
-                                        <a href="aromatherapy.html" class="def-btn rev-6-def-btn">SHOP NOW</a>
+                                        <a href="{{ route('aromatherapy') }}" class="def-btn rev-6-def-btn">SHOP NOW</a>
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +299,7 @@
                                                         </div>
                                                         <div class="single-area__txt" style="padding-top: 10px;">
                                                             <!-- <h6>We Supply New Products</h6> -->
-                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="health-beauty.html" class="def-btn rev-7-def-btn guppy" style="margin-left: 22px;">shop now</a></h5>
+                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="{{ route('health-&-beauty') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 22px;">shop now</a></h5>
                                                         </div>
                                                     </div>
                                 
@@ -316,7 +316,7 @@
                                                                     <div class="col-xl-8" style="width: 400px;">
                                                                         <div class="single-area__txt" style="padding-top: 7px;">
                                                                             <!-- <h6>Daily Discount Coupons</h6> -->
-                                                                            <h5>Discount Coupons <a href="discount-coupon.html" class="def-btn rev-7-def-btn guppy" style="margin-left: 40px;">shop now</a><!--5-->
+                                                                            <h5>Discount Coupons <a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 40px;">shop now</a><!--5-->
                                                                             
                                                                         </h5></div>
                                                                     </div>
@@ -332,7 +332,7 @@
                                                                     <div class="col-xl-8" style="width: 400px;">
                                                                         <div class="single-area__txt" style="padding-top: 7px;">
                                                                             <!-- <h6>-30% Off</h6> -->
-                                                                            <h5>Aftermarket Products <a href="aftermarket.html" class="def-btn rev-7-def-btn guppy" style="margin-left: 15px;">shop now</a></h5>
+                                                                            <h5>Aftermarket Products <a href="{{ route('home-appliances') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 15px;">shop now</a></h5>
                                                                             
                                                                         </div>
                                                                     </div>
@@ -350,7 +350,7 @@
                                                                 <div class="col-xl-8">
                                                                     <div class="single-area__txt" style="padding-left: 7px;">
                                                                         <!-- <h6>Start from $04.99</h6> -->
-                                                                        <h5 style="font-weight: 600; margin-top: 28.5px;">Listings Ads <a href="rent-a-chair.html" class="def-btn rev-7-def-btn" style="margin-left: 170px;">shop now</a><!--5-->
+                                                                        <h5 style="font-weight: 600; margin-top: 28.5px;">Listings Ads <a href="{{ route('rent-an-office') }}" class="def-btn rev-7-def-btn" style="margin-left: 170px;">shop now</a><!--5-->
                                                                         
                                                                     </h5></div>
                                                                 </div>
@@ -396,7 +396,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Boot Discount Coupon<a href="discount-coupon.html" class="def-btn rev-7-def-btn" style="margin-left: 19px;">shop now</a></h5>
+                                            <h5>Boot Discount Coupon<a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn" style="margin-left: 19px;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Entry Pass Coupon<a href="discount-coupon.html" class="def-btn rev-7-def-btn" style="margin-left: 12%;">shop now</a></h5>
+                                            <h5>Entry Pass Coupon<a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn" style="margin-left: 12%;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -512,7 +512,7 @@
                             <div class="product-category">
                                 <span class="text-muted">Since 2012</span>
                             </div>
-                            <h4 class="mb-5"><a href="ben-haul.html">Ben Haul</a></h4>
+                            <h4 class="mb-5"><a href="{{route('ben-haul')}}">Ben Haul</a></h4>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
@@ -530,7 +530,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="ben-haul.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{ route('ben-haul') }}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -553,7 +553,7 @@
                             <div class="product-category">
                                 <span class="text-muted">Since 2019</span>
                             </div>
-                            <h4 class="mb-5"><a href="john-ceamus.html">John Seamus</a></h4>
+                            <h4 class="mb-5"><a href="{{ route('john-ceamus') }}">John Seamus</a></h4>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
@@ -571,7 +571,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="john-ceamus.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{ route('john-ceamus') }}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -613,7 +613,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="harry-donald.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('harry-donald')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -682,7 +682,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="carter-grayson.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('carter-grayson')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -723,7 +723,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="james-lincoln.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('james-lincoln')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -764,7 +764,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="robert-kane.html" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('robert-kane')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -922,9 +922,11 @@
                 <div class="custom-row">
                     <div class="custom-col-2">
                         <div class="footer-about">
-                            <div class="footer-logo">
-                                <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
-                            </div>
+                        <div class="footer-logo">
+                            <a href="{{route('login')}}">
+                            <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
+                            </a>
+                         </div>
                             <ul>
                                 <li>
                                     <div class="icon">

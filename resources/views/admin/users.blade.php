@@ -18,7 +18,8 @@
             $data = App\Models\User::all();
         @endphp
 
-    @foreach($data as $data)
+        @foreach($data as $data)
+    @if($data->usertype == "0")
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->name}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->email}}</td>
@@ -26,15 +27,17 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->usertype}}</td>      
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center; width:200px;">{{$data->password}}</td>
-      @if($data->usertype=="0")
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color:orange;"><a href="{{url('/deleteuser',$data->id)}}">Delete</a></td>     
-      @else
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color:orange;"><a>Not Allowed</a></td>
-      @endif
-      <!-- <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->avatar}}</td>
-      <td style="border: 1px solid #ddd;">Empty</td> -->
     </tr>
+    @endif
     @endforeach
+
+
+    
+
+
+
+
 </tbody>
 <!-- below code new added need to remove if any issue -->
 </table>

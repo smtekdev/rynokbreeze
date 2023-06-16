@@ -15,26 +15,41 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
 
-
-    // in below function we added data from model of products which will get data from backend and will bring at frontend. 
-   
-    public function index()
-    
+    // Add Cart 
+    public function addcart(Request  $request,$id)
     {
-   
         if(Auth::id())
-   
-    {
-        return redirect('redirects');
-    }
-    else
+        {
+            $user_id=Auth::id();
         
-        $data=products::all();
-        return view("home",compact("data"));
+            $productid=$id;
+        
+            $quantity = 1;            
+        
+            // Retrieve the product image
+           
+            
+            $cart=new carts;
+        
+            $cart->user_id=$user_id;
+        
+            $cart->product_id=$productid;
+        
+            $cart->quantity_id=$quantity;
+
+           //  $cart->image = $image;
+        
+            $cart->save();
+        
+            return redirect()->back();
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
-
-    // Auth Function
+    // Auth Validation
 
     public function redirects()
     {
@@ -66,12 +81,127 @@ class HomeController extends Controller
         {         
             return view('vendor.vendorhome', compact('data','data5'));
         }
-    }
-   
-   
-    
+    }   
 
-     //  Cart show function
+    // Cart Item remove
+
+     public function remove($id)
+     {
+        $data=carts::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+
+     }
+
+    // Confirm Order
+
+
+    public function orderconfirm(Request $request)
+    {
+        // Validate input parameters
+        $validatedData = $request->validate([
+            'productname.*' => 'required|string',
+            'price.*' => 'required|numeric|min:0',
+            'quantity.*' => 'required|integer|min:1',
+            'name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:255',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        foreach ($request->productname as $key => $productname) {
+            $data = new Order;
+
+            $data->productname = $productname;
+            $data->price = (int)$request->price[$key];
+            $data->quantity = (int)$request->quantity[$key];
+
+            
+            $data->name = $request->name ?? '';
+            $data->phone = $request->phone ?? '';
+            $data->address = $request->address ?? '';
+            $data->save();
+        }
+
+        // Send email for orders that have not had an email sent yet
+        $orderItems = Order::where('is_email_sent', false)->get();
+        foreach ($orderItems as $order) {
+            $userEmail = Auth::user()->email;
+            $emailData = [
+                'orderItems' => $orderItems,
+            ];
+            // Email remove from here
+            $order->is_email_sent = true;
+            $order->save();
+        }
+
+        // Clear the carts table
+        Carts::truncate();
+        return redirect()->back();
+    }
+
+
+
+
+
+
+
+
+
+    // Delivery Status Update
+    public function updateDeliveryStatus(Request $request)
+    {
+        $order = Order::find($request->orderId);
+        $order->delivery_status = $request->delivery_status;
+        $order->save();
+
+        // Send email notification to the user
+        $userEmail = $request->email;
+        $emailData = [
+            'order' => $order,
+        ];
+        Mail::to($userEmail)->send(new DeliveryStatusUpdated($emailData));
+
+        if (count(Mail::failures()) > 0) {
+            // There was an error sending the email
+            // Handle the error or log it for further investigation
+            foreach (Mail::failures() as $emailAddress) {
+                // Log or handle each failed email address
+                Log::error("Failed to send email to: $emailAddress");
+            }
+        } else {
+            // Email sent successfully
+            // Add some log statements or debugging output to verify
+            Log::info("Email sent successfully to: $userEmail");
+
+        }
+
+        return redirect()->back();
+    }
+
+
+
+    // Show products 
+   
+    public function index()
+    
+    {
+   
+        if(Auth::id())
+   
+    {
+        return redirect('redirects');
+    }
+    else
+        
+        $data=products::all();
+        return view("home",compact("data"));
+    }
+
+
+    
+     // Show Carts items
  
      public function showcart(Request $request,$id)
      {
@@ -91,199 +221,82 @@ class HomeController extends Controller
         return redirect()->back();
      }
 
-    //  Cart remove function
+    // Show Wishlist
 
-     public function remove($id)
-     {
-        $data=carts::find($id);
-
-        $data->delete();
-
+    public function showwishlist(Request $request,$id)
+    {
+        $count2=WishList::where('user_id' ,$id)->count();
+        $data3=WishList::select('*')->where('user_id', '=' , $id)->get();
+        $data4=WishList::where('user_id' ,$id)->join('products', 'wish_lists.product_id', '=' , 'products.id')->get();
+        return view('showwishlist' ,compact('count2' ,'data4' , 'data3', 'id'));
         return redirect()->back();
+    }
+       
+    // Show Orders
 
-     }
+    public function showOrders()
+    {
+        $data = Order::all();
+        return view('admin.orders', compact('data'));
+    }
 
-      //  order functions
+    // User Dashboard
 
+    public function showUserDashboard()
+    {
+        $data = Order::all();
+        return view('user-dashboard', compact('data'));
+    }
 
-      public function orderconfirm(Request $request)
-      {
-         foreach ($request->productname as $key =>$productname)
-         {
-             $data=new order;
-             
-             $data->productname=$productname;
-             $data->price=$request->price[$key] ?? 0.00;
-             $data->quantity = $request->quantity[$key] ?? 1;
+    // Wishlist
 
-             $data->name=$request->name ?? 0.00;
-             $data->phone=$request->phone ?? 0.00;
-             $data->address=$request->address ?? 0.00;
-             $data->save();
- 
-         }
+    public function addwishlist(Request  $request,$id)
+    {
+        if(Auth::id())
+        {
+            $user_id=Auth::id();
 
-         
-        // Order confirmation email
+            $productid=$id;
 
-        // Send email
-        $orderItems = Order::all(); // Retrieve all order items
+            $wishlist=new WishList;
 
-        // Customize the email view according to your needs
-        $emailData = [
-        'orderItems' => $orderItems,
-        ];
+            $wishlist->user_id=$user_id;
 
-        // Send the order confirmation email. We can replace below email with $user->email so it'll get user email and send confirmation on the user email as now mailtrap in use. 
-        
-        Mail::to('farhan.sparklab@gmail.com')->send(new OrderConfirmationMail($emailData));
+            $wishlist->product_id=$productid;
 
+            $wishlist->save();
 
-
-
-         Carts::truncate();
-
-         return redirect()->back();
+            return redirect()->back();
         }
-
-         
-        // Wishlist
-
-        // below function (auth) verify if user login then addwishlist will work otherwise redirect to login page. To use auth we need to add auth as on above top line added.
-
-public function addwishlist(Request  $request,$id)
-{
-    if(Auth::id())
-    {
-        $user_id=Auth::id();
-
-        $productid=$id;
-
-        $wishlist=new WishList;
-
-        $wishlist->user_id=$user_id;
-
-        $wishlist->product_id=$productid;
-
-        $wishlist->save();
-
-        return redirect()->back();
+        else
+        {
+            return redirect('/login');
+        }
     }
-    else
+
+    // Wishlist Item Remove
+
+    public function remove2($id)
     {
-        return redirect('/login');
+       $data3=WishList::find($id);
+       $data3->delete();
+       return redirect()->back();
     }
-}
 
 
+    // Create Dynamic Page
+    public function show($id)
+    {
+        $product = Products::find($id);
 
-public function showwishlist(Request $request,$id)
-{
-    $count2=WishList::where('user_id' ,$id)->count();
-
-    // below code to avoid user for going to another user cart. Below function will check if id ==  id only then will showcart data otherwise will return back.
-
-
-    // below code will bring only carts data in the user table instead of bringing all products in the carts as we need it for backend purpose
-
-    // Also we joined two tables together which are products and wishlist
-
-    $data3=WishList::select('*')->where('user_id', '=' , $id)->get();
-
-    $data4=WishList::where('user_id' ,$id)->join('products', 'wish_lists.product_id', '=' , 'products.id')->get();
-
-    return view('showwishlist' ,compact('count2' ,'data4' , 'data3', 'id'));
-
-    return redirect()->back();
-}
+        if ($product) {
+            return view('edit', compact('product'));
+        } else {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+    }
 
 
-// Wishlist Remove Function
-
-public function remove2($id)
-{
-   $data3=WishList::find($id);
-
-   $data3->delete();
-
-   return redirect()->back();
-
-}
-
-
-
-public function showUserDashboard()
-{
-    $data = Order::all();
-    return view('user-dashboard', compact('data'));
-}
-
-
-// below function to show user orders
-
-
-public function showOrders()
-{
-    $data = Order::all();
-    return view('admin.orders', compact('data'));
-}
-
-
-
-
-
-
-    // Add Cart Functions
-
-     // below function (auth) verify if user login then addcart will work otherwise redirect to login page. To use auth we need to add auth as on above top line added.
-
-     public function addcart(Request  $request,$id)
-     {
-         if(Auth::id())
-         {
-             $user_id=Auth::id();
- 
-             $productid=$id;
- 
-             $quantity=$request->quantity;
-
-             // Retrieve the product image
-            
-             
-             $cart=new carts;
- 
-             $cart->user_id=$user_id;
- 
-             $cart->product_id=$productid;
- 
-             $cart->quantity_id=$quantity;
-
-            //  $cart->image = $image;
- 
-             $cart->save();
- 
-             return redirect()->back();
-         }
-         else
-         {
-             return redirect('/login');
-         }
-     }
-
-    
-
-
-
-  
-
-    
-
-
-
-
-
-
-   
     //Functions & Component
     public function user_dashboard(){return view("user-dashboard");}
     public function navbar(){return view("components.navbar");}
@@ -342,6 +355,7 @@ public function showOrders()
     public function products(){return view("products");}
     public function homeview(){return view("home");}
     
+
     //Single Inner Pages
     public function chicagoland_counselors(){return view("chicagoland-counselors");}
     public function commando_machine(){return view("commando-machine");}

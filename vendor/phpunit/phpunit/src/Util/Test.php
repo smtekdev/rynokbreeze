@@ -781,3 +781,5 @@ final class Test
         return strtolower(trim($name, '\\'));
     }
 }
+
+
