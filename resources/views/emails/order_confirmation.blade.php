@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Order Confirmation</title>
+    <title>Rynokbay Order Confirmation</title>
 </head>
 <body>
     <h2>Order Confirmation</h2>

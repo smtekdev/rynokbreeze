@@ -61,6 +61,14 @@
   display: inline-block;
 }
 
+
+
+.rounded-image {
+  border-radius: 50% !important;
+  border: 5px solid white;
+}
+
+
 .ibtn {
     width: 2px;
   border: 2px solid #980506;
@@ -147,6 +155,33 @@
     color:white;
 }
 
+.mrtpuo{
+    margin-top: -218%;
+}
+
+.mrtpup{
+    margin-top: -127%;
+    position: absolute;
+    width: 49%;
+}
+
+.mrbtm{
+    margin-bottom: 75%;
+}
+
+.bgw{
+    background-color: white;
+    padding-right: 5%;
+}
+
+.pdadjst{
+    margin-bottom:200%
+}
+
+.cparea input::placeholder {
+    text-align: center;
+  }
+
     </style>
 </head>
 
@@ -182,7 +217,7 @@
 
     <!-- User Dashboard Section Start -->
     <section class="user-dashboard-section section-b-space">
-        <div class="container-fluid-lg">
+        <div class="container-fluid-lg bgw">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4">
                     <div class="dashboard-left-sidebar">
@@ -225,7 +260,7 @@
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
   
-                                <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 6rem; margin-top: -4rem; margin-left: 62%;">
+                                <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
                                 
     
                                 @error('avatar')
@@ -258,10 +293,6 @@
                                 <a href="#pills-tabContent" class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill" data-bs-target="#pills-dashboard" role="tab" aria-controls="pills-dashboard" aria-selected="true"><i data-feather="home"></i>
                                     DashBoard</a>
                             </li>
-
-                            <!-- <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-product-tab" data-bs-toggle="pill" data-bs-target="#pills-product" type="button" role="tab" aria-controls="pills-product" aria-selected="false"><i data-feather="shopping-bag"></i>Order</button>
-                            </li> -->
 
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill" data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order" aria-selected="false"><i data-feather="shopping-bag"></i>Products</button>
@@ -401,58 +432,9 @@
                             @include("vendor.vendor_products")
                             </div>
 
-                            <div class="tab-pane fade" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab" style="">
+                            <div class="tab-pane fade mrtpuo mrbtm" id="pills-product" role="tabpanel" aria-labelledby="pills-product-tab">
                                <div class="title">
-                                        <h2>Users Orders</h2>
-                                        
-<!-- User orders -->
-
-        @php
-            $data6 = App\Models\Order::all();
-        @endphp
-
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
-  <thead style="background-color: #2864c4; color:white !important;">
-    <tr>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Name</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Refund</th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach($data6 as $data6)
-    <tr>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->name}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->phone}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->address}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->productname}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->price}} $</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->quantity}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->price * $data6->quantity}} $</td>
-      <td style="border: 1px solid #ddd; width: 7rem !important;">
-      <form action="{{ route('updateDeliveryStatus') }}" method="POST">
-        @csrf
-        <input type="hidden" name="orderId" value="{{ $data6->id }}">
-        <input type="hidden" name="email" value="{{$data6->email}}">
-        <select name="delivery_status" onchange="this.form.submit()">
-            <option value="pending" {{ $data6->delivery_status === 'pending' ? 'selected' : '' }}>Pending</option>
-            <option value="delivered" {{ $data6->delivery_status === 'delivered' ? 'selected' : '' }}>Delivered</option>
-            <option value="cancelled" {{ $data6->delivery_status === 'cancelled' ? 'selected' : '' }}>Cancelled</option>
-        </select>
-    </form>
-      </td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->refund_status}}</td>
-    </tr>
-    @endforeach
-</tbody>
-<!-- below code new added need to remove if any issue -->
-</table>
+                
 
 
 
@@ -467,90 +449,7 @@
 
 <!-- Vendor Profile -->
 
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div class="dashboard-profile">
-                                    <div class="title">
-                                        <h2>My Profile</h2>
-                                        <span class="title-leaf">
-                                            <svg class="icon-width bg-gray">
-                                                <use xlink:href="assets/svg/leaf.svg#leaf"></use>
-                                            </svg>
-                                        </span>
-                                    </div>
-
-    <form action="{{ route('profile.update') }}" method="POST">
-    @csrf
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
-    </div>  
-    <div class="form-group">
-        <label for="phone">Phone:</label>
-        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
-    </div>
-    <div class="form-group">
-        <label for="address">Address:</label>
-        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
-    </div>
-      <!-- <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div> -->
-    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editProfile" class="editbtn">Edit</a>
-</form>
-
-
-<div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                  @method('PUT')
-
-                   
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone:</label>
-                        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="old_password">Old Password:</label>
-                         <input type="password" name="old_password" id="old_password" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm Password:</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
-                    </div>
-                   
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>                    
-                </form>
-           </div>
-       </div>
+                            
        
                             <!--  Add Products -->
 
@@ -1310,6 +1209,27 @@
         }
 
     </script>
+
+<script>
+  $(document).ready(function() {
+  $('#pills-product-tab').click(function() {
+    window.location.href = '/vendor/vendororders';
+  });
+});
+</script>
+
+
+<script>
+  $(document).ready(function() {
+  $('#pills-profile-tab').click(function() {
+    window.location.href = '/vendor/editprofile';
+  });
+});
+</script>
+
+
+
+
 
 
 </body>

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Xato Contacts | Xato - Multipurpose Bootstrap Admin Dashboard Template </title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <title>Rynokbay Admin Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="admindb/assets/img/favicon.png">
     <!-- Common Styles Starts -->
     <link href="../css2-1?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -436,7 +436,7 @@
             <!-- Copyright Footer Starts -->
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © 2021 <a target="_blank" href="https://xato-web.web.app/">XatoWeb</a>, All rights reserved.</p>
+                <p class="">Copyright © 2023 <a target="_blank" href="Rynokbay">Rynokbay</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Crafted with extra <i class="las la-heart text-danger"></i></p>

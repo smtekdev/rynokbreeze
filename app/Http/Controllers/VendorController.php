@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Coupon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class VendorController extends Controller
 {
@@ -31,10 +32,6 @@ class VendorController extends Controller
             $product->image = $imageName;
             $product->save();
         }
-        $uniqueName = Str::slug($product->title, '_');
-        $bladeFileName = $uniqueName . '_' . $product->id . '.blade.php';
-        $bladeFileContent = view('product.template', ['product' => $product])->render();
-        File::put(public_path('products/' . $bladeFileName), $bladeFileContent);
 
         return redirect()->back();
     }
@@ -224,4 +221,9 @@ class VendorController extends Controller
     return redirect()->back();
 }
 
+public function vendorOrders(){return view('vendor.vendororders');}
+public function editprofile(){return view('vendor.editprofile');}
+
 }
+
+

@@ -22472,23 +22472,31 @@ div.product-title a:hover {
 .btncr{
   position: absolute;
   left: 7%;
-  bottom: 42%;
+  bottom: -9%;
 }
 
 .btanc{
   position: absolute;
   margin-left: 46%;
   border-radius: 50px;
-  padding: 5%;
-  margin-top: -2%;
+  padding: 3%;
+  margin-top: 92.5%;
+  width: 5.5rem;
+  background-color: #0D7BD3 !important;
 }
 
 .sbmbtn{
-  padding: 11%;
+  padding: 7%;
   border-radius: 50px;
-  width: 5rem;
+  width: 5.5rem;
   color: white;
+  background-color: #B43434 !important;
 }
+
+.rounded-image {
+  border-radius: 50%;
+}
+
 
 .mrtp{
   margin-top: -38%;
@@ -22550,7 +22558,7 @@ div.product-title a:hover {
 
 .admnlg{
   position: absolute;
-  margin-top: 3%;
+  margin-top: 4%;
   margin-left: 45%;
   width: 80rem;
 }
@@ -22563,9 +22571,8 @@ div.product-title a:hover {
 .cparea{
   padding: 2%;
   border: 1px solid black;
-  width: 34% !important;
+  width: 25rem !important;
   height: 3rem;
   border-radius: 1rem;
-  text-align: center !important;
   margin-top: 1%;
 }

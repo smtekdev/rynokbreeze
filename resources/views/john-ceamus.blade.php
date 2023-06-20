@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rynok Bay</title>
+    <title>Rynokbay</title>
 
     <link rel="icon" type="image/x-icon" href="assets/images/logos/logo-6s.png">
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
@@ -871,7 +871,7 @@
                     <div class="vendor-info">
                         <ul class="font-sm mb-20">
                             <li><img class="mr-5" src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined, Utah 53127 United States</span></li>
-                            <li><img class="mr-5" src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img class="mr-5" src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>+1 234 456 789</span></li>
                         </ul>
                         <a href="#" class="btn btn-xs">Contact Seller <i class="fi-rs-arrow-small-right"></i></a>
                     </div>

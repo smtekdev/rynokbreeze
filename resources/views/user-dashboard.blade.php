@@ -5,9 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fastkart">
-    <meta name="keywords" content="Fastkart">
-    <meta name="author" content="Fastkart">
+    <meta name="description" content="Rynokbay">
+    <meta name="keywords" content="Rynokbay">
+    <meta name="author" content="Rynokbay">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>RynokBay</title>
@@ -146,22 +146,35 @@
 }
 
 
-.cncl  {
-            color: white;
-    background: orange !important ;
-    padding: 0.3rem;
+.cncl {
+    color: white;
+    background: orange !important;
+    padding: 0.39rem;
     border-radius: 3rem;
     width: 5rem;
     font-weight: bold;
-    margin-left: 15%;
+    margin-left: 0%;
     font-size: small;
-    width: 4rem;
+    width: 5rem;
 }
 
 .cncl:hover  {
     background: red !important;
 }
 
+
+.mrtp{
+    margin-top:-4%;
+}
+
+.mrlftu{
+    margin-left:8%;
+}
+
+.rounded-image {
+  border-radius: 50% !important;
+  border: 5px solid white;
+}
 
     </style>
     
@@ -270,7 +283,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>User Dashboard</h2>
+                        <h2 class="mrlftu">User Dashboard</h2>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 
@@ -285,7 +298,7 @@
     <!-- Breadcrumb Section End -->
 
     <!-- User Dashboard Section Start -->
-    <section class="user-dashboard-section section-b-space">
+    <section class="user-dashboard-section section-b-space mrtp">
         <div class="container-fluid-lg">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4">
@@ -330,7 +343,7 @@
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
   
-                                <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 6rem; margin-top: -4rem; margin-left: 62%;">
+                                <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
                                 
     
                                 @error('avatar')
@@ -387,7 +400,7 @@
                 <div class="col-xxl-9 col-lg-8">
                     <button class="btn left-dashboard-show btn-animation btn-md fw-bold d-block mb-4 d-lg-none">Show
                         Menu</button>
-                    <div class="dashboard-right-sidebar">
+                    <div class="dashboard-right-sidebar ">
                         <div class="tab-content" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel" aria-labelledby="pills-dashboard-tab">
                                 <div class="dashboard-home">
@@ -444,6 +457,7 @@
                                                     <img src="assets/images2/svg/01.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/01.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
+                                                    <h5>Wishlist Items</h5>
                                                     @php
                                                     $count10 = App\Models\WishList::all();
                                                     $totalCount3 = count($count10);

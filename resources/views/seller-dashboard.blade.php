@@ -5,11 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fastkart">
-    <meta name="keywords" content="Fastkart">
-    <meta name="author" content="Fastkart">   
+    <meta name="description" content="Rynokbay">
+    <meta name="keywords" content="Rynokbay">
+    <meta name="author" content="Rynokbay">   
    
-    <title>RynokBay</title>
+    <title>Rynokbay</title>
 
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.png"> 
 

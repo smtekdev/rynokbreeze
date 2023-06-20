@@ -150,6 +150,8 @@ Route::get('/login/google/callback', function () {$user = Socialite::driver('goo
 Route::get('/admin/orders/{orderId}/send-email', [AdminController::class, 'sendOrderConfirmationEmail']);
 Route::get('/aproducts/template', function () {return view('aproducts.template');})->name('aproducts.template');
 Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
+Route::get('/vendor/vendororders', [VendorController::class, 'vendorOrders'])->name('vendor.vendororders');
+Route::get('/vendor/editprofile', [VendorController::class, 'editprofile'])->name('vendor.editprofile');
 
 
 
@@ -159,7 +161,6 @@ Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']
 
 // Redirect 
 Route::get("/redirects",[HomeController::class,"redirects"]);
-route::get('/user-dashboard', [HomeController::class, 'user_dashboard'])->name('user-dashboard');
 
 //Single Inner Pages
 route::get('/chicagoland-counselors', [HomeController::class, 'chicagoland_counselors'])->name('chicagoland-counselors');
@@ -177,6 +178,7 @@ route::get('/rent-a-chair-in-salon', [HomeController::class, 'rent_a_chair_in_sa
 
 // User
 Route::post("/orderconfirm",[HomeController::class,"orderconfirm"]);
+route::get('/user-dashboard', [HomeController::class, 'user_dashboard'])->name('user-dashboard');
 
 // Vendor (Vendor related functions)
 Route::get("/products",[VendorController::class,"products"]);

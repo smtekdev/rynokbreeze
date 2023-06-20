@@ -10,9 +10,9 @@
     <meta name="author" content="Fastkart">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>RynokBay</title>
+    <title>Rynokbay Admin Dashboard</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">     
+    <link rel="icon" type="image/x-icon" href="admindb/assets/img/favicon.png">     
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -139,6 +139,9 @@
     border-radius:50%;
 }
 
+.rounded-image {
+  border-radius: 50% !important;
+}
 
 .cncl  {
             color: white;
@@ -240,7 +243,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>Admin Profile</h2>
+                        <!-- <h2>Admin Profile</h2> -->
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 
@@ -308,7 +311,7 @@
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
   
-                                <img src="/avatars/{{ Auth::user()->avatar }}" style="width: 6rem; margin-top: -4rem; margin-left: 62%;">
+                                <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
                                 
     
                                 @error('avatar')

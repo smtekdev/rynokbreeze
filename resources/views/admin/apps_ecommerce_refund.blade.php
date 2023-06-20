@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rynokbay Admin Dashboard</title>
     <style>
 
         .cncl  {
@@ -21,6 +21,12 @@
     background: red !important;
 }
 
+
+.martp{
+    margin-top:10% !important;
+}
+
+
     </style>
 </head>
 
@@ -30,7 +36,7 @@
 
 
         <!--  Content Area Starts  -->
-        <div id="content" class="main-content">
+        <div id="content" class="main-content martp">
             <!--  Navbar Starts / Breadcrumb Area Starts -->
             <div class="sub-header-container">
                 <header class="header navbar navbar-expand-sm" style="margin-top: -85%;">
@@ -42,7 +48,7 @@
                             <div class="page-header">
                                 <nav class="breadcrumb-one" aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item active" aria-current="page"><span>Users</span></li>
+                                        <li class="breadcrumb-item active" aria-current="page"><span>Vendors</span></li>
                                     </ol>
                                 </nav>
                             </div>

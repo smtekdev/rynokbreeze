@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RynokBay - Automotive</title>
+    <title>Rynokbay</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/all.min.css') }}">
@@ -20,6 +20,17 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendor/css/meanmenu.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+<style>
+    .background-image {
+    width: 534px;
+    height: 504px;
+    background-image: url("/product/{{$product->image}}");
+    background-size: cover;
+    border-radius: 2rem;
+    margin-top: -12%;
+    margin-left: -4%;
+}
+</style>
 </head>
 
 <body class="inner">
@@ -46,10 +57,7 @@
                             <div class="row">
                                 <div class="col-xl-6 col-lg-5 col-md-6">
                                     <div class="part-img mr-30">
-                                        <div class="img-box" id="bigPreview">
-                                            <img src="/product/{{$product->image}}" alt="Product Image" style="max-width: 100%;">
-                                            <!-- <button class="quick-view"><i class="fa-thin fa-arrows-maximize"></i></button> -->
-                                        </div>
+                                    <div class="background-image"></div>
                                         <div class="btn-box">
                                          
                                         </div>

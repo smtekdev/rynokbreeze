@@ -284,7 +284,7 @@ class HomeController extends Controller
     }
 
 
-    // Create Dynamic Page
+    // Create Dynamic Page for Single Product 
     public function show($id)
     {
         $product = Products::find($id);

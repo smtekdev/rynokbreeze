@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rynok Bay</title>
+    <title>Rynokbay</title>
 
     <link rel="icon" type="image/x-icon" href="../assets/images/logos/logo-6s.png">
     <link rel="stylesheet" href="../assets/vendor/css/all.min.css">
@@ -114,6 +114,7 @@
     <tr style="text-align: center;">
       <!-- <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Image</th>       -->
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Name</th>
+      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Product Image</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Price</th>
     </tr>  
   </thead>
@@ -122,14 +123,17 @@
     @csrf
   @foreach($data4 as $data4)
     <tr style="text-align: center;">
-    <td style="padding: 10px; border: 1px solid #ddd;">
+    <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
       <input type="text" name="productname[]" value="{{$data4->title}}" hidden="">
       {{$data4->title}}
-        </td>
-      <td style="padding: 10px; border: 1px solid #ddd;">
+    </td>
+    <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
+    <img src="/product/{{$data4->image}}" alt="Product Image" width="100">
+    </td>  
+    <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important; width: 11%;">
       <input type="text" name="price[]" value="{{$data4->price}}" hidden="">
       {{ $data4->discounted_price ?? $data4->price }} $
-    </td>      
+    </td>                      
       @endforeach  
   </tbody>
 </table>
@@ -149,7 +153,7 @@
   <tbody>
     @foreach($data3 as $data3) 
       <tr>
-        <td style="padding: 3px; border: 1px solid #ddd; text-align: center;">
+        <td style="padding: 3px; border: 1px solid #ddd; text-align: center;height: 121px !important;">
           <form action="{{url('/remove2' , $data3->id)}}" method="POST">
             @csrf
             <button type="submit" class="btn btn-warning">Remove</button>

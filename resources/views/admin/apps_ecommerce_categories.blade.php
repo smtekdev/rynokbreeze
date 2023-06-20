@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+    <title>Rynokbay Admin Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="admindb/assets/img/favicon.png">
     <!-- Common Styles Starts -->
     <link href="../css2-1?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">

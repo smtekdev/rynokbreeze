@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Rynok Bay</title>
+    <title>Rynokbay</title>
 
     <link rel="icon" type="image/x-icon" href="../assets/images/logos/logo-6s.png">
     <link rel="stylesheet" href="../assets/vendor/css/all.min.css">
@@ -158,6 +158,7 @@
     <tr style="text-align: center;">
       <!-- <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Image</th>       -->
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Name</th>
+      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Product Image</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Price</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white;">Quantity</th>
     </tr>  
@@ -184,15 +185,18 @@
 
 
             <tr style="text-align: center;">
-                <td style="padding: 10px; border: 1px solid #ddd;">
+                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
                     {{ $item->title }}
                     <input type="hidden" name="productname[]" value="{{ $item->title }}">
                 </td>
-                <td style="padding: 10px; border: 1px solid #ddd;">
-                    <input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0">
+                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
+                <img src="/product/{{$item->image}}" alt="Product Image" width="100">
+                </td> 
+                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important; text-align: center;width: 11%;">
+                    <input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0" style="text-align: center;">
                 </td>
-                <td style="padding: 10px; border: 1px solid #ddd;width: 11%;">
-                    <input class="quantity-input qnty" type="number" name="quantity[]" value="{{ $item->quantity_id }}" min="1" data-price="{{ $itemPrice }}">
+                <td style="padding: 10px; border: 1px solid #ddd;width: 11%; text-align: center;">
+                    <input class="quantity-input qnty" type="number" name="quantity[]" value="{{ $item->quantity_id }}" min="1" data-price="{{ $itemPrice }}" style="text-align: center;">
                 </td>
             </tr>
             @endforeach
@@ -245,7 +249,7 @@
   <tbody>
     @foreach($data2 as $data2) 
       <tr>
-        <td style="padding: 3px; border: 1px solid #ddd; text-align: center;">
+        <td style="padding: 3px; border: 1px solid #ddd; text-align: center;height: 121px !important;">
           <form action="{{url('/remove' , $data2->id)}}" method="POST">
             @csrf
             <button type="submit" class="btn btn-warning">Remove</button>

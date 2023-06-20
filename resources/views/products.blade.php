@@ -1,9 +1,35 @@
+<style>
+    .image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+</style>
+
 <div class="row g-lg-4 g-3">
     @foreach($data as $data)
         <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
             <div class="single-product-card">
                 <div class="part-img">
-                    <a href="{{ route('edit', ['id' => $data->id]) }}"><img src="/product/{{$data->image}}" alt="Product"></a>
+                    
+                <!-- Product Image View -->
+                
+                <a href="{{ route('edit', ['id' => $data->id]) }}">
+                  <div class="image-container" style="width: 398px; height: 398px;">
+                    <div class="image" style="background-image: url('/product/{{$data->image}}');"></div>
+                  </div>
+                </a>
+
+
                     <div class="cart-option cart-option-bottom">
                         <ul>
                             <li>
