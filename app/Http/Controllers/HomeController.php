@@ -49,7 +49,7 @@ class HomeController extends Controller
         }
     }
 
-    // Auth Validation
+// Auth Validation
 
     public function redirects()
     {
@@ -83,7 +83,7 @@ class HomeController extends Controller
         }
     }   
 
-    // Cart Item remove
+// Cart Item remove
 
      public function remove($id)
      {
@@ -124,7 +124,8 @@ class HomeController extends Controller
             $data->save();
         }
 
-        // Send email for orders that have not had an email sent yet
+// Send email for orders those email have not sent
+
         $orderItems = Order::where('is_email_sent', false)->get();
         foreach ($orderItems as $order) {
             $userEmail = Auth::user()->email;
@@ -142,14 +143,8 @@ class HomeController extends Controller
     }
 
 
+// Delivery Status Update
 
-
-
-
-
-
-
-    // Delivery Status Update
     public function updateDeliveryStatus(Request $request)
     {
         $order = Order::find($request->orderId);
@@ -181,8 +176,19 @@ class HomeController extends Controller
     }
 
 
+// Review Product
 
-    // Show products 
+    public function addReview(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        $order->rating = $request->input('rating');
+        $order->save();
+
+        return redirect()->back()->with('success', 'Rating added successfully.');
+    }
+
+
+// Show products 
    
     public function index()
     
@@ -201,7 +207,7 @@ class HomeController extends Controller
 
 
     
-     // Show Carts items
+// Show Carts items
  
      public function showcart(Request $request,$id)
      {
@@ -221,7 +227,7 @@ class HomeController extends Controller
         return redirect()->back();
      }
 
-    // Show Wishlist
+// Show Wishlist
 
     public function showwishlist(Request $request,$id)
     {
@@ -232,7 +238,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
        
-    // Show Orders
+// Show Orders
 
     public function showOrders()
     {
@@ -240,7 +246,7 @@ class HomeController extends Controller
         return view('admin.orders', compact('data'));
     }
 
-    // User Dashboard
+// User Dashboard
 
     public function showUserDashboard()
     {
@@ -248,7 +254,7 @@ class HomeController extends Controller
         return view('user-dashboard', compact('data'));
     }
 
-    // Wishlist
+// Wishlist
 
     public function addwishlist(Request  $request,$id)
     {
@@ -274,7 +280,7 @@ class HomeController extends Controller
         }
     }
 
-    // Wishlist Item Remove
+// Wishlist Item Remove
 
     public function remove2($id)
     {
@@ -284,7 +290,8 @@ class HomeController extends Controller
     }
 
 
-    // Create Dynamic Page for Single Product 
+// Create Dynamic Page for Single Product 
+
     public function show($id)
     {
         $product = Products::find($id);
@@ -297,7 +304,8 @@ class HomeController extends Controller
     }
 
 
-    //Functions & Component
+//Functions & Component
+
     public function user_dashboard(){return view("user-dashboard");}
     public function navbar(){return view("components.navbar");}
     public function create_role(){return view("create-role");}    
@@ -305,12 +313,14 @@ class HomeController extends Controller
     public function seller_dashboard(){return view("seller-dashboard");} 
 
     //Nav Bar -> AFTERMARKET
+
     public function home_appliances(){return view("home-appliances");}
     public function automotive(){return view("automotive");}
     public function furniture_and_home_decor(){return view("furniture-&-home-decor");}
     public function kids_entertainment(){return view("kids-entertainment");}
 
     //Nav Bar ->  CONSULTATIONS
+
     public function aromatherapy(){return view("aromatherapy");}
     public function medical_services(){return view("medical-services");}
     public function orthopaedic_therapy(){return view("orthopaedic-therapy");}
@@ -318,6 +328,7 @@ class HomeController extends Controller
     public function fitness_classes(){return view("fitness-classes");}
 
     //Nav Bar -> DISCOUNT COUPONS
+
     public function salon_and_spa(){return view("salon-&-spa");}
     public function food_and_drink(){return view("food-&-drink");}
     public function clothing(){return view("clothing");}
@@ -328,17 +339,20 @@ class HomeController extends Controller
     public function costco_promo_code(){return view("costco-promo-code");}
 
     //Nav Bar -> LISTINGS
+
     public function rent_a_house(){return view("rent-a-house");}
     public function rent_an_office(){return view("rent-an-office");}
     public function buying_and_selling(){return view("buying-&-selling");}
 
     //Nav Bar -> NEW PRODUCTS
+
     public function health_and_beauty(){return view("health-&-beauty");}
     public function home_services(){return view("home-services");}
     public function fashion(){return view("fashion");}
     public function sports(){return view("sports");}
 
     //Nav Bar -> SERVICES 
+
     public function digital_world(){return view("digital-world");}
     public function beauty_and_spa(){return view("beauty-&-spa");}
     public function things_to_do(){return view("things-to-do");}
@@ -347,6 +361,7 @@ class HomeController extends Controller
     public function health_and_fitness(){return view("health-&-fitness");}
 
     // Others
+
     public function rent_a_chair_in_salon_2(){return view("rent-a-chair-in-salon-2");}
     public function services(){return view("services");}
     public function shop(){return view("shop");}
@@ -357,6 +372,7 @@ class HomeController extends Controller
     
 
     //Single Inner Pages
+
     public function chicagoland_counselors(){return view("chicagoland-counselors");}
     public function commando_machine(){return view("commando-machine");}
     public function crosstown_fitness_classes(){return view("crosstown-fitness-classes");}
@@ -368,6 +384,7 @@ class HomeController extends Controller
     public function discount_coupon(){return view("discount-coupon");}
  
     //Vendors
+    
     public function ben_haul(){return view("ben-haul");}
     public function carter_grayson(){return view("carter-grayson");}
     public function harry_donald(){return view("harry-donald");}

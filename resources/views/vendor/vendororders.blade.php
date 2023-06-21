@@ -1,3 +1,4 @@
+<link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}"> 
 
 <!-- logout and user info -->
 <div class="vendorwelcome">                                    

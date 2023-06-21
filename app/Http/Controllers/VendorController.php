@@ -36,7 +36,7 @@ class VendorController extends Controller
         return redirect()->back();
     }
 
-    // Edit/Update the product
+    // Edit or Update the product And Also Product Discount
 
     public function updateview($id)
     {
@@ -44,7 +44,6 @@ class VendorController extends Controller
         return view("vendor.updateview" ,compact("data"));
     }
 
-  
     public function update(Request $request, $id)
     {
         $data = products::find($id);
@@ -105,13 +104,16 @@ class VendorController extends Controller
 
      // Updating delivery status 
 
-
      public function updateDeliveryStatus(Request $request)
-     {
-         $deliveryStatus = $request->input('delivery_status');
-         Order::query()->update(['delivery_status' => $deliveryStatus]);
-         return redirect()->back()->with('success', 'Delivery status updated successfully.');
-     }
+    {
+        $deliveryStatus = $request->input('delivery_status');
+        $orderId = $request->input('orderId');
+    
+        Order::where('id', $orderId)->update(['delivery_status' => $deliveryStatus]);
+    
+        return redirect()->back()->with('success', 'Delivery status updated successfully.');
+    }
+    
 
      
     // View Users

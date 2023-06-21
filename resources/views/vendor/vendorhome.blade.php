@@ -367,7 +367,7 @@
                                                     <img src="assets/images2/svg/02.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Total Sales</h5>
+                                                        <h5>Total Orders</h5>
                                                         @php
                                                         $count8 = App\Models\Order::all();
                                                         $totalCount1 = count($count8);
@@ -382,12 +382,12 @@
                                                     <img src="assets/images2/svg/02.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Order Delivered</h5>
+                                                        <h5>Delivered Orders</h5>
                                                         @php
-                                                        $pendingOrders = App\Models\Order::where('delivery_status', 'delivered')->get();
-                                                        $totalCount1 = count($count8);
+                                                            $count9 = App\Models\Order::where('delivery_status', 'delivered')->get();
+                                                            $totalCount2 = count($count9);
                                                         @endphp
-                                                        <h3>{{ $totalCount1 }}</h3>
+                                                        <h3>{{ $totalCount2 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -399,14 +399,12 @@
                                                     <img src="assets/images2/svg/03.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Order Pending</h5>
+                                                    <h5>Pending Orders</h5>
                                                         @php
-                                                        $pendingOrders = App\Models\Order::whereNull('delivery_status')->get();
-                                                        $totalCount2 = $pendingOrders->count();
+                                                            $count10 = App\Models\Order::whereNull('delivery_status')->get();
+                                                            $totalCount3 = count($count10);
                                                         @endphp
-
-
-                                                        <h3>{{ $totalCount2 }}</h3>
+                                                        <h3>{{ $totalCount3 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>

@@ -49,12 +49,12 @@
     </form>
                             </li>
                             <li>
-                                <a role="button" class="quick-view">
+                                <a role="button" class="">
                                     <i class="fa-light fa-image"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="view-product">
+                                <a href="#" class="">
                                     <i class="fa-light fa-eye"></i>
                                 </a>
                             </li>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="part-txt">
-                    <h4 class="product-name"><a href="#">{{$data->title}}</a></h4>
+                    <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
                     <p class="dscr">{{$data->description}}</p>
                     @if ($data->discounted_price)
                       <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">{{$data->price}}$</p>
@@ -70,13 +70,56 @@
                     @else
                       <p class="price" style="display: inline-block;">{{$data->price}}$</p>
                     @endif
-                     <div class="star">
-                        <i class="fa-solid fa-star-sharp rated"></i>
-                        <i class="fa-solid fa-star-sharp rated"></i>
-                        <i class="fa-solid fa-star-sharp rated"></i>
-                        <i class="fa-solid fa-star-sharp rated"></i>
-                        <i class="fa-solid fa-star-sharp"></i>
-                     </div>
+                     
+                    <!-- Retrieve Rating -->
+
+                    @php
+                    $product= App\Models\Products::all();
+                    @endphp
+
+
+
+                    @php
+                
+                    $productRatings = DB::table('orders')
+                    ->join('products', 'orders.productname', '=', 'products.title')
+                    ->whereNotNull('orders.rating')
+                    ->where('products.title', $data->title)
+                    ->pluck('orders.rating');
+
+                    $averageRating = $productRatings->avg();
+                    @endphp
+
+                    
+
+                    @if(isset($averageRating))
+                    <p>Rating: {{ number_format($averageRating, 1) }}</p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                @if($i < $averageRating)
+                                    <i class="fa-solid fa-star-sharp rated"></i>
+                                @else
+                                    <i class="fa-solid fa-star-sharp"></i>
+                                @endif
+                            @endfor
+                        </div>
+                    @else
+                        <p>
+                            Rating: Not rated yet
+                        </p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                <i class="fa-solid fa-star-sharp"></i>
+                            @endfor
+                        </div>
+                    @endif
+
+
+                    <!-- Retrieve Rating end -->
+
+
+                    <!-- Add to Cart -->
+
                      <form action="{{ url('/addcart', $data->id) }}" method="post" enctype="multipart/form-data">
                       @csrf
                       <div class="add-to-cart-btn">

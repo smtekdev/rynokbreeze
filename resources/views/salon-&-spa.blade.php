@@ -27,6 +27,12 @@
 
 <!-- Header Started -->
 
+@php
+                                            $count = isset($count) ? $count : 0;
+                                            $count2 = isset($count2) ? $count2 : 0;
+                                            @endphp
+
+                                            
 @include('components.navbar')
 
 <!-- Header Ended -->

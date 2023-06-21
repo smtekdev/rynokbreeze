@@ -152,8 +152,7 @@ Route::get('/aproducts/template', function () {return view('aproducts.template')
 Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
 Route::get('/vendor/vendororders', [VendorController::class, 'vendorOrders'])->name('vendor.vendororders');
 Route::get('/vendor/editprofile', [VendorController::class, 'editprofile'])->name('vendor.editprofile');
-
-
+Route::post('/add-review/{id}', [HomeController::class, 'addReview'])->name('add-review');
 
 // Profile Picture Upload
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');
@@ -162,7 +161,7 @@ Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store']
 // Redirect 
 Route::get("/redirects",[HomeController::class,"redirects"]);
 
-//Single Inner Pages
+//Single Inner Pages (Static)
 route::get('/chicagoland-counselors', [HomeController::class, 'chicagoland_counselors'])->name('chicagoland-counselors');
 route::get('/commando-machine', [HomeController::class, 'commando_machine'])->name('commando-machine');
 route::get('/crosstown-fitness-classes', [HomeController::class, 'crosstown_fitness_classes'])->name('crosstown-fitness-classes');
@@ -195,8 +194,7 @@ Route::get('/coupons', [VendorController::class, 'coupons'])->name('vendor.coupo
 Route::delete('/coupons/{id}', '\App\Http\Controllers\VendorController@destroy')->name('coupons.destroy');
 Route::post('/coupons/apply', [VendorController::class, 'applyCoupon'])->name('apply_coupon');
 
-
-//Vendors (These are view files related to vendors which were on the HTML file)
+//Vendors (Static Vendor Pages)
 route::get('/ben-haul', [HomeController::class, 'ben_haul'])->name('ben-haul');
 route::get('/carter-grayson', [HomeController::class, 'carter_grayson'])->name('carter-grayson');
 route::get('/harry-donald', [HomeController::class, 'harry_donald'])->name('harry-donald');

@@ -86,6 +86,10 @@
   opacity: 0;
 }
 
+.h2adj{
+    text-align:center;
+}
+
 
     /* Hide the "Choose File" and "No file chosen" text */
     input[type=file]::-webkit-file-upload-button {
@@ -424,10 +428,10 @@
                                         <div class="row g-sm-4 g-3">
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="assets/images2/svg/03.png" class="img-1 blur-up lazyload" alt="">
-                                                    <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/02.png" class="img-1 blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">                                                    
                                                     <div class="totle-detail">
-                                                        <h5>Total Order</h5>
+                                                        <h5>Total Orders</h5>
                                                         @php
                                                         $count8 = App\Models\Order::all();
                                                         $totalCount1 = count($count8);
@@ -440,14 +444,29 @@
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
                                                     <img src="assets/images2/svg/02.png" class="img-1 blur-up lazyload" alt="">
-                                                    <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">                                                    
                                                     <div class="totle-detail">
-                                                        <h5>Total Pending Order</h5>
+                                                        <h5>Delivered Orders</h5>
                                                         @php
-                                                        $count8 = App\Models\Order::all();
-                                                        $totalCount1 = count($count8);
+                                                            $count9 = App\Models\Order::where('delivery_status', 'delivered')->get();
+                                                            $totalCount2 = count($count9);
                                                         @endphp
-                                                        <h3>{{ $totalCount1 }}</h3>
+                                                        <h3>{{ $totalCount2 }}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
+                                                    <img src="assets/images2/svg/03.png" class="img-1 blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
+                                                    <div class="totle-detail">
+                                                        <h5>Pending Orders</h5>
+                                                        @php
+                                                            $count10 = App\Models\Order::whereNull('delivery_status')->get();
+                                                            $totalCount3 = count($count10);
+                                                        @endphp
+                                                        <h3>{{ $totalCount3 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -543,13 +562,14 @@
                             <div class="tab-pane fade show" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
-                                        <h2>My Orders History</h2>
+                                        <h2 class="h2adj">My Orders History</h2>
+                                        <br>
                                         
                                         
 <!-- Orders Details -->
 
 
-<table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
+<table style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 14px;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Name</th>
@@ -561,6 +581,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Review</th>
     </tr>
   </thead>
   <tbody>
@@ -598,12 +619,35 @@ $data= App\Models\Order::all();
                 </form>
             @endif
         </td>
-
+        <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">
+           @if ($data->delivery_status === 'delivered')
+               @if ($data->review === null)
+                   @if ($data->delivery_status !== null && $data->refund_status !== 'refunded')
+                       <form action="{{ route('add-review', ['id' => $data->id]) }}" method="POST">
+                           @csrf
+                           <select name="rating" @if ($data->rating !== null) disabled @endif>
+                               <option value="1" @if ($data->rating == 1) selected @endif>1 star</option>
+                               <option value="2" @if ($data->rating == 2) selected @endif>2 stars</option>
+                               <option value="3" @if ($data->rating == 3) selected @endif>3 stars</option>
+                               <option value="4" @if ($data->rating == 4) selected @endif>4 stars</option>
+                               <option value="5" @if ($data->rating == 5) selected @endif>5 stars</option>
+                           </select>
+                           @if ($data->rating === null)
+                               <button type="submit" class="cncl">Submit</button>
+                           @endif
+                       </form>
+                   @else
+                       <span></span>
+                   @endif
+               @else
+                   {{$data->review}}
+               @endif
+           @endif
+        </td>
         
     </tr>
     @endforeach
 </tbody>
-<!-- below code new added need to remove if any issue -->
 </table>
 
 

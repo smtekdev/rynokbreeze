@@ -1,5 +1,5 @@
 
-
+<link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}"> 
 
 
 <style>

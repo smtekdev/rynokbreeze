@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->string('address')->nullable();
             $table->boolean('is_email_sent')->default(false);
             $table->string('refund_status')->nullable();
+            $table->unsignedTinyInteger('rating')->nullable();
             $table->timestamps();
         });
     }

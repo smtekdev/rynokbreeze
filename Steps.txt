@@ -1,4 +1,4 @@
-Steps Taken: 
+Steps Taken:
 
 1st June: 
 
@@ -41,7 +41,7 @@ when we run above command default there will be new controller inside controller
 30- Created profile controller for editing profile and other profile related functions. 
 31- Added routes for Add to cart, Add wishlist, Confirmorder, delete order, remove from cart, remove from wishlist and also activated functions for this in the related controller and web.php.
 
-7th June: 
+7th June:
 32- Activated cart and wishlist functionality on the github related project. 
 33- Replaced featured products with original layout.
 
@@ -71,29 +71,105 @@ D- Create/Edit GoogleController.php. And login.blade.php file was already update
  
 9th June:
 
-50- Cart quantity Increment and Decrement function. 
+50- Cart quantity Increment and Decrement function. (getting wrong quantity)
 51- Added logic for delete user and vendor and not allowed to delete admin id. 
 52- Created seperate blade (view) files for users and vendor (before all were in one) with function to show only related data on each view. 
 53- For admin Edit profile (with image change, edit password and other profile update functions). 
 54- For Vendor getting real numbers/count of orders (from backend) and products at below icons below. 
 55- For User getting real numbers/count of orders and wishlist (from backend) below dashboard icons. 
-56- Working for order status update by vendor. 
 
-s
-Required Functions: 
-1- Multi User authentication and authorization
-2- Product management
-3- Order management
-4- Rating and review system
-5- Shipping and logistics
-6- Reporting and analytics
-7- Customer support
-8- Graph should be working via backend in real.
-9- Related product machanism need to make. 
-10- Need to add support with icon (help). 
+10th June:
 
+56- Order Delivery status function. (in progress)
+57- Fixed error for: order email was getting all old order data in the order confirmation email. Added boolean data column in the order table at backend. 
+58- Arranged routes and commented all uncommented functions.
+59- Fixed missing routes at home page. 
 
-Remain/Issue: 
+12th June: 
 
-1- Admin will approve new vendor.
-2- Admin will have seperate url for login. 
+60- Dynamically create a new view blade file of each product(one single product page code to render each product).
+
+A- Created a view file name edit.blade.php
+B- Define Route: Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
+C- In HomeController craeted function: 
+public function show($id)
+    {
+        $product = Products::find($id);
+
+        if ($product) {
+            return view('edit', compact('product'));
+        } else {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+    }
+
+61- Created functionality for add to cart and add to wishlist for single product page (which are creating dynamically)  
+62- Vendor delivery status update to be show at User and Admin dashboard. 
+
+63- Stripe Payment Deployment. 
+
+A- Install Composer: Command - composer require stripe/stripe-php
+B- Create Controller: CheckoutController.
+C- Updated Routes: 
+Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
+Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
+D- Updated controller and created blade file checkout.credit-card
+
+64- Send order delivery status email to the user when vendor update (In progress).
+
+13th June: 
+65- Live order count update at Admin DB. 
+66- Adjusted HTML Homepage view of Admin DB as per actual Admin DB. 
+
+14th June: 
+67- Product Edit function for vendor. 
+68- Fixed error: Call to a member function getClientOriginalExtension() on null. It was coming when not uploading image while updating price or other product info. Added login in the function to fix it. 
+69- Added product price discount option for vendor and store it at backend. 
+70- Added logics and function to display the discount price at front end. 
+81- Added function to get/check discount price and get price accordingly in the cart. 
+82- Fixed error of product price wasn't coming at backend when order was submitting. In showcart blade file the value was hidden which was causing this issue. 
+
+15th June: 
+83- Fixed error for getting wrong quantity and price at backend.   (using fake filler was issue , also followe AI recomeneded method to fix price and quantity values were not being passed correctly to the orderconfirm function)
+84- Applied discount function at Wishlist. 
+85- Added logic if order deliver then user can't cancel the order. 
+86- Added refund order function for user. 
+87- Total cart items price calculation function. 
+88- Fuction to create discount coupon code for vendor. 
+89- Retrive Discount Coupon Code from backend to show at vendor dashboard. 
+
+16th June: 
+90- Added coupon delete function for vendor. 
+91- Apply discount coupon at user checkout. 
+92- Show discount coupons at Admin Dashboard. 
+93- Restrict admin from canceling order if order delivered by vendor. 
+94- Added function for admin to Initiate refund request. 
+95- Added Refund status column with getting data from backend at Vendor Dashboard. 
+96- Admin Dashboard live count update with number of pending,delivered and total orders. 
+97- Admin Dashboard Order Graph with live count update. 
+98- Vendor Dashboard Order Graph with live count update. 
+
+17th June:
+99- Show product image on cart and wishlist page.
+100- Fixed user Dashboard Layout issue.
+101- Fixed all pages title and favicon.
+
+19th June:
+102- Fixed Layout issues for Vendor Dashboard (Products, Orders View and profile page).
+103- Fixed Layout issues for product image at feature product area.
+
+20th June: 
+104- Fixed layout of Admin Dashboard. 
+105- Added Phone and Address at Registration form with Backend functionality.
+106- Dynamically resize image for Single Product pages. 
+107- Dynamically resize image for profile image (User, Vendor and Admin all Dashboards). 
+108- Fixed layout for Cart and Wishlist pages. 
+
+21st June: 
+109- Fixed error of Order Delivery Status update for vendor dashboard(It was updating all orders instead of specific order id).
+110- Added Pending and Deliver Order live count at vendor Dashboard. 
+111- Added function for user to submit rating of delivered product.
+112- Retrieve product rating at user dashboard (which submited by the users). 
+113- Restrict user from rewritting rating. 
+114- Rating at front end (Featured Products Area). (This all code done at products.blade.php file by join method for tables of ordes and products)
+115- Dynamilcally Rating stars (according to live count) at front end (Featured Products Area).  (This all code done at products.blade.php file by join method for tables of ordes and products)
