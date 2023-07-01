@@ -86,5 +86,18 @@ class AdminController extends Controller
         $data=order::all();
         return view('admin.orders' ,compact('data'));
     }  
+
+    // Approve User 
+    public function approveUser($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->status = 'approved'; 
+            $user->save(); 
+        }
+
+        return redirect()->back();
+    }
     
 }

@@ -17,6 +17,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <!-- <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">User Type</th>       -->
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;widht:20px;">Password</th>
+      
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
       <!-- <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Profile Image</th>      
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Empty</th> -->

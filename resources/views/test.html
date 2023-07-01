@@ -563,3 +563,42 @@ function decrementQuantity(button) {
 </body>
 
 </html>
+
+
+
+<!-- removed cart purpose code from homecontroller auth -->
+
+
+
+
+public function redirects()
+{
+
+    $data=products::all();
+
+    $data5 = products::all();
+
+    $usertype= Auth::user()->usertype;
+    
+    if($usertype=='1')
+    {
+        return view('admin.adminhome');
+    }            
+   
+    elseif($usertype=='0' || $usertype === null)
+    {
+        $count = 0;
+        $count2 = 0;
+        // below two line code for cart purpose to verify and add count to specific user cart at front/backend.
+        $user_id=Auth::id();
+        $count=carts::where('user_id' ,$user_id)->count();
+        $count2=WishList::where('user_id' ,$user_id)->count();
+       
+        return view('home', compact('data','count','count2'));
+        // return view("home" ,compact("data"));
+    }        
+    else
+    {         
+        return view('vendor.vendorhome', compact('data','data5'));
+    }
+

@@ -9,79 +9,74 @@ use App\Models\WishList;
 use App\Models\Order;
 use App\Mail\OrderMail;
 use App\Mail\OrderConfirmationMail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
 {
 
-    // Add Cart 
-    public function addcart(Request  $request,$id)
-    {
-        if(Auth::id())
-        {
-            $user_id=Auth::id();
-        
-            $productid=$id;
-        
-            $quantity = 1;            
-        
-            // Retrieve the product image
-           
-            
-            $cart=new carts;
-        
-            $cart->user_id=$user_id;
-        
-            $cart->product_id=$productid;
-        
-            $cart->quantity_id=$quantity;
-
-           //  $cart->image = $image;
-        
-            $cart->save();
-        
-            return redirect()->back();
-        }
-        else
-        {
-            return redirect('/login');
-        }
-    }
-
+    
 // Auth Validation
 
-    public function redirects()
-    {
-   
-        $data=products::all();
-   
-        $data5 = products::all();
-   
-        $usertype= Auth::user()->usertype;
-        
-        if($usertype=='1')
-        {
-            return view('admin.adminhome');
-        }            
-       
-        elseif($usertype=='0' || $usertype === null)
-        {
-            $count = 0;
-            $count2 = 0;
-            // below two line code for cart purpose to verify and add count to specific user cart at front/backend.
-            $user_id=Auth::id();
-            $count=carts::where('user_id' ,$user_id)->count();
-            $count2=WishList::where('user_id' ,$user_id)->count();
-           
-            return view('home', compact('data','count','count2'));
-            // return view("home" ,compact("data"));
-        }        
-        else
-        {         
-            return view('vendor.vendorhome', compact('data','data5'));
+public function redirects()
+{
+    $data = products::all();
+    $data5 = products::all();
+    $usertype = Auth::user()->usertype;
+    $status = Auth::user()->status;
+
+    if ($usertype == '1') {
+        return view('admin.adminhome')->with('successMessage', 'Welcome, ' . Auth::user()->name);
+    } elseif ($usertype == '0' || $usertype === null) {
+        $user_id = Auth::id();
+        $count = carts::where('user_id', $user_id)->count();
+        $count2 = WishList::where('user_id', $user_id)->count();
+
+        Session::put('count', $count);
+        Session::put('count2', $count2);
+
+        return view('home', compact('data'))->with('successMessage', 'Welcome, ' . Auth::user()->name);
+    } else {
+        if ($status == 'waiting') {
+            return view('custom');
+        } else {
+            return view('vendor.vendorhome', compact('data', 'data5'))->with('successMessage', 'Welcome, ' . Auth::user()->name);
         }
-    }   
+    }
+}
+
+
+// Add Cart 
+public function addcart(Request $request, $id)
+{
+    if (Auth::id()) {
+        $user_id = Auth::id();
+        $product = Products::find($id);
+        
+
+        if (!$product) {
+            return redirect()->back()->withErrors('Product not found.');
+        }
+
+        $image = $product->image; 
+        
+        $cart = new carts;
+        $cart->user_id = $user_id;
+        $cart->product_id = $product->id;
+        $cart->quantity = $request->quantity ? $request->quantity : 1;
+        $cart->image = $image; 
+        $cart->save();
+
+        $request->session()->put('cart_image', $image);
+
+        return redirect()->back();
+    } else {
+        return redirect('/login');
+    }
+}
+
 
 // Cart Item remove
 
@@ -100,6 +95,8 @@ class HomeController extends Controller
 
     public function orderconfirm(Request $request)
     {
+
+
         // Validate input parameters
         $validatedData = $request->validate([
             'productname.*' => 'required|string',
@@ -108,22 +105,27 @@ class HomeController extends Controller
             'name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
             'address' => 'nullable|string|max:255',
+            'image_url.*' => 'nullable|string', 
         ]);
 
-        foreach ($request->productname as $key => $productname) {
+        foreach ($request->productname as $key => $productname) 
+        {
+            // Create a new order instance
             $data = new Order;
 
             $data->productname = $productname;
             $data->price = (int)$request->price[$key];
-            $data->quantity = (int)$request->quantity[$key];
+            $data->quantity = (int)$request->quantity[$key];   
+            $data->image_url = $request->image_url[$key] ?? '';    
 
-            
             $data->name = $request->name ?? '';
             $data->phone = $request->phone ?? '';
             $data->address = $request->address ?? '';
+
+
             $data->save();
         }
-
+    
 // Send email for orders those email have not sent
 
         $orderItems = Order::where('is_email_sent', false)->get();
@@ -139,7 +141,7 @@ class HomeController extends Controller
 
         // Clear the carts table
         Carts::truncate();
-        return redirect()->back();
+        return redirect()->route('checkout.credit-card');
     }
 
 
@@ -304,6 +306,9 @@ class HomeController extends Controller
     }
 
 
+
+    
+
 //Functions & Component
 
     public function user_dashboard(){return view("user-dashboard");}
@@ -315,7 +320,7 @@ class HomeController extends Controller
     //Nav Bar -> AFTERMARKET
 
     public function home_appliances(){return view("home-appliances");}
-    public function automotive(){return view("automotive");}
+    public function automotive(){return view("automotive");}    
     public function furniture_and_home_decor(){return view("furniture-&-home-decor");}
     public function kids_entertainment(){return view("kids-entertainment");}
 
@@ -369,6 +374,7 @@ class HomeController extends Controller
     public function product_review(){return view("product-review");}
     public function products(){return view("products");}
     public function homeview(){return view("home");}
+    public function custom(){return view("custom");}
     
 
     //Single Inner Pages

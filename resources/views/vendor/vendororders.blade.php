@@ -1,19 +1,28 @@
+<style>
+   .outset{
+    position: absolute;
+    right: 3%;
+    top: 4%;
+}
+.lgset{
+  margin-top: 6%;
+}
+</style>
+
 <link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}"> 
 
-<!-- logout and user info -->
-<div class="vendorwelcome">                                    
-    <p class="font-semibold text-xl text-gray-800 leading-tight">
-        Welcome, {{ Auth::user()->name }} <!-- User Name -->
+<!-- logout  -->
+<div class="outset">                                    
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
         </form>
     </hp>
 </div>
-<!-- logout and user info end -->
+<!-- logout end -->
 
 
-<div class="vendorlg">
+<div class="lgset">
 <a href="{{ route('login') }}">
 <img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important;position: relative; z-index: 10; background: white; margin-left:42%;    margin-top: -5%;">
 </a>
@@ -34,6 +43,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
@@ -48,6 +58,9 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->productname}}</td>
+      <td style="border: 1px solid #ddd;text-align: center;">
+            <img src="/product/{{$data6->image_url}}" alt="Product Image" width="100" height="75">
+      </td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data6->price * $data6->quantity}} $</td>

@@ -21,16 +21,32 @@
     <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/css/meanmenu.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    .product-col {
+    }
+    .product-column{
+        width: 272px !important;
+        display: contents;
+    }
+    .single-product-card{
+        display: inline-block ;
+    }
+    </style>
 </head>
 
 <body class="inner">
 
 <!-- Header Started -->
 
+@php
+                                            $count = isset($count) ? $count : 0;
+                                            $count2 = isset($count2) ? $count2 : 0;
+                                            @endphp
+
+                                            
 @include('components.navbar')
 
 <!-- Header Ended -->
-
     <!--------------------------------- BANNER SECTION STARTS HERE --------------------------------->
     
         <!-- Slideshow container -->
@@ -142,58 +158,27 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="sidebar-box">
-                            <h3 class="sidebar-title">By Price</h3>
-                            <div class="price-filter-wrap">
+                       <!--  Price filter -->
+                        
+                       <div class="sidebar-box">
+                              <h3 class="sidebar-title">By Price</h3>
+                              <div class="price-filter-wrap">
                                 <div class="input-wrap">
-                                    <div class="input-group">
-                                        <span class="input-txt">$</span>
-                                        <input type="number" id="maxNumber">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-txt">$</span>
-                                        <input type="number" id="minNumber">
-                                    </div>
+                                  <div class="input-group">
+                                    <span class="input-txt">$</span>
+                                    <input type="number" id="minNumber" placeholder="Minimum">
+                                  </div>
+                                  <div class="input-group">
+                                    <span class="input-txt">$</span>
+                                    <input type="number" id="maxNumber" placeholder="Maximum">
+                                  </div>
                                 </div>
-                                <div id="priceFilter" class="price-filter"></div>
                                 <button id="filterPrice" class="def-btn">Filter now</button>
+                              </div>
                             </div>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3 class="sidebar-title">Color</h3>
-                            <ul class="brand-filter color-filter" id="colorFilter">
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Black">
-                                        <label class="form-check-label" for="Black">Black</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Pink">
-                                        <label class="form-check-label" for="Pink">Pink</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="White">
-                                        <label class="form-check-label" for="White">White</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Blue">
-                                        <label class="form-check-label" for="Blue">Blue</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Orange">
-                                        <label class="form-check-label" for="Orange">Orange</label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
+                        <!-- Price filter End -->
+                       
                         <!-- <div class="sidebar-box">
                             <div class="title-wrap">
                                 <h3 class="sidebar-title">New Arrival</h3>
@@ -287,582 +272,125 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-lg-4 g-3">
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf1.jpeg" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
+
+   
+                    @php
+                    $data = App\Models\Products::all();
+                    @endphp
+
+
+                    <div class="product-column">
+    @foreach($data as $data)
+      @if ($data->category == 'Sports & Fitness')
+        <div class="single-product-card">
+                            <div class="part-img">
+                                <a href="{{ route('edit', ['id' => $data->id]) }}">
+                                    <img src="/product/{{$data->image}}" alt="Product" style="width:286px;height:182px;">
+                                </a>
+                                <div class="cart-option cart-option-bottom">
+                                    <ul>
+                                        <li>
+                                            <form action="{{url('/addcart',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-cart-form-{{$data->id}}">
+                                                @csrf
+                                                <a role="button" class="add-to-cart" onclick="document.getElementById('add-to-cart-form-{{$data->id}}').submit();">
                                                     <i class="fa-light fa-cart-shopping"></i>
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form action="{{url('/addwishlist',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-wishlist-form-{{$data->id}}">
+                                                @csrf
+                                                <a role="button" class="add-to-wish" onclick="document.getElementById('add-to-wishlist-form-{{$data->id}}').submit();">
                                                     <i class="fa-light fa-heart"></i>
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <a role="button" class="">
+                                                <i class="fa-light fa-image"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="">
+                                                <i class="fa-light fa-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">35% Off On Gym</a></h4>
-                                    <p class="dscr">35% Off On Gym</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
+                            </div>
+                            <div class="part-txt">
+                                <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
+                                <p class="dscr">{{$data->description}}</p>
+                                @if ($data->discounted_price)
+                                  <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>
+                                  <p class="price" style="display: inline-block;">${{$data->discounted_price}}</p>
+                                @else
+                                  <p class="price" style="display: inline-block;">${{$data->price}}</p>
+                                @endif
+
+                                <!-- Retrieve Rating -->
+
+                    @php
+                    $product= App\Models\Products::all();
+                    @endphp
+
+
+
+                    @php
+                
+                    $productRatings = DB::table('orders')
+                    ->join('products', 'orders.productname', '=', 'products.title')
+                    ->whereNotNull('orders.rating')
+                    ->where('products.title', $data->title)
+                    ->pluck('orders.rating');
+
+                    $averageRating = $productRatings->avg();
+                    @endphp
+
+                    
+
+                    @if(isset($averageRating))
+                    <p>Rating: {{ number_format($averageRating, 1) }}</p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                @if($i < $averageRating)
+                                    <i class="fa-solid fa-star-sharp rated"></i>
+                                @else
+                                    <i class="fa-solid fa-star-sharp"></i>
+                                @endif
+                            @endfor
+                        </div>
+                    @else
+                        <p>
+                            Rating: Not rated yet
+                        </p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                <i class="fa-solid fa-star-sharp"></i>
+                            @endfor
+                        </div>
+                    @endif
+
+
+                    <!-- Retrieve Rating end -->
+
+
+                                <!-- Add to Cart -->
+
+                                <form action="{{ url('/addcart', $data->id) }}" method="post" enctype="multipart/form-data">
+                                  @csrf
+                                  <div class="add-to-cart-btn">
+                                    <input type="hidden" name="quantity" value="1" min="1">
+                                    <button type="submit">Add to Cart</button>
+                                  </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf2.webp" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">40% Off On Swim</a></h4>
-                                    <p class="dscr">40% Off On Swim</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf3.webp" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">30% Off On Archery</a></h4>
-                                    <p class="dscr">30% Off On Archery</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf4.jpeg" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">54% Off On Horse Riding</a></h4>
-                                    <p class="dscr">54% Off On Horse Riding</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div><div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf5.webp" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">51% Off On Chess</a></h4>
-                                    <p class="dscr">51% Off On Chess</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/sf6.webp" alt="Product" style="height: 200px;"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">43% Off On Trampoline</a></h4>
-                                    <p class="dscr">43% Off On Trampoline</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-            
-         
-                        <!-- <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-5.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Fabrilife Kids T-shirt</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <span class="off-tag">15%</span>
-                                    <a href="#"><img src="assets/images/feat-product-6.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Monster Bottle</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-7.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Wireless Speaker</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-8.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Blood Pressure Indicator</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-9.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Hand Sanitizer</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <span class="off-tag">15%</span>
-                                    <a href="#"><img src="assets/images/feat-product-10.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Wireless Headphone</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-11.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Cotton Jacket for Men</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div> -->
+                        
+      @endif
+    @endforeach
+</div>
+
                     </div>
                     <div class="bottom-pagination d-flex justify-content-center">
                         <ul>
@@ -888,59 +416,6 @@
 
 
 
-    <!--------------------------------- FEATURES SECTION START --------------------------------->
-    <!-- <div class="features" id="feature">
-        <div class="container">
-            <div class="panel panel-shadow px-0">
-                <div class="custom-row">
-                    <div class="custom-col">
-                        <div class="single-feature">
-                            <div class="part-icon">
-                                <span><i class="flaticon-money-saving"></i></span>
-                            </div>
-                            <div class="part-txt">
-                                <h4>Free Delivery</h4>
-                                <p>For all order over $99</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-feature">
-                            <div class="part-icon">
-                                <span><i class="flaticon-dollar"></i></span>
-                            </div>
-                            <div class="part-txt">
-                                <h4>30 Days Return</h4>
-                                <p>If goods have Problems</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-feature">
-                            <div class="part-icon">
-                                <span><i class="flaticon-credit-card"></i></span>
-                            </div>
-                            <div class="part-txt">
-                                <h4>Secure Payment</h4>
-                                <p>100% secure payment</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-feature">
-                            <div class="part-icon">
-                                <span><i class="flaticon-call-center"></i></span>
-                            </div>
-                            <div class="part-txt">
-                                <h4>24/7 Support</h4>
-                                <p>Dedicated support</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 
 <!--------------------------------- FOOTER SECTION START --------------------------------->
@@ -1115,6 +590,31 @@
     <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/shop-page.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Price filter script -->
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#filterPrice').click(function() {
+    var minPrice = parseFloat($('#minNumber').val()) || Number.NEGATIVE_INFINITY;
+    var maxPrice = parseFloat($('#maxNumber').val()) || Number.POSITIVE_INFINITY;
+
+    $('.single-product-card').each(function() {
+      var priceElement = $(this).find('.price');
+      var price = parseFloat(priceElement.last().text().replace('$', ''));
+      
+      if (price >= minPrice && price <= maxPrice) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+});
+</script>
+
+
 </body>
 
 

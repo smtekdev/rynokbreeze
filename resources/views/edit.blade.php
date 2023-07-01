@@ -30,6 +30,33 @@
     margin-top: -12%;
     margin-left: -4%;
 }
+.InputAdjust{
+    text-align: center;
+    margin-top: 70%;
+}
+.BtnAdjust{
+    width: 45%;
+}
+.InputWrapper{
+    text-align: center;
+    width: 28%;
+}
+.WrapCartBtn {
+    display: flex;
+    position: absolute;
+    width: 8%;
+    margin-left: 6%;
+    margin-top: 5%;
+}
+.QuantityLable{
+    position: absolute;
+    margin-top: 5.5%;
+    font-size: 1rem;
+}
+#addToCart{
+width: 112%;
+}
+
 </style>
 </head>
 
@@ -84,27 +111,37 @@
 
                                         <p class="price"></p>
                                         <ul class="short-details">
-                                            <li>Availability: <span>In stock</span></li>
+                                            <li>Availability: <span>In stock</span></li>                                            
                                             <!-- <li>Tags: <span>Fashion, Hood, Classic</span></li> -->
                                         </ul>
-                                        <p class="dscr">
-</p>
-                            
 
-@php
-$data= App\Models\Products::all();
-@endphp
+
+  
+
+<p class="dscr"></p>
+
+
+<!-- Add to cart and add to wishlist button -->
 
 <div class="btn-box">
     <form action="{{ route('add-to-cart', $product->id) }}" method="POST" style="display: inline;">
-        @csrf
-        <button type="submit" id="addToCart" style="width: calc(121% - 10px);"><span><i class="fa-light fa-cart-shopping"></i></span> Add to Cart</button>
-    </form>
+        @csrf        
+        <div class="WrapCartBtn">
+          <button type="button" onclick="decreaseQuantity()" class="BtnAdjust">-</button>
+          <div class="InputWrapper">
+          <input type="number" name="quantity" id="quantityInput" value="1" class="InputAdjust">
+          </div>
+          <button type="button" onclick="increaseQuantity()" class="BtnAdjust">+</button>
+        </div>
+        <button type="submit" id="addToCart"><span><i class="fa-light fa-cart-shopping"></i></span> Add to Cart</button>
+     </form>
+     <label class="QuantityLable">Select<br> Quantity</label>
     <form action="{{ route('add-to-wishlist', $product->id) }}" method="POST" style="display: inline;">
         @csrf
         <button type="submit" id="addToWishList" style="width: calc(121% - 10px);"><span><i class="fa-light fa-heart"></i></span> Add to Wishlist</button>
     </form>
 </div>
+<br><br>
 
 
                                         
@@ -324,6 +361,53 @@ $data= App\Models\Products::all();
 <script src="assets/vendor/js/jquery-modal-video.min.js"></script>
 <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/main.js"></script>
+
+<!-- Quantity increment script -->
+<script>
+    const quantityInput = document.querySelector('.rapper-quantity input');
+const quantityUpButton = document.querySelector('.quantity-up');
+const quantityDownButton = document.querySelector('.quantity-down');
+
+let currentQuantity = parseInt(quantityInput.value);
+
+quantityUpButton.addEventListener('click', () => {
+  currentQuantity++;
+  quantityInput.value = currentQuantity;
+});
+
+quantityDownButton.addEventListener('click', () => {
+  if (currentQuantity > 1) {
+    currentQuantity--;
+    quantityInput.value = currentQuantity;
+  }
+});
+</script>
+
+<!-- Quantity store -->
+
+
+<script>
+  function decreaseQuantity() {
+    var quantityInput = document.getElementById('quantityInput');
+    var currentValue = parseInt(quantityInput.value);
+
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  }
+
+  function increaseQuantity() {
+    var quantityInput = document.getElementById('quantityInput');
+    var currentValue = parseInt(quantityInput.value);
+    
+    // You can add additional validation here if needed
+
+    quantityInput.value = currentValue + 1;
+  }
+</script>
+
+
+
 </body>
 
 

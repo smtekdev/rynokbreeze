@@ -1,3 +1,16 @@
+<style>
+    .btadjst{        
+    margin-right: 16%;
+    margin-top: -2.5%;
+    }
+    #success-message{
+    position: absolute;
+    right: 26%;
+    margin-top: -1%;
+    font-size: 1.01rem;
+    }   
+</style>
+
 <body class="inner">
     
       <!--------------------------------- PRODUCT QUICK VIEW PANEL START --------------------------------->
@@ -517,8 +530,22 @@
                                 </div>
                                 <div class="col-xxl-5 col-lg-4 col-md-3 col-sm-4 col-7">
                        
+                                <!-- Welcome Message -->                              
+
                                     <ul class="bottom-header-right d-flex align-items-center justify-content-end">
-                                        
+                                    @if (isset($successMessage))
+                                    <div id="success-message">{{ $successMessage }}</div>
+                                        <script>
+                                            setTimeout(function() {
+                                                var successMessage = document.getElementById('success-message');
+                                                successMessage.style.display = 'none';
+                                            }, 3000);
+                                        </script>
+                                    @endif
+
+                                            <!-- Logout -->
+
+
                                         <li class="header-cart-options">
                                             <a role="button" class="search-open d-sm-none"><i class="fa-light fa-magnifying-glass"></i></a>
                                             @if (Route::has('login'))
@@ -526,16 +553,16 @@
                                             @auth                            
                                             <a href="{{route("user-dashboard")}}"  class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                                             <!-- logout and user info -->
-                                            <div>                                               
-                                                <p class="font-semibold text-xl text-gray-800 leading-tight">
-                                                    Welcome, {{ Auth::user()->name }} <!-- User Name -->
+                                            <div>       
                                                     <form method="POST" action="{{ route('logout') }}">
-                                                        @csrf
-                                                        <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
+                                                      @csrf
+                                                      <button type="submit" class="underline text-blue-500 btnst btadjst">{{ __('Logout') }}</button>
                                                     </form>
                                                 </hp>
                                             </div>
                                             <!-- logout and user info end -->
+
+
                                             @else
                                             <a href="{{ route('login') }}" class="compare-list-btn">
                                              Sign in
@@ -558,12 +585,11 @@
                                                 @endauth
                                               </div>
                                               @endif
-                                            <a href="#" class="compare-list-btn">
-                                                <i class="fa-light fa-shuffle"></i>
-                                            </a>
                                             @php
                                             $count = isset($count) ? $count : 0;
                                             $count2 = isset($count2) ? $count2 : 0;
+                                            $count = Session::get('count', 0);
+                                            $count2 = Session::get('count2', 0);
                                             @endphp
                                             <a href="{{ Auth::check() ? url('/showwishlist', Auth::user()->id) : '#' }}">
                                             <i class="fa-light fa-heart"></i>
@@ -611,7 +637,7 @@
                                                 <nav id="revel-mobile-menu" class="revel-mobile-menu">
                                                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                                         <li class="nav-item ">
-                                                            <a class="nav-link " href="">
+                                                            <a class="nav-link " href="{{route ('login')}}">
                                                                 Home
                                                             </a>
                              
@@ -648,7 +674,6 @@
                                                                 <li><a class="dropdown-item" href="{{route("home-appliances")}}">Home Appliances</a></li>
                                                                 <li><a class="dropdown-item" href="{{route("automotive")}}">Automotive</a></li>
                                                                 <li><a class="dropdown-item" href="{{route("furniture-&-home-decor")}}">Furniture & Home decor</a></li>
-
                                                                 <li><a class="dropdown-item" href="{{route("kids-entertainment")}}">Kids Entertainment</a></li>
                                                                 <!-- <li><a class="dropdown-item" href="wishlist.html">Wishlist</a></li>
                                                                 <li><a class="dropdown-item" href="register.html">Register Page</a></li> -->
@@ -710,5 +735,7 @@
 
 
 </div>
+
+
 
 

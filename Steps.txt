@@ -173,3 +173,51 @@ D- Updated controller and created blade file checkout.credit-card
 113- Restrict user from rewritting rating. 
 114- Rating at front end (Featured Products Area). (This all code done at products.blade.php file by join method for tables of ordes and products)
 115- Dynamilcally Rating stars (according to live count) at front end (Featured Products Area).  (This all code done at products.blade.php file by join method for tables of ordes and products)
+116- Fixed error of not showing cart and wishlist count on navbar for inner pages by using Laravel's session.
+
+22nd June: 
+117- Fixed error for negative total price if coupon amount is more then total amount. 
+118- Strip integration with live total price, Before stripe was working on fixed static price. (In Progress)(If I write manually then it's get the value and auto not get value. Three files to work showcart, Checkoutcontroller & credit-.blade.php file)
+119- Rendering sub category pages with related products (In Prgoress)
+
+23rd June:
+120- Dynamically upload product in the specific category.  ( I am using products.blade.php file which is related to vendor)	
+121- Dynamically show Related product on each category pages with functionality of add cart/wishlist,rating and rendering these product at single product page and also fixed layout issues. (Products has been uploaded related to 12 out of 30 category pages).
+
+24th June: 
+122- Uploaded remaining porodcut in convern categories. 
+123- Welcome message with user name with the timer on all dashboards.
+124- Fix vendor logout layout.
+125- Cancel order count with icon on the user dashboard
+
+26th June:
+126- Favicon changed for login page of breeze at file \resources\views\layouts\guest.blade.php by adding code <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
+127- Customized error message at resources\views\components\auth-validation-errors.blade.php.
+128- Pop-up msg on successful payment on the same payment page instead of going at next page.
+129- To get product image when confirming order then retrieve at orders. Ran comman of ALTER TABLE orders ADD COLUMN image_url VARCHAR(255) AFTER quantity; insde myphpadmin to have this table. 
+130- First created function to get image url in the cart then created function to take this image url code into order table then created function to show this product image at orders history. 
+131. Products picture in user dashboard at orders list.
+132. Products picture in vendor & Admin dashboard of orderds.
+133. Fix login error msg on bottom of the field (At time of login in case of wrong login info).
+134. Disable edit option on user profile info & put condition on edit user information to allow seperate info update instead of all together.
+135. Change the option of user and vendor picture profile upload to one click instead of two.
+136. Add background picture functionality on vendor dashboard with storing at backend. 
+137. Fix layout of wish list and fix the graph of auto detect quantity of wishlist count.
+
+27th June: 
+138- There was CSS clash coming due of navbar with user-dashboard that for removed navbar from user-dashboard. 
+139- Show pending orders as Pending instead of empty area at order history table of User and Admin. 
+140- Order Delivery time at User and Admin dashboard.
+141- Put Order confirm button at bottom. (I created a new independent button at buttom of showcart page which will trigger original button which I couldn't align and make this old button hidden)
+142- Add filter to search product by price (used JS)
+
+28th June:
+143- Added function to increase/decrease quantity with backend function to store this quantity. 
+144- Added function to increase/decrease quantity at Cart View page. 
+145- Craeted vendor registration blade view file. 
+146- Created function, route and assigned it value for vendor usertype 2 when user register via vendor registeration form. ( Need to take care of two things one is the migration file must shall have usertype and second the model which should must have usertype fillable)
+147- Created function to check if user approved or not approved. Allow to proceed further to login dashboard only for status with approve vendor.
+
+1st July:
+148- Admin Give approval for vendor. (First I created new form which will register vendor and whenever user register via this form he'll get usertype of 2 and then he'll redirect at new created view file named custom where he'll see message that user should wait tille admin approval for this vendor and he have only option to logout, Then I added one new column at backend table of users by name of status where have two things waiting and approved and in the admin vendor view file i craeted new row/column where admin can click on approve so when admin approve it then vendor can login. (Worked at web.php, vendor.blade.php, customer.blade.php, HomeCotnroller & AdminController)
+149- Logout/kill session when close all tabs by user. (go to config\session.php  and change 'expire_on_close' => true, )

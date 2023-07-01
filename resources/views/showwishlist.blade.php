@@ -103,8 +103,6 @@
 <!-- Header Ended -->
 
 
-
-
 <div id="top" style="">
 
 <div class="cartalign">
@@ -127,8 +125,8 @@
       <input type="text" name="productname[]" value="{{$data4->title}}" hidden="">
       {{$data4->title}}
     </td>
-    <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
-    <img src="/product/{{$data4->image}}" alt="Product Image" width="100">
+    <td style="border: 1px solid #ddd; !important;">
+    <img src="/product/{{$data4->image}}" alt="Product Image" width="75"  height="50">
     </td>  
     <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important; width: 11%;">
       <input type="text" name="price[]" value="{{$data4->price}}" hidden="">

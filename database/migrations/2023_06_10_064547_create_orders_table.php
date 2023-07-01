@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->string('image_url')->nullable();
             $table->boolean('is_email_sent')->default(false);
             $table->string('refund_status')->nullable();
             $table->unsignedTinyInteger('rating')->nullable();

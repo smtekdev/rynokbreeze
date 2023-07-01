@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rynokbay</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">    <link rel="stylesheet" href="assets/vendor/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">     
+    <link rel="stylesheet" href="assets/vendor/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/flaticon/flaticon.css">
     <link rel="stylesheet" href="assets/vendor/css/nice-select.css">
@@ -20,16 +21,32 @@
     <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/css/meanmenu.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+    .product-col {
+    }
+    .product-column{
+        width: 272px !important;
+        display: contents;
+    }
+    .single-product-card{
+        display: inline-block ;
+    }
+    </style>
 </head>
 
 <body class="inner">
 
 <!-- Header Started -->
 
+@php
+                                            $count = isset($count) ? $count : 0;
+                                            $count2 = isset($count2) ? $count2 : 0;
+                                            @endphp
+
+                                            
 @include('components.navbar')
 
 <!-- Header Ended -->
-
     <!--------------------------------- BANNER SECTION STARTS HERE --------------------------------->
     
         <!-- Slideshow container -->
@@ -66,13 +83,15 @@
 </div>
 
 
+
+
     <!--------------------------------- BANNER SECTION START --------------------------------->
     <div class="banner banner-inner" style="z-index: -1;">
         <div class="container">
             <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6 col-md-9 col-8">
                     <div class="breadcrumb-txt">
-                        <h1>Digital World</h1>
+                        <h1>Digital Services</h1>
                         <ul>
                             <li><a href="index-7.html"><i class="fa-regular fa-house"></i></a></li>
                             <li>/</li>
@@ -139,58 +158,27 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="sidebar-box">
-                            <h3 class="sidebar-title">By Price</h3>
-                            <div class="price-filter-wrap">
+                       <!--  Price filter -->
+                        
+                       <div class="sidebar-box">
+                              <h3 class="sidebar-title">By Price</h3>
+                              <div class="price-filter-wrap">
                                 <div class="input-wrap">
-                                    <div class="input-group">
-                                        <span class="input-txt">$</span>
-                                        <input type="number" id="maxNumber">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-txt">$</span>
-                                        <input type="number" id="minNumber">
-                                    </div>
+                                  <div class="input-group">
+                                    <span class="input-txt">$</span>
+                                    <input type="number" id="minNumber" placeholder="Minimum">
+                                  </div>
+                                  <div class="input-group">
+                                    <span class="input-txt">$</span>
+                                    <input type="number" id="maxNumber" placeholder="Maximum">
+                                  </div>
                                 </div>
-                                <div id="priceFilter" class="price-filter"></div>
                                 <button id="filterPrice" class="def-btn">Filter now</button>
+                              </div>
                             </div>
-                        </div>
-                        <div class="sidebar-box">
-                            <h3 class="sidebar-title">Color</h3>
-                            <ul class="brand-filter color-filter" id="colorFilter">
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Black">
-                                        <label class="form-check-label" for="Black">Black</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Pink">
-                                        <label class="form-check-label" for="Pink">Pink</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="White">
-                                        <label class="form-check-label" for="White">White</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Blue">
-                                        <label class="form-check-label" for="Blue">Blue</label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Orange">
-                                        <label class="form-check-label" for="Orange">Orange</label>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
+                        <!-- Price filter End -->
+                      
                         <!-- <div class="sidebar-box">
                             <div class="title-wrap">
                                 <h3 class="sidebar-title">New Arrival</h3>
@@ -284,715 +272,125 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-lg-4 g-3">
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d1.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
+
+   
+                    @php
+                    $data = App\Models\Products::all();
+                    @endphp
+
+
+                    <div class="product-column">
+    @foreach($data as $data)
+      @if ($data->category == 'Digital Services')
+        <div class="single-product-card">
+                            <div class="part-img">
+                                <a href="{{ route('edit', ['id' => $data->id]) }}">
+                                    <img src="/product/{{$data->image}}" alt="Product" style="width:286px;height:182px;">
+                                </a>
+                                <div class="cart-option cart-option-bottom">
+                                    <ul>
+                                        <li>
+                                            <form action="{{url('/addcart',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-cart-form-{{$data->id}}">
+                                                @csrf
+                                                <a role="button" class="add-to-cart" onclick="document.getElementById('add-to-cart-form-{{$data->id}}').submit();">
                                                     <i class="fa-light fa-cart-shopping"></i>
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form action="{{url('/addwishlist',$data->id)}}" method="post" enctype="multipart/form-data" id="add-to-wishlist-form-{{$data->id}}">
+                                                @csrf
+                                                <a role="button" class="add-to-wish" onclick="document.getElementById('add-to-wishlist-form-{{$data->id}}').submit();">
                                                     <i class="fa-light fa-heart"></i>
                                                 </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <a role="button" class="">
+                                                <i class="fa-light fa-image"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="">
+                                                <i class="fa-light fa-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Search Engine Optimization</a></h4>
-                                    <p class="dscr">Search Engine Optimization</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
+                            </div>
+                            <div class="part-txt">
+                                <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
+                                <p class="dscr">{{$data->description}}</p>
+                                @if ($data->discounted_price)
+                                  <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>
+                                  <p class="price" style="display: inline-block;">${{$data->discounted_price}}</p>
+                                @else
+                                  <p class="price" style="display: inline-block;">${{$data->price}}</p>
+                                @endif
+
+                                <!-- Retrieve Rating -->
+
+                    @php
+                    $product= App\Models\Products::all();
+                    @endphp
+
+
+
+                    @php
+                
+                    $productRatings = DB::table('orders')
+                    ->join('products', 'orders.productname', '=', 'products.title')
+                    ->whereNotNull('orders.rating')
+                    ->where('products.title', $data->title)
+                    ->pluck('orders.rating');
+
+                    $averageRating = $productRatings->avg();
+                    @endphp
+
+                    
+
+                    @if(isset($averageRating))
+                    <p>Rating: {{ number_format($averageRating, 1) }}</p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                @if($i < $averageRating)
+                                    <i class="fa-solid fa-star-sharp rated"></i>
+                                @else
+                                    <i class="fa-solid fa-star-sharp"></i>
+                                @endif
+                            @endfor
+                        </div>
+                    @else
+                        <p>
+                            Rating: Not rated yet
+                        </p>
+                        <div class="star">
+                            @for($i = 0; $i < 5; $i++)
+                                <i class="fa-solid fa-star-sharp"></i>
+                            @endfor
+                        </div>
+                    @endif
+
+
+                    <!-- Retrieve Rating end -->
+
+
+                                <!-- Add to Cart -->
+
+                                <form action="{{ url('/addcart', $data->id) }}" method="post" enctype="multipart/form-data">
+                                  @csrf
+                                  <div class="add-to-cart-btn">
+                                    <input type="hidden" name="quantity" value="1" min="1">
+                                    <button type="submit">Add to Cart</button>
+                                  </div>
+                                </form>
                             </div>
                         </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d2.jpeg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Logo Design</a></h4>
-                                    <p class="dscr">Logo Design</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d3.jpeg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Content Writing</a></h4>
-                                    <p class="dscr">Content Writing</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d4.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Email Marketing</a></h4>
-                                    <p class="dscr">Email Marketing</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d5.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Mobile App Development</a></h4>
-                                    <p class="dscr">Mobile App Development</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/d6.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Web Development</a></h4>
-                                    <p class="dscr">Web Development</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/3_1649e80e-8a97-425a-b159-09c1c59b0f41.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Frizz Control Kit
-                                    </a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/559217_1.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Rica Aloevera After Wax </a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/Avocado120ml.webp" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Organic Avocado Oil
-                                    </a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-5.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Fabrilife Kids T-shirt</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <span class="off-tag">15%</span>
-                                    <a href="#"><img src="assets/images/feat-product-6.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Monster Bottle</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-7.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Wireless Speaker</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-8.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Blood Pressure Indicator</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-9.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Hand Sanitizer</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <span class="off-tag">15%</span>
-                                    <a href="#"><img src="assets/images/feat-product-10.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Wireless Headphone</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                            <div class="single-product-card">
-                                <div class="part-img">
-                                    <a href="#"><img src="assets/images/feat-product-11.jpg" alt="Product"></a>
-                                    <div class="cart-option cart-option-bottom">
-                                        <ul>
-                                            <li>
-                                                <a role="button" class="add-to-cart">
-                                                    <i class="fa-light fa-cart-shopping"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="add-to-wish">
-                                                    <i class="fa-light fa-heart"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a role="button" class="quick-view">
-                                                    <i class="fa-light fa-image"></i>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="view-product">
-                                                    <i class="fa-light fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="part-txt">
-                                    <h4 class="product-name"><a href="#">Cotton Jacket for Men</a></h4>
-                                    <p class="dscr">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus aliquid laborum aperiam dolores. Dignissimos at harum corporis qui illo nam fugit recusandae ratione odit neque officia, accusamus ab, assumenda odio.</p>
-                                    <p class="price"><span>$96.00</span>$75.00</p>
-                                    <div class="star">
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp rated"></i>
-                                        <i class="fa-solid fa-star-sharp"></i>
-                                    </div>
-                                    <button class="add-to-cart-btn">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div> -->
+                        
+      @endif
+    @endforeach
+</div>
+
                     </div>
                     <div class="bottom-pagination d-flex justify-content-center">
                         <ul>
@@ -1018,171 +416,167 @@
 
 
 
-    <!--------------------------------- FEATURES SECTION START --------------------------------->
-
-    <!--------------------------------- FEATURES SECTION END --------------------------------->
 
 
+<!--------------------------------- FOOTER SECTION START --------------------------------->
+<div class="footer rev-7-footer">
+    <div class="container">
+        <div class="footer-subscribe">
+            <div class="row align-items-center">
+                <div class="col-xxl-3 col-xl-4">
+                    <h3 style="font-size: 24px;">Subscribe Our Newsletter Now</h3>
+                </div>
 
-    <!--------------------------------- FOOTER SECTION START --------------------------------->
-    <div class="footer rev-7-footer">
-        <div class="container">
-            <div class="footer-subscribe">
-                <div class="row align-items-center">
-                    <div class="col-xxl-3 col-xl-4">
-                        <h3 style="font-size: 24px;">Subscribe Our Newsletter Now</h3>
-                    </div>
+                <div class="col-xxl-4 col-xl-4 col-lg-9 col-11 col-xs-12">
+                    <form action="#" class="footer-subs-form">
+                        <input type="text" name="Subscription-form" id="footer-subscribe-input" placeholder="Your email Address">
+                        <button class="subs-btn">Subscribe</button>
+                    </form>
+                </div>
 
-                    <div class="col-xxl-4 col-xl-4 col-lg-9 col-11 col-xs-12">
-                        <form action="#" class="footer-subs-form">
-                            <input type="text" name="Subscription-form" id="footer-subscribe-input" placeholder="Your email Address">
-                            <button class="subs-btn">Subscribe</button>
-                        </form>
-                    </div>
-
-                    <div class="col-xxl-5 col-xl-4">
-                        <div class="footer-socials">
-                            <h3 class="footer-title">Join us on</h3>
-                            <ul>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <img src="assets/images/socials/fb.png" alt="facebook logo">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <img src="assets/images/socials/pt.png" alt="pinterest logo">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <img src="assets/images/socials/lk.png" alt="linkedin logo">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <img src="assets/images/socials/tw.png" alt="twitter logo">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank">
-                                        <img src="assets/images/socials/in.png" alt="instagram logo">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="col-xxl-5 col-xl-4">
+                    <div class="footer-socials">
+                        <h3 class="footer-title">Join us on</h3>
+                        <ul>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="assets/images/socials/fb.png" alt="facebook logo">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="assets/images/socials/pt.png" alt="pinterest logo">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="assets/images/socials/lk.png" alt="linkedin logo">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="assets/images/socials/tw.png" alt="twitter logo">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <img src="assets/images/socials/in.png" alt="instagram logo">
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="main-footer">
-            <div class="container">
-                <div class="custom-row">
-                    <div class="custom-col-2">
-                        <div class="footer-about">
+    <div class="main-footer">
+        <div class="container">
+            <div class="custom-row">
+                <div class="custom-col-2">
+                    <div class="footer-about">
                         <div class="footer-logo">
                             <a href="{{route('login')}}">
                             <img src="assets/images/logos/logo-7.png" alt="Logo" style="max-width: 220%;">
                             </a>
                          </div>
+                        <ul>
+                            <li>
+                                <div class="icon">
+                                    <span><i class="flaticon-map"></i></span>
+                                </div>
+                                <div class="txt">
+                                    <span>4920 Trails End Road Ft United States, FL 33311</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span><i class="flaticon-email"></i></span>
+                                </div>
+                                <div class="txt">
+                                    <a href="mailto:info@example.com">info@example.com</a>
+                                    <a href="mailto:test@example.com">test@example.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="icon">
+                                    <span><i class="flaticon-telephone"></i></span>
+                                </div>
+                                <div class="txt">
+                                    <a href="tel:+123456679123">+123 456 679 123</a>
+                                    <!-- <a href="tel:+123456789">+123 456 789</a> -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="custom-col-2">
+                    <div class="link-wrap">
+                        <div class="footer-link">
+                            <h3 class="footer-title">My Account</h3>
                             <ul>
-                                <li>
-                                    <div class="icon">
-                                        <span><i class="flaticon-map"></i></span>
-                                    </div>
-                                    <div class="txt">
-                                        <span>4920 Trails End Road Ft United States, FL 33311</span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span><i class="flaticon-email"></i></span>
-                                    </div>
-                                    <div class="txt">
-                                        <a href="mailto:info@example.com">info@example.com</a>
-                                        <a href="mailto:test@example.com">test@example.com</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="icon">
-                                        <span><i class="flaticon-telephone"></i></span>
-                                    </div>
-                                    <div class="txt">
-                                        <a href="tel:+123456679123">+123 456 679 123</a>
-                                        <!-- <a href="tel:+123456789">+123 456 789</a> -->
-                                    </div>
-                                </li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Blogs</a></li>
+                                <li><a href="#">Terms Of Use</a></li>
+                                <li><a href="#">Privacy Policies</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-link">
+                            <h3 class="footer-title">Information</h3>
+                            <ul>
+                                <li><a href="#">My Order</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">My Credit</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Personal Info</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="custom-col-2">
-                        <div class="link-wrap">
-                            <div class="footer-link">
-                                <h3 class="footer-title">My Account</h3>
-                                <ul>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Blogs</a></li>
-                                    <li><a href="#">Terms Of Use</a></li>
-                                    <li><a href="#">Privacy Policies</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-link">
-                                <h3 class="footer-title">Information</h3>
-                                <ul>
-                                    <li><a href="#">My Order</a></li>
-                                    <li><a href="#">Wishlist</a></li>
-                                    <li><a href="#">My Credit</a></li>
-                                    <li><a href="#">Login</a></li>
-                                    <li><a href="#">Personal Info</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col-2">
-                        <div class="link-wrap">
-                            <div class="footer-link">
-                                <h3 class="footer-title">Custom Links</h3>
-                                <ul>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Blogs</a></li>
-                                    <li><a href="#">Terms Of Use</a></li>
-                                    <li><a href="#">Privacy Policies</a></li>
-                                </ul>
-                            </div>
-                            <div class="footer-link">
-                                <h3 class="footer-title">Categories</h3>
-                                <ul>
-                                    <li><a href="#">My Order</a></li>
-                                    <li><a href="#">Wishlist</a></li>
-                                    <li><a href="#">My Credit</a></li>
-                                    <li><a href="#">Login</a></li>
-                                    <li><a href="#">Personal Info</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-12 text-center">
-                        <p>© Copyright Westcoast Animations All Right Reserved</p>
-                    </div>
-                    <div class="col-12">
-                        <div class="part-img d-flex justify-content-center">
-                            <img src="assets/images/payment-gateway.png" alt="Image">
+                <div class="custom-col-2">
+                    <div class="link-wrap">
+                        <div class="footer-link">
+                            <h3 class="footer-title">Custom Links</h3>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Blogs</a></li>
+                                <li><a href="#">Terms Of Use</a></li>
+                                <li><a href="#">Privacy Policies</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-link">
+                            <h3 class="footer-title">Categories</h3>
+                            <ul>
+                                <li><a href="#">My Order</a></li>
+                                <li><a href="#">Wishlist</a></li>
+                                <li><a href="#">My Credit</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Personal Info</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--------------------------------- FOOTER SECTION END --------------------------------->
+    <div class="copyright">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 text-center">
+                    <p>© Copyright Westcoast Animations All Right Reserved</p>
+                </div>
+                <div class="col-12">
+                    <div class="part-img d-flex justify-content-center">
+                        <img src="assets/images/payment-gateway.png" alt="Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--------------------------------- FOOTER SECTION END --------------------------------->
 
     <script src="assets/vendor/js/jquery-3.6.0.min.js"></script>
     <script src="assets/vendor/js/jquery.nice-select.min.js"></script>
@@ -1196,8 +590,32 @@
     <script src="assets/vendor/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/shop-page.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Price filter script -->
+
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#filterPrice').click(function() {
+    var minPrice = parseFloat($('#minNumber').val()) || Number.NEGATIVE_INFINITY;
+    var maxPrice = parseFloat($('#maxNumber').val()) || Number.POSITIVE_INFINITY;
+
+    $('.single-product-card').each(function() {
+      var priceElement = $(this).find('.price');
+      var price = parseFloat(priceElement.last().text().replace('$', ''));
+      
+      if (price >= minPrice && price <= maxPrice) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+});
+</script>
+
 </body>
 
 
-<!-- Mirrored from revelecommerce.codebasket.net/revel/# by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:48:26 GMT -->
+<!-- Mirrored from revelecommerce.codebasket.net/revel/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:48:26 GMT -->
 </html>

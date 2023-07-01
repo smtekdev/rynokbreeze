@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('user_id')->nullable();
             $table->string('product_id')->nullable();
             $table->decimal('price')->nullable();
-            $table->string('quantity_id')->nullable();
+            $table->string('quantity')->nullable();
             $table->string("image", 255)->nullable();
             $table->timestamps();
         });

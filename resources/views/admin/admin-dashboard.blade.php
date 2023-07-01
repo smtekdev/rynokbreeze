@@ -61,6 +61,12 @@
   display: inline-block;
 }
 
+.upsuccess{
+    position: absolute;
+    margin-top: 28%;
+    margin-left: 5%;
+}
+
 .ibtn {
     width: 2px;
   border: 2px solid #980506;
@@ -295,25 +301,22 @@
 
                            <!-- Profile Image upload -->      
 
+                           <form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                         @csrf
 
-<form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
-                        @csrf
-  
-                        @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-  
-                        <div class="row mb-3">
-                            <!-- <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label> -->
-  
+                         @if (session('success'))
+                             <div class="alert alert-success upsuccess" role="alert">
+                                 {{ session('success') }}
+                             </div>
+                         @endif
+
+                         <div class="row mb-3">
+                            
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
-  
+                            
                                 <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
-                                
-    
+                            
                                 @error('avatar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -322,14 +325,9 @@
                             </div>
                         </div>
   
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary adjst">
-                                    {{ __('✔') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                           
+
 
                                 </div>
 
@@ -453,19 +451,19 @@ $data= App\Models\Order::all();
     @csrf
     <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
+        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required readonly>
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
+        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required readonly>
     </div>  
     <div class="form-group">
         <label for="phone">Phone:</label>
-        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
+        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required readonly>
     </div>
     <div class="form-group">
         <label for="address">Address:</label>
-        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
+        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required readonly>
     </div>
       <!-- <div class="form-group">
         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -488,31 +486,31 @@ $data= App\Models\Order::all();
                    
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
+                        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone:</label>
-                        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
+                        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}">
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
+                        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}">
                     </div>
                     <div class="form-group">
                         <label for="old_password">Old Password:</label>
-                         <input type="password" name="old_password" id="old_password" class="form-control" required>
+                         <input type="password" name="old_password" id="old_password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
+                        <input type="password" name="password" id="password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password:</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                     </div>
                    
                     <div class="form-group">
@@ -1168,6 +1166,14 @@ $data= App\Models\Order::all();
   });
 </script>
 
+
+<script>
+    const input = document.getElementById("avatar");
+    input.addEventListener("change", () => {
+        const form = input.closest("form");
+        form.submit();
+    });
+</script>
 
 
 </body>

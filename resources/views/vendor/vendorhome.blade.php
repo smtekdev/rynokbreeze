@@ -89,6 +89,12 @@
 }
 
 
+.upsuccess{
+    position: absolute;
+    margin-top: 28%;
+    margin-left: 5%;
+}
+
     /* Hide the "Choose File" and "No file chosen" text */
     input[type=file]::-webkit-file-upload-button {
         opacity: 0;
@@ -182,6 +188,11 @@
     text-align: center;
   }
 
+#success-message{
+    position: absolute !important;
+    right: 10% !important;
+    margin-top: -2% !important;
+}
     </style>
 </head>
 
@@ -192,11 +203,9 @@
 
 
 
-
+<br>
 <!-- logout and user info -->
-<div class="vendorwelcome">                                    
-    <p class="font-semibold text-xl text-gray-800 leading-tight">
-        Welcome, {{ Auth::user()->name }} <!-- User Name -->
+<div class="vendorwelcome">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
@@ -214,6 +223,20 @@
 <!-- Header Ended -->
 
 
+<!-- Success login message  -->
+
+@if (isset($successMessage))
+    <div id="success-message">{{ $successMessage }}</div>
+    <script>
+        setTimeout(function() {
+            var successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'none';
+        }, 3000);
+    </script>
+@endif
+
+
+
 
     <!-- User Dashboard Section Start -->
     <section class="user-dashboard-section section-b-space">
@@ -227,12 +250,47 @@
                             </button>
                         </div>
                         <div class="profile-box">
-                            
-                            <div class="cover-image">
-                                
-                                <img src="assets/images2/inner-page/cover-img.jpg" class="img-fluid blur-up lazyload"  id="profile-pic" alt="" >
-                                
-                            </div>
+
+
+                        <!-- Cover Image -->
+                        <form method="POST" action="{{ route('user.profile.updateCoverPhoto') }}" enctype="multipart/form-data">
+                           @csrf
+
+                           @if (session('success'))
+                               <div class="alert alert-success upsuccess" role="alert">
+                                   {{ session('success') }}
+                               </div>
+                           @endif
+
+                           <div class="row mb-3">
+                               <div class="col-md-6">
+                                   <div class="cover-photo" style="background-image: url('{{ Auth::user()->cover_photo ? asset('cover_photos/' . Auth::user()->cover_photo) : asset('assets/images2/inner-page/cover-img.jpg') }}'); width: 337px; height: 150px;background-size: cover;">
+                                       <label for="cover_photo" class="cover-photo-label">
+                                           <input id="cover_photo" type="file" class="@error('cover_photo') is-invalid @enderror" name="cover_photo" required autocomplete="cover_photo" onchange="this.form.submit();">
+                                           <!-- Add any additional styling or content for the file input if needed -->
+                                       </label>
+                                   </div>
+
+                                   @error('cover_photo')
+                                       <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                       </span>
+                                   @enderror
+                               </div>
+                           </div>
+
+                           <style>
+                               /* Hide the "No file chosen" text */
+                               .cover-photo-label input[type="file"] {
+                                   color: transparent;
+                               }
+                           </style>
+                        </form>
+
+
+
+
+
                             <!-- <div class="iupload-btn-wrapper">                                
                                 <input type="file" name="myfile" id="input-file">
                                 <button class="fa-solid fa-pen"></button>
@@ -244,25 +302,25 @@
 
 
 
-                                    <!-- Profile Image upload -->
+                        <!-- Profile Image upload -->
 
-                                    <form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
-                        @csrf
-  
-                        @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-  
-                        <div class="row mb-3">
-  
+                       
+                        <form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                         @csrf
+
+                         @if (session('success'))
+                             <div class="alert alert-success upsuccess" role="alert">
+                                 {{ session('success') }}
+                             </div>
+                         @endif
+
+                         <div class="row mb-3">
+                            
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
-  
+                            
                                 <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
-                                
-    
+                            
                                 @error('avatar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -271,14 +329,10 @@
                             </div>
                         </div>
   
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary adjst">
-                                    {{ __('✓') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+
+
+
                                 </div>
 
                                 <div class="profile-name">
@@ -1226,6 +1280,19 @@
 </script>
 
 
+<script>
+    // Get the input element
+    const input = document.getElementById("avatar");
+
+    // Listen for changes to the input
+    input.addEventListener("change", () => {
+        // Get the form element
+        const form = input.closest("form");
+
+        // Submit the form
+        form.submit();
+    });
+</script>
 
 
 

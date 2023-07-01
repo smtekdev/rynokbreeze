@@ -12,7 +12,10 @@
     
     <title>RynokBay</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">     
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">   
+    
+    
+    
 
     <!-- Google font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -36,11 +39,7 @@
     <!-- Iconly css -->
     <link rel="stylesheet" type="text/css" href="assets/css2/bulk-style.css">
 
-    <!-- Template css -->
-    <link id="color-link" rel="stylesheet" type="text/css" href="assets/css2/style.css">
 
-
-    
 
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/css/all.min.css">
@@ -54,6 +53,9 @@
     <link rel="stylesheet" href="assets/vendor/css/meanmenu.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Template css This CSS making issue for navbar-->
+    <link id="color-link" rel="stylesheet" type="text/css" href="assets/css2/style.css">
+
     <style>
         .iupload-btn-wrapper {
   position: relative;
@@ -66,6 +68,13 @@
         color: #888;
         cursor: not-allowed;
     }
+
+
+.upsuccess{
+    position: absolute;
+    margin-top: 28%;
+    margin-left: 5%;
+}
 
 .ibtn {
     width: 2px;
@@ -185,98 +194,35 @@
 
 </head>
 
-<body>
 
-    
+   
 <!-- Header Started -->
 
-
+<!-- Removed Navbar due of CSS Clash -->
 
 <!-- Header Ended -->
 
-    <!--------------------------------- BANNER SECTION STARTS HERE --------------------------------->
-    
-        <!-- Slideshow container -->
+
+<body>
         
 
-    
-
-            <!-- Full-width images with number and caption text -->
-                            
-        
-          
-          
-          <!-- The dots/circles -->
-          <!-- <div style="text-align:center">
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-          </div> -->
-
-<!-- The dots/circles -->
-<!-- <div style="text-align:center">
-<span class="dot" onclick="currentSlide(1)"></span>
-<span class="dot" onclick="currentSlide(2)"></span>
-<span class="dot" onclick="currentSlide(3)"></span>
-</div> -->
-
-
-    <!-- slider end -->
-
-  
-        
-   
-    <!--------------------------------- BANNER SECTION ENDS HERE --------------------------------->
+<br><br>
+<!-- logout and user info -->
+<div class="vendorwelcome">                                 
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
+        </form>
+    </hp>
 </div>
+<!-- logout and user info end -->
 
 
-    <!-- Header End -->
-
-    <!-- mobile fix menu start -->
-    <div class="mobile-menu d-md-none d-block mobile-cart">
-        <ul>
-            <li class="active">
-                <a href="#">
-                    <i class="iconly-Home icli"></i>
-                    <span>Home</span>
-                </a>
-            </li>
-
-            <li class="mobile-category">
-                <a href="javascript:void(0)">
-                    <i class="iconly-Category icli js-link"></i>
-                    <span>Category</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="search-box">
-                    <i class="iconly-Search icli"></i>
-                    <span>Search</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="notifi-wishlist">
-                    <i class="iconly-Heart icli"></i>
-                    <span>My Wish</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <i class="iconly-Bag-2 icli fly-cate"></i>f
-                    <span>Cart</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- mobile fix menu end -->
-
-    <!-- Header Started -->
-
-@include('components.navbar')
-
+<div class="vendorlg">
+<a href="{{ route('login') }}">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+</a>
+</div>
 <!-- Header Ended -->
 
 
@@ -332,24 +278,22 @@
                            <!-- Profile Image upload -->      
 
 
-<form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
-                        @csrf
-  
-                        @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-  
-                        <div class="row mb-3">
-                            <!-- <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label> -->
-  
+                           <form method="POST" action="{{ route('user.profile.store') }}" enctype="multipart/form-data">
+                         @csrf
+
+                         @if (session('success'))
+                             <div class="alert alert-success upsuccess" role="alert">
+                                 {{ session('success') }}
+                             </div>
+                         @endif
+
+                         <div class="row mb-3">
+                            
                             <div class="col-md-6">
                                 <input id="avatar" type="file" class="form-control2 @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}" required autocomplete="avatar">
-  
+                            
                                 <div class="rounded-image" style="width: 6rem; height: 6rem; margin-top: -4rem; margin-left: 62%; background-image: url('/avatars/{{ Auth::user()->avatar }}'); background-size: cover;background-position: center;"></div>
-                                
-    
+                            
                                 @error('avatar')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -358,14 +302,10 @@
                             </div>
                         </div>
   
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary adjst">
-                                    {{ __('✔') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                           
+
+
 
                                 </div>
 
@@ -473,15 +413,30 @@
 
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
+                                                    <img src="assets/images2/svg/03.png" class="img-1 blur-up lazyload" alt="">
+                                                    <img src="assets/images2/svg/03.png" class="blur-up lazyload" alt="">
+                                                    <div class="totle-detail">
+                                                        <h5>Cancelled Orders</h5>
+                                                        @php
+                                                            $count11 = App\Models\Order::where('delivery_status', 'cancelled')->get();
+                                                            $totalCount4 = count($count11);
+                                                        @endphp
+                                                        <h3>{{ $totalCount4 }}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
                                                     <img src="assets/images2/svg/01.png" class="img-1 blur-up lazyload" alt="">
                                                     <img src="assets/images2/svg/01.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                     <h5>Wishlist Items</h5>
                                                     @php
-                                                    $count10 = App\Models\WishList::all();
-                                                    $totalCount3 = count($count10);
+                                                    $count14 = App\Models\WishList::all();
+                                                    $totalCount8 = count($count14);
                                                     @endphp
-                                                    <h3>{{ $totalCount3 }}</h3>
+                                                    <h3>{{ $totalCount8 }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -542,33 +497,13 @@
                                 </div>
                             </div>
 
-                            <!-- Wishlist -->
-<!-- 
-                            <div class="tab-pane fade show" id="pills-wishlist" role="tabpanel" aria-labelledby="pills-wishlist-tab">
-                                <div class="dashboard-wishlist">
-                                    <div class="title">
-                                        <h2>My Wishlist History</h2>
-                                        <span class="title-leaf title-leaf-gray">
-                                            <svg class="icon-width bg-gray">
-                                                <use xlink:href="assets/svg/leaf.svg#leaf"></use>
-                                            </svg>
-                                        </span>
-                                    </div>
-                                    <div class="row g-sm-4 g-3">
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="tab-pane fade show" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
                                         <h2 class="h2adj">My Orders History</h2>
-                                        <br>
-                                        
                                         
 <!-- Orders Details -->
-
-
 <table style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 14px;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
@@ -576,10 +511,12 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Update Time</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Review</th>
     </tr>
@@ -588,6 +525,7 @@
     
 @php
 $data= App\Models\Order::all();
+$product= App\Models\Products::all();
 @endphp
 
 
@@ -597,11 +535,17 @@ $data= App\Models\Order::all();
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->productname}}</td>
+      <td style="border: 1px solid #ddd;text-align: center;">
+            <img src="/product/{{$data->image_url}}" alt="Product Image" width="75" height="50" style="max-width: none;">
+      </td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price * $data->quantity}} $</td>
 
-      <td style="border: 1px solid #ddd;" class="text-center">{{$data->delivery_status}}</td>
+      <td style="border: 1px solid #ddd;" class="text-center">
+        {{ $data->delivery_status ? $data->delivery_status : 'Pending' }}
+    </td>
+      <td style="border: 1px solid #ddd;" class="text-center">{{$data->updated_at}}</td>
         <td style="border: 1px solid #ddd; width: 7rem !important;">
             @if ($data->delivery_status === 'delivered')
                 @if ($data->refund_status === null)
@@ -691,19 +635,19 @@ $data= App\Models\Order::all();
     @csrf
     <div class="form-group">
         <label for="name">Name:</label>
-        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
+        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" readonly>
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
+        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
     </div>  
     <div class="form-group">
         <label for="phone">Phone:</label>
-        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
+        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" readonly>
     </div>
     <div class="form-group">
         <label for="address">Address:</label>
-        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
+        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" readonly>
     </div>
       <!-- <div class="form-group">
         <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -726,31 +670,31 @@ $data= App\Models\Order::all();
                    
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}" required>
+                        <input type="text" name="name" id="name" class="form-control" value="{{ auth()->user()->name }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}" required>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ auth()->user()->email }}">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone:</label>
-                        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}" required>
+                        <input type="phone" name="phone" id="phone" class="form-control" value="{{ auth()->user()->phone }}">
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" required>
+                        <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}">
                     </div>
                     <div class="form-group">
                         <label for="old_password">Old Password:</label>
-                         <input type="password" name="old_password" id="old_password" class="form-control" required>
+                         <input type="password" name="old_password" id="old_password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password">Password:</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
+                        <input type="password" name="password" id="password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password:</label>
-                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
                     </div>
                    
                     <div class="form-group">
@@ -1549,6 +1493,18 @@ $data= App\Models\Order::all();
 
     <!-- thme setting js -->
     <script src="assets/js2/theme-setting.js"></script>
+
+
+
+    <script>
+    const input = document.getElementById("avatar");
+    input.addEventListener("change", () => {
+        const form = input.closest("form");
+        form.submit();
+    });
+</script>
+
+
 
 
 </body>

@@ -316,7 +316,7 @@
                                                                     <div class="col-xl-8" style="width: 400px;">
                                                                         <div class="single-area__txt" style="padding-top: 7px;">
                                                                             <!-- <h6>Daily Discount Coupons</h6> -->
-                                                                            <h5>Discount Coupons <a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 40px;">shop now</a><!--5-->
+                                                                            <h5>Discount Coupons <a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 40px;">shop now</a><!--5-->
                                                                             
                                                                         </h5></div>
                                                                     </div>
@@ -396,7 +396,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Boot Discount Coupon<a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn" style="margin-left: 19px;">shop now</a></h5>
+                                            <h5>Boot Discount Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn" style="margin-left: 19px;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Entry Pass Coupon<a href="{{ route('discount-coupon') }}" class="def-btn rev-7-def-btn" style="margin-left: 12%;">shop now</a></h5>
+                                            <h5>Entry Pass Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn" style="margin-left: 12%;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -1071,8 +1071,8 @@ span.onclick = function() {
 }
   </script>
 
+
 </body>
 
 
-<!-- Mirrored from revelecommerce.codebasket.net/revel/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:46:44 GMT -->
 </html>

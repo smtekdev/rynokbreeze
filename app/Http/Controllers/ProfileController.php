@@ -74,4 +74,22 @@ class ProfileController extends Controller
         return back()->with('success', 'Avatar updated successfully.');
     }
 
+// Update Cover Image
+
+    public function updateCoverPhoto(Request $request)
+    {
+        $request->validate([
+            'cover_photo' => 'required|image',
+        ]);
+    
+        $coverPhotoName = time().'.'.$request->file('cover_photo')->getClientOriginalExtension();
+        $request->file('cover_photo')->move(public_path('cover_photos'), $coverPhotoName);
+    
+        auth()->user()->update(['cover_photo' => $coverPhotoName]);
+    
+        return back();
+    }
+
+
+
 }

@@ -17,8 +17,9 @@
 
 <div class="row g-lg-4 g-3">
     @foreach($data as $data)
+    @if ($data->category == 'Featured')
         <div class="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-            <div class="single-product-card">
+            <div class="single-product-card" style="width: 100% !important;">
                 <div class="part-img">
                     
                 <!-- Product Image View -->
@@ -65,10 +66,10 @@
                     <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
                     <p class="dscr">{{$data->description}}</p>
                     @if ($data->discounted_price)
-                      <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">{{$data->price}}$</p>
-                      <p class="price" style="display: inline-block;">{{$data->discounted_price}}$</p>
+                      <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>
+                      <p class="price" style="display: inline-block;">${{$data->discounted_price}}</p>
                     @else
-                      <p class="price" style="display: inline-block;">{{$data->price}}$</p>
+                      <p class="price" style="display: inline-block;">${{$data->price}}</p>
                     @endif
                      
                     <!-- Retrieve Rating -->
@@ -130,6 +131,7 @@
                 </div>
             </div>
         </div>
+        @endif
     @endforeach
 </div>
 

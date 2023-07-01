@@ -71,6 +71,12 @@
             </div>
 
             <div class="flex items-center center mt-4">
+                <a href="{{ route('vregister') }}" style="position: absolute; margin-left: 10.2%;margin-top: 9%;font-size:1.1rem;color:#0D7AD1;">
+                    Register As Vendor
+                </a>
+            </div>
+
+            <div class="flex items-center center mt-4">
                 <a href="">
                     <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 7em;position: absolute;margin-top: 5%;">
                 </a>

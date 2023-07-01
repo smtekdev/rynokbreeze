@@ -1,3 +1,6 @@
+<?php
+use Illuminate\Support\Facades\Session;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +85,19 @@
   width: 29%;
 }
 
+.image-wrapper {
+    width: 10rem;
+    height: 7rem;
+    overflow: hidden;
+}
+
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* The Close Button */
 .close {
   color: #aaaaaa;
@@ -136,6 +152,27 @@
     text-align: center;
 }
 
+.totalWrapper{
+    position: absolute;
+    margin-left: -1%;
+    width: 120%;
+    /* height: 142%; */
+}
+
+.SymbolControl{
+    font-size: 2rem;
+}
+
+.WrapCartBtn{
+    display: flex;
+    width: 56%;
+    margin-left: 28%;
+}
+
+.InputWrapper{
+    margin-top: 26%;
+}
+
     </style>
 </head>
 
@@ -155,8 +192,7 @@
 
 <table style="border-collapse: collapse; width: 100%; height:100%; margin: 0 auto;">
   <thead>  
-    <tr style="text-align: center;">
-      <!-- <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Image</th>       -->
+    <tr style="text-align: center;">      
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Name</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Product Image</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Price</th>
@@ -178,7 +214,7 @@
 
     @php
         $itemPrice = $item->discounted_price ?? $item->price;
-        $quantity = $item->quantity_id;
+        $quantity = $item->quantity;
         $subtotal = $itemPrice * $quantity;
         $totalPrice += $subtotal; 
     @endphp
@@ -189,29 +225,44 @@
                     {{ $item->title }}
                     <input type="hidden" name="productname[]" value="{{ $item->title }}">
                 </td>
-                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
-                <img src="/product/{{$item->image}}" alt="Product Image" width="100">
-                </td> 
-                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important; text-align: center;width: 11%;">
-                    <input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0" style="text-align: center;">
+                <td style="border: 1px solid #ddd;">
+                 <div class="image-wrapper">
+                   <img src="/product/{{$item->image}}" alt="Product Image">
+                   <input type="hidden" name="image_url[]" value="{{ $item->image }}">
+                 </div>
                 </td>
+                <td style="padding: 10px; border: 1px solid #ddd; height: 121px !important; text-align: center; width: 11%;">
+                    <div style="display: flex;margin-left: 36%;">
+                    $<input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0">
+                    </div>
+                </td>
+
                 <td style="padding: 10px; border: 1px solid #ddd;width: 11%; text-align: center;">
-                    <input class="quantity-input qnty" type="number" name="quantity[]" value="{{ $item->quantity_id }}" min="1" data-price="{{ $itemPrice }}" style="text-align: center;">
+                   <div class="WrapCartBtn">
+                       <button type="button" onclick="decreaseQuantity({{ $item->id }})" class="BtnAdjust"><span class="SymbolControl">-</span></button>
+                       <div class="InputWrapper">
+                           <input type="number" name="quantity[]" id="quantityInput_{{ $item->id }}" value="{{ $item->quantity }}" class="InputAdjust" min="1" data-price="{{ $itemPrice }}" style="text-align: center;">
+                       </div>
+                       <button type="button" onclick="increaseQuantity({{ $item->id }})" class="BtnAdjust"><span class="SymbolControl">+</span></button>
+                   </div>
                 </td>
+
+
+
             </tr>
             @endforeach
         </tbody>
     </table>
 
 
-    <button class="btn" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-5%;">Confirm Order</button>
-
+    <button class="btn hidden-button" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-5%; display:none;">Confirm Order</button>
+    
 
 
 
 
 <!-- Hidden div to show form after clicking Confirm Order button -->
-<div style="margin-top: -1%; position: absolute; margin-left: 40%; display:none;" id="appear" class="boxset">
+<div style="position: fixed; top: 70%; left: 13%; transform: translate(-50%, -50%); display:none; z-index:10;" id="appear" class="boxset">
   <form>
     <div style="display:flex; justify-content:center;align-items: center; margin-bottom: 10px;">
       <label style="font-size: 16px; color: #fff; margin-bottom: 5px; margin-right:1%; background:transparent" class="btnnc">Name:</label>
@@ -262,21 +313,51 @@
 
 </div>
 
+<!-- New button at the bottom -->
+<button class="btn new-btn" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-10%;">Confirm Order</button>
+
 
 <!-- Discount Coupon -->
 
 <br>
 
 
+
 <?php
     $egtotalPrice = $totalPrice;
     $discountAmount = session('discountAmount') ?? 0;
-    $newTotalPrice = $egtotalPrice - floatval($discountAmount); 
+    if ($discountAmount > $egtotalPrice) {
+        $discountAmount = $egtotalPrice;
+    }
+    
+    $newTotalPrice = $egtotalPrice - floatval($discountAmount);
+    if ($newTotalPrice < 0) {
+        $newTotalPrice = 0;
+    }
 ?>
 
+<?php
+$newTotalPriceString = sprintf("%.2f", $newTotalPrice); // convert to string with 2 decimal places
+$newTotalPriceNumeric = floatval($newTotalPriceString);
+?>
+
+
+<?php 
+session_start(); ob_start();
+$effort = 557;
+$_SESSION['effort'] = $effort;
+?>
+
+
+
+
+<div class="totalWrapper">
 <div class="prices">
-    Subtotal: <span id="subtotalPrice">{{ $egtotalPrice }}</span>
+    Subtotal: <span id="subtotalPrice">${{ $egtotalPrice }}</span>
 </div>
+
+
+
 
 <div class="coupons">
     <form method="POST" action="{{ route('apply_coupon') }}">
@@ -288,16 +369,16 @@
 
 @if (session()->has('discountAmount'))    
     <div class="prices">            
-        Discount: <span id="discountAmount">{{ $discountAmount }}</span>
+        Discount: <span id="discountAmount">${{ $discountAmount }}</span>
     </div>
 @endif
 
 <div class="prices">            
-    Total: <span id="egtotalPrice">{{ $newTotalPrice }}</span>
+    Total: <span id="egtotalPrice">${{ $newTotalPrice }}</span>
 </div>
 
-
-
+</div>
+<br><br><br>
 <div class="footer rev-7-footer">
         <div class="container">
             <div class="footer-subscribe">
@@ -556,8 +637,36 @@ function decrementQuantity(button) {
 </script>
 
 
-
 <!-- JavaScript code for applying coupon -->
+
+
+<!-- JS for confirm order duplicate button bcz original button have layout issue -->
+
+<script>
+        var visibleButton = document.querySelector('.new-btn');
+        var hiddenButton = document.querySelector('.hidden-button');
+        visibleButton.addEventListener('click', function() {
+          hiddenButton.click(); 
+        });
+</script>
+
+<script>
+function decreaseQuantity(itemId) {
+    var inputElement = document.getElementById('quantityInput_' + itemId);
+    var currentValue = parseInt(inputElement.value);
+
+    if (currentValue > 1) {
+        inputElement.value = currentValue - 1;
+    }
+}
+
+function increaseQuantity(itemId) {
+    var inputElement = document.getElementById('quantityInput_' + itemId);
+    var currentValue = parseInt(inputElement.value);
+
+    inputElement.value = currentValue + 1;
+}
+</script>
 
 
 </body>

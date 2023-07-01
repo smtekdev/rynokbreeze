@@ -4930,6 +4930,7 @@ div.product-title a:hover {
   overflow: hidden;
   -webkit-animation: gridView 0.5s ease-in;
           animation: gridView 0.5s ease-in;
+          width: 33% !important;
 }
 @media screen and (max-width: 991px) {
   .single-product-card {
@@ -5059,6 +5060,7 @@ div.product-title a:hover {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+     border-radius: 1rem;
 }
 .single-product-card .part-txt {
   text-align: center;
@@ -22509,8 +22511,8 @@ div.product-title a:hover {
 .btnst{
   padding: 6px 14px !important;
   position: absolute;
-  margin-top: -3.5%;
-  margin-left: -9%;
+  right: 2%;
+  margin-top: -2.5%;
 }
 
 .vlogout{

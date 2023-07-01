@@ -112,13 +112,23 @@ p {
   height:200px;
   resize:none;
 }
+
+   .outset{
+    position: absolute;
+    right: 3%;
+    top: 4%;
+}
+.lgset{
+  margin-top: 6%;
+}
+
+
 </style>
 
-<!-- logout and user info -->
-<div class="vendorwelcome">                                    
-    <p class="font-semibold text-xl text-gray-800 leading-tight">
-        Welcome, {{ Auth::user()->name }} <!-- User Name -->
-        <form method="POST" action="{{ route('logout') }}" style="z-index:999; position:relative;">
+
+<!-- logout -->
+<div class="outset">                                    
+        <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>
         </form>
@@ -127,11 +137,12 @@ p {
 <!-- logout and user info end -->
 
 
-<div class="vendorlg">
+<div class="lgset">
 <a href="{{ route('login') }}">
 <img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important;position: relative; z-index: 10; background: white; margin-left:42%;    margin-top: -5%;">
 </a>
 </div>
+
 
 <div id="profile-edit-save">
   <button id="editSave" onclick="saveProfile()">Edit Profile</button>
@@ -147,31 +158,31 @@ p {
         <tbody>
           <tr>
             <td class="edit-title">Name:</td>
-            <td><input type="text" name="name" id="name" class="profileInputBox" value="{{ auth()->user()->name }}" required/></td>
+            <td><input type="text" name="name" id="name" class="profileInputBox" value="{{ auth()->user()->name }}" /></td>
           </tr>
           <tr>
             <td class="edit-title">Email:</td>
-            <td><input type="email" name="email" id="email" class="profileInputBox" value="{{ auth()->user()->email }}" required/></td>
+            <td><input type="email" name="email" id="email" class="profileInputBox" value="{{ auth()->user()->email }}" /></td>
           </tr>
           <tr>
             <td class="edit-title">Phone:</td>
-            <td><input type="text" name="phone" id="phone" class="profileInputBox" value="{{ auth()->user()->phone }}" required/></td>
+            <td><input type="text" name="phone" id="phone" class="profileInputBox" value="{{ auth()->user()->phone }}" /></td>
           </tr>
           <tr>
             <td class="edit-title">Address:</td>
-            <td><input type="text" name="address" id="address" class="profileInputBox" value="{{ auth()->user()->address }}" required/></td>
+            <td><input type="text" name="address" id="address" class="profileInputBox" value="{{ auth()->user()->address }}" /></td>
           </tr>
           <tr>
             <td class="edit-title">Old Password:</td>
-            <td><input type="password" name="old_password" id="old_password" class="profileInputBox" required/></td>
+            <td><input type="password" name="old_password" id="old_password" class="profileInputBox" /></td>
           </tr>
           <tr>
             <td class="edit-title">New Password:</td>
-            <td><input type="password" name="password" id="password" class="profileInputBox" required/></td>
+            <td><input type="password" name="password" id="password" class="profileInputBox" /></td>
           </tr>
           <tr>
             <td class="edit-title">Confirm Password:</td>
-            <td><input type="password" name="password_confirmation" id="password_confirmation" class="profileInputBox" required/></td>
+            <td><input type="password" name="password_confirmation" id="password_confirmation" class="profileInputBox" /></td>
           </tr>
         </tbody>
       </table>

@@ -20,11 +20,6 @@ use Laravel\Socialite\Facades\Socialite;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 // HomePage redirection route
@@ -75,6 +70,7 @@ Route::get('/users', [AdminController::class, 'users'])->name('users');
 Route::get('/vendors', [AdminController::class, 'vendors'])->name('vendors');
 Route::get('/admin-dashboard', [AdminController::class, 'admin_dashboard'])->name('admin-dashboard');
 Route::get('/chart', [ChartController::class, 'show'])->name('chart');
+Route::get('/approveuser/{id}', [AdminController::class, 'approveUser']);
 
 //Functions & Component
 route::get('/navbar', [HomeController::class, 'navbar'])->name('navbar');
@@ -96,7 +92,7 @@ Route::post('/refund/{id}', [AdminController::class, 'refundOrder'])->name('refu
 
 //Nav Bar->AFTERMARKET
  route::get('/home-appliances', [HomeController::class, 'home_appliances'])->name('home-appliances');
- route::get('/automotive', [HomeController::class, 'automotive'])->name('automotive');
+ route::get('/automotive', [HomeController::class, 'automotive'])->name('automotive'); 
  route::get('/furniture-&-home-decor', [HomeController::class, 'furniture_and_home_decor'])->name('furniture-&-home-decor');
  route::get('/kids-entertainment', [HomeController::class, 'kids_entertainment'])->name('kids-entertainment');
 
@@ -158,8 +154,12 @@ Route::post('/add-review/{id}', [HomeController::class, 'addReview'])->name('add
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('user.profile.store');
 
+// Cover Photo
+Route::post('/profile/cover-photo', [App\Http\Controllers\ProfileController::class, 'updateCoverPhoto'])->name('user.profile.updateCoverPhoto');
+
 // Redirect 
 Route::get("/redirects",[HomeController::class,"redirects"]);
+route::get('/custom', [HomeController::class, 'custom'])->name('custom');
 
 //Single Inner Pages (Static)
 route::get('/chicagoland-counselors', [HomeController::class, 'chicagoland_counselors'])->name('chicagoland-counselors');

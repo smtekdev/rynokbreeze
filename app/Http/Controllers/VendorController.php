@@ -15,26 +15,32 @@ class VendorController extends Controller
 {
    
 
-    //  Add new product  with function of creating view file for uploaded product
+//  Add product  with function of creating view file for uploaded product
 
-
-    public function upload(Request $request)
-    {
-        $product = new Products();
-        $product->title = $request->title;
-        $product->price = $request->price;
-        $product->description = $request->description;
+public function upload(Request $request)
+{
+    $product = new Products();
+    $product->title = $request->title;
+    $product->price = $request->price;
+    $product->description = $request->description;
+    $product->category = $request->category;
+    $product->save();
+    if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move('product', $imageName);
+        $product->image = $imageName;
         $product->save();
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move('product', $imageName);
-            $product->image = $imageName;
-            $product->save();
-        }
-
-        return redirect()->back();
     }
+
+    return redirect()->back();
+}
+
+
+
+    //  Add product category
+    
+
 
     // Edit or Update the product And Also Product Discount
 

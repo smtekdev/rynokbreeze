@@ -16,7 +16,8 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">Email</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">Phone Number</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">Address</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">User Type</th>      
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">User Type</th> 
+      <th style="border: 1px solid #ddd; padding: 8px; text-align:center;">Status</th>     
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:5%;">Password</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">Action</th>
     </tr>
@@ -34,7 +35,16 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">{{$data->email}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">{{$data->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">{{$data->address}}</td>
-      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">{{$data->usertype}}</td>      
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;width:20px;">{{$data->usertype}}</td>  
+     <td style="border: 1px solid #ddd; padding: 8px; text-align:center;">
+     @if($data->status == 'approved')
+       Approved
+     @else
+       Pending
+       <br>
+       <a href="{{url('/approveuser',$data->id)}}" style="color:green !important;">Approve</a>
+     @endif
+    </td>    
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center; width:5%;">{{$data->password}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center; background-color:#B43434;width:20px;"><a href="{{url('/deleteuser',$data->id)}}" style="color:white !important;">Delete</a></td>     
     </tr>

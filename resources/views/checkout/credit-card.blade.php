@@ -8,16 +8,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}"> 
+  <style>
+    .vendorlg{
+        margin-top:5%;
+    }
+    .successtext{
+    margin-left: 29%;
+    margin-top: 3%;
+    position: absolute;
+    color: green;
+    font-size: 1.5rem;
+    background: beige;
+    }
+  </style>
 </head>
 <body>
+
     @php
     $stripe_key = 'pk_test_51NIAIxB5vlQfw5Ks79xOflDSnsKA2taR1TTDJPq8BOThrsvizTugvlW96D9olSRAdaPCoN8vOrlrOckb3x2HoTcB00Cv32Kpn2';
     @endphp
+
+<div class="vendorlg">
+<a href="{{ route('login') }}">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important;position: relative; z-index: 10; background: white; margin-left:42%;    margin-top: -5%;">
+</a>
+</div>
+
+<!-- Payment success message -->
+
+@if (session()->has('message'))
+    <p class="successtext">{{ session('message') }}</p>
+    <script>
+        // Redirect to the login page after 2 seconds
+        setTimeout(function() {
+            window.location.href = "{{ session('redirect') }}";
+        }, 2000);
+    </script>
+@endif
+
     <div class="container" style="margin-top:10%;margin-bottom:10%">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="">
-                    <p>Your Total Amount is 100 AED</p>
+                    <p>Your Total Amount is {{ $effort }} $</p>
                 </div>
                 <div class="card">
                     <form action="{{route('checkout.credit-card')}}"  method="post" id="payment-form">

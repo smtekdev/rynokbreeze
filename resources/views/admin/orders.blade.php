@@ -90,10 +90,12 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Update Time</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Action</th>      
     </tr>
   </thead>
@@ -104,12 +106,16 @@
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->productname}}</td>
+      <td style="border: 1px solid #ddd;text-align: center;">
+            <img src="/product/{{$data->image_url}}" alt="Product Image" width="100" height="75">
+      </td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->quantity}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price * $data->quantity}} $</td>
-      <td style="border: 1px solid #ddd;" class="text-center">{{$data->delivery_status}}</td>
-<td style="border: 1px solid #ddd; width: 7rem !important;">
-    @if ($data->delivery_status === 'delivered')
+      <td style="border: 1px solid #ddd;" class="text-center">{{ $data->delivery_status ? $data->delivery_status : 'Pending' }}</td>
+      <td style="border: 1px solid #ddd;" class="text-center">{{$data->updated_at}}</td>
+      <td style="border: 1px solid #ddd; width: 7rem !important;">
+      @if ($data->delivery_status === 'delivered')
         @if ($data->refund_status === null)
             <form action="{{ route('refund-data', ['id' => $data->id]) }}" method="POST">
                 @csrf
@@ -124,7 +130,7 @@
             <button type="submit" class="cncl">Cancel</button>
         </form>
     @endif
-</td>
+    </td>
 </tr>
     @endforeach
 </tbody>
