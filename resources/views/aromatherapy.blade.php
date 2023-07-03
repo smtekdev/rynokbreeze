@@ -119,47 +119,21 @@
                     <div class="shop-sidebar">
                         <div class="sidebar-box">
                             <h3 class="sidebar-title">By Brands</h3>
-                            <ul class="brand-filter" id="brandFilter">
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand1">
-                                        <label class="form-check-label" for="brand1"><span class="name">Club JM</span><span>(90)</span></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand2">
-                                        <label class="form-check-label" for="brand2"><span class="name">EVANS21</span><span>(80)</span></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand3">
-                                        <label class="form-check-label" for="brand3"><span class="name">Espresso</span><span>(43)</span></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand4">
-                                        <label class="form-check-label" for="brand4"><span class="name">YOTIAN JAPAN</span><span>(97)</span></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand5">
-                                        <label class="form-check-label" for="brand5"><span class="name">ORCHID</span><span>(18)</span></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="brand6">
-                                        <label class="form-check-label" for="brand6"><span class="name">Pristik</span><span>(25)</span></label>
-                                    </div>
-                                </li>
-                            </ul>
+                                @php
+                                $data = App\Models\Products::all();
+                                @endphp
+                                
+                                <ul class="brand-filter" id="brandFilter">
+                                    @foreach($data->pluck('user_name')->unique() as $user_name)
+                                    <li>
+                                        <label>
+                                            <input type="checkbox" class="brand-checkbox" value="{{$user_name}}" checked>
+                                            {{$user_name}}
+                                        </label>
+                                    </li>
+                                    @endforeach
+                                </ul>
                         </div>
-
-
                         <!--  Price filter -->
                         
                             <div class="sidebar-box">
@@ -325,6 +299,7 @@
                             </div>
                             <div class="part-txt">
                                 <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
+                                 <h4 class="product-name">Seller: {{$data->user_name}}</h4>
                                 <p class="dscr">{{$data->description}}</p>
                                 @if ($data->discounted_price)
                                   <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>
@@ -619,9 +594,36 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- Brand Filter -->
+
+<script>
+$(document).ready(function() {
+    $('.brand-checkbox').on('change', function() {
+        var selectedUsers = [];
+        $('.brand-checkbox:checked').each(function() {
+            selectedUsers.push($(this).val());
+        });
+        $('.single-product-card').each(function() {
+            var productName = $(this).find('.product-name').text().trim().replace('Seller: ', '');
+            var showProduct = false;
+            for (var i = 0; i < selectedUsers.length; i++) {
+                if (productName.indexOf(selectedUsers[i]) !== -1) {
+                    showProduct = true;
+                    break;
+                }
+            }
+            if (showProduct) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+</script>
+
+
 
 </body>
 
-
-<!-- Mirrored from revelecommerce.codebasket.net/revel/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 05 Mar 2023 09:48:26 GMT -->
 </html>

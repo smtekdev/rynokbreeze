@@ -24,6 +24,7 @@ public function upload(Request $request)
     $product->price = $request->price;
     $product->description = $request->description;
     $product->category = $request->category;
+    $product->user_name = Auth::user()->name; 
     $product->save();
     if ($request->hasFile('image')) {
         $image = $request->file('image');

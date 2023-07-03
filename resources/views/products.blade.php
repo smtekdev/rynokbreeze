@@ -64,6 +64,7 @@
                 </div>
                 <div class="part-txt">
                     <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
+                    <h4 class="product-name">Seller: {{$data->user_name}}</h4>
                     <p class="dscr">{{$data->description}}</p>
                     @if ($data->discounted_price)
                       <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>

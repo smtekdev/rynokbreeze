@@ -10,7 +10,7 @@
 
         .cncl  {
             color: white;
-    background: orange !important ;
+    background: orange !important;
     padding: 0.3rem;
     border-radius: 3rem;
     width: 5rem;
@@ -137,6 +137,7 @@
 
                             <h1 style="margin:0; font-size:18px; display:flex; justify-content:center;color:black;">{{$product->title}}</h1>
                             <p style="margin:0; font-size:14px; display:flex; justify-content:center;color:black;">{{$product->description}}</p>
+                            <p style="margin:0; font-size:14px; display:flex; justify-content:center;color:black;">Seller: {{$product->user_name}}</p>
                         </div>
                         <div style="display:flex; align-items:center; justify-content:space-between; margin-top:100%;">
                             

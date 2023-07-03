@@ -114,8 +114,10 @@ public function addcart(Request $request, $id)
             $data = new Order;
 
             $data->productname = $productname;
+            $data->seller_name = $request->seller_name ?? '';
             $data->price = (int)$request->price[$key];
             $data->quantity = (int)$request->quantity[$key];   
+            $data->image_url = $request->image_url[$key] ?? '';    
             $data->image_url = $request->image_url[$key] ?? '';    
 
             $data->name = $request->name ?? '';

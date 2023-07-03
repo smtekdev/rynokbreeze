@@ -13,6 +13,9 @@
 
 @csrf
 
+<!-- User name field -->
+<input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
+
   <div style="margin-bottom: 10px;">
     <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Title</label>
     <input type="text" name="title" placeholder="Write a title" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">

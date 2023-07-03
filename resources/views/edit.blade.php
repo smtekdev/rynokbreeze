@@ -93,18 +93,8 @@ width: 112%;
                                         
                                 <div class="col-xl-6 col-lg-7 col-md-6">
                                     <div class="part-txt">
-                                        <h2 class="main-product-title">{{$product->title}}</h2>
+                                        <h2 class="main-product-title">{{$product->title}}</h2>                                        
                                         <h2 class="main-product-price">{{$product->price}}$</h2>
-                                        <div class="review">
-                                            <span class="star">
-                                                <i class="fa-solid fa-star-sharp rated"></i>
-                                                <i class="fa-solid fa-star-sharp rated"></i>
-                                                <i class="fa-solid fa-star-sharp rated"></i>
-                                                <i class="fa-solid fa-star-sharp rated"></i>
-                                                <i class="fa-solid fa-star-sharp"></i>
-                                            </span>
-                                            <span class="rating-amount">3 Reviews</span>
-                                        </div>
 
                                       
 
@@ -112,6 +102,7 @@ width: 112%;
                                         <p class="price"></p>
                                         <ul class="short-details">
                                             <li>Availability: <span>In stock</span></li>                                            
+                                            <li>Seller: <span>{{$product->user_name}}</span></li>                                  
                                             <!-- <li>Tags: <span>Fashion, Hood, Classic</span></li> -->
                                         </ul>
 
@@ -399,9 +390,6 @@ quantityDownButton.addEventListener('click', () => {
   function increaseQuantity() {
     var quantityInput = document.getElementById('quantityInput');
     var currentValue = parseInt(quantityInput.value);
-    
-    // You can add additional validation here if needed
-
     quantityInput.value = currentValue + 1;
   }
 </script>

@@ -1,9 +1,22 @@
 
+<style>
+  #openFormButton
+  {
+    position: absolute;
+    right: 2%;
+    top: 10rem;
+    background-color: #126CC0;
+    border-radius: 2rem;
+    padding: 0.75%;
+    color: white;
+  }
+</style>
 
 <section class="section pdadjst" id="menu">
     <div class="menu-item-carousel">
         <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
 
+        <button id="openFormButton" onclick="scrollToForm()">Add New Product</button>
 
 
         @php
@@ -56,8 +69,11 @@
             @endforeach
         </div>
     </div>
+    
      <!-- Upload Product -->
+     <div id="formContainer" class="hidden">
      @include("vendor.products")
+     </div>
     <!-- Upload Product End-->
 
 <br><br><br>
@@ -76,4 +92,17 @@
 </div>
 </section>
 
+
+<script>
+const openFormButton = document.getElementById("openFormButton");
+const formContainer = document.getElementById("formContainer");
+openFormButton.addEventListener("click", () => {
+  formContainer.classList.toggle("hidden");
+  formContainer.scrollIntoView({ behavior: "smooth" });
+});
+function scrollToForm() {
+  formContainer.scrollIntoView({ behavior: "smooth" });
+  formContainer.classList.toggle("hidden");
+}
+</script>
    

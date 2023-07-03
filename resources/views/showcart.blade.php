@@ -195,6 +195,7 @@ use Illuminate\Support\Facades\Session;
     <tr style="text-align: center;">      
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Name</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Product Image</th>
+      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Seller</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Price</th>
       <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white;">Quantity</th>
     </tr>  
@@ -230,6 +231,11 @@ use Illuminate\Support\Facades\Session;
                    <img src="/product/{{$item->image}}" alt="Product Image">
                    <input type="hidden" name="image_url[]" value="{{ $item->image }}">
                  </div>
+                </td>
+
+                <td style="padding: 10px; border: 1px solid #ddd; height: 121px !important; text-align: center; width: 11%;">
+                    {{ $item->user_name }}
+                        <input type="hidden" name="seller_name" value="{{ $item->user_name }}">
                 </td>
                 <td style="padding: 10px; border: 1px solid #ddd; height: 121px !important; text-align: center; width: 11%;">
                     <div style="display: flex;margin-left: 36%;">

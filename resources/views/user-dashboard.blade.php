@@ -511,6 +511,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Seller</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
@@ -535,6 +536,7 @@ $product= App\Models\Products::all();
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->productname}}</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->seller_name}}</td>
       <td style="border: 1px solid #ddd;text-align: center;">
             <img src="/product/{{$data->image_url}}" alt="Product Image" width="75" height="50" style="max-width: none;">
       </td>
