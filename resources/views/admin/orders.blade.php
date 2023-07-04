@@ -87,6 +87,7 @@
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Name</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">User ID</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Phone</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Address</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
@@ -103,6 +104,7 @@
     @foreach($data as $data)
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->name}}</td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->user_id}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->phone}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->address}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->productname}}</td>

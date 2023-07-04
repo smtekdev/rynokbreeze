@@ -14,10 +14,14 @@ class ChartController extends Controller
      */
     public function show()
     {
+       $seller = auth()->user(); // Assuming the logged-in user is the seller
+    
        $orders = Order::select(\DB::raw("COUNT(*) as count"))
-                   ->whereYear('created_at', date('Y'))
-                   ->groupBy(\DB::raw("Month(created_at)"))
-                   ->pluck('count');
+           ->where('seller_name', $seller->name) // Filter orders by the seller's name
+           ->whereYear('created_at', date('Y'))
+           ->groupBy(\DB::raw("MONTH(created_at)"))
+           ->pluck('count');
+           
        return view('chart', compact('orders'));
     }
 }

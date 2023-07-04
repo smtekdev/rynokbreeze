@@ -408,8 +408,9 @@
                                                     <div class="totle-detail">
                                                         <h5>Total Products</h5>
                                                         @php
-                                                        $count7 = App\Models\Products::all();
-                                                        $totalCount = count($count7);
+                                                        use App\Models\Products;
+                                                        $vendorName = Auth::user()->name;
+                                                        $totalCount = Products::where('user_name', $vendorName)->count();
                                                         @endphp
                                                         <h3>{{ $totalCount }}</h3>
                                                     </div>
@@ -423,9 +424,10 @@
                                                     <div class="totle-detail">
                                                         <h5>Total Orders</h5>
                                                         @php
-                                                        $count8 = App\Models\Order::all();
-                                                        $totalCount1 = count($count8);
-                                                        @endphp
+                                                         use App\Models\Order;
+                                                         $vendorName = Auth::user()->name;
+                                                         $totalCount1 = Order::where('seller_name', $vendorName)->count();
+                                                         @endphp
                                                         <h3>{{ $totalCount1 }}</h3>
                                                     </div>
                                                 </div>
@@ -437,9 +439,12 @@
                                                     <img src="assets/images2/svg/02.png" class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>Delivered Orders</h5>
-                                                        @php
-                                                            $count9 = App\Models\Order::where('delivery_status', 'delivered')->get();
-                                                            $totalCount2 = count($count9);
+                                                         @php
+                                                            use App\Models\Order as OrderModel;
+                                                            $vendorName = Auth::user()->name;
+                                                            $totalCount2 = OrderModel::where('seller_name', $vendorName)
+                                                        ->where('delivery_status', 'delivered')
+                                                        ->count();
                                                         @endphp
                                                         <h3>{{ $totalCount2 }}</h3>
                                                     </div>
@@ -455,9 +460,13 @@
                                                     <div class="totle-detail">
                                                     <h5>Pending Orders</h5>
                                                         @php
-                                                            $count10 = App\Models\Order::whereNull('delivery_status')->get();
-                                                            $totalCount3 = count($count10);
+                                                            use App\Models\Order as OrderItem;
+                                                            $vendorName = Auth::user()->name;
+                                                            $totalCount3 = OrderItem::where('seller_name', $vendorName)
+                                                            ->whereNull('delivery_status')
+                                                            ->count();
                                                         @endphp
+
                                                         <h3>{{ $totalCount3 }}</h3>
                                                     </div>
                                                 </div>

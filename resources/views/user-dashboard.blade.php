@@ -373,8 +373,7 @@
                                                     <div class="totle-detail">
                                                         <h5>Total Orders</h5>
                                                         @php
-                                                        $count8 = App\Models\Order::all();
-                                                        $totalCount1 = count($count8);
+                                                        $totalCount1 = App\Models\Order::where('user_id', auth()->id())->count();
                                                         @endphp
                                                         <h3>{{ $totalCount1 }}</h3>
                                                     </div>
@@ -388,8 +387,9 @@
                                                     <div class="totle-detail">
                                                         <h5>Delivered Orders</h5>
                                                         @php
-                                                            $count9 = App\Models\Order::where('delivery_status', 'delivered')->get();
-                                                            $totalCount2 = count($count9);
+                                                        $totalCount2 = App\Models\Order::where('user_id', auth()->id())
+                                                        ->where('delivery_status', 'delivered')
+                                                        ->count();
                                                         @endphp
                                                         <h3>{{ $totalCount2 }}</h3>
                                                     </div>
@@ -403,8 +403,9 @@
                                                     <div class="totle-detail">
                                                         <h5>Pending Orders</h5>
                                                         @php
-                                                            $count10 = App\Models\Order::whereNull('delivery_status')->get();
-                                                            $totalCount3 = count($count10);
+                                                        $totalCount3 = App\Models\Order::where('user_id', auth()->id())
+                                                        ->whereNull('delivery_status')
+                                                        ->count();
                                                         @endphp
                                                         <h3>{{ $totalCount3 }}</h3>
                                                     </div>
@@ -418,8 +419,9 @@
                                                     <div class="totle-detail">
                                                         <h5>Cancelled Orders</h5>
                                                         @php
-                                                            $count11 = App\Models\Order::where('delivery_status', 'cancelled')->get();
-                                                            $totalCount4 = count($count11);
+                                                        $totalCount4 = App\Models\Order::where('user_id', auth()->id())
+                                                        ->where('delivery_status', 'cancelled')
+                                                        ->count();
                                                         @endphp
                                                         <h3>{{ $totalCount4 }}</h3>
                                                     </div>
@@ -433,8 +435,7 @@
                                                     <div class="totle-detail">
                                                     <h5>Wishlist Items</h5>
                                                     @php
-                                                    $count14 = App\Models\WishList::all();
-                                                    $totalCount8 = count($count14);
+                                                    $totalCount8 = App\Models\WishList::where('user_id', auth()->id())->count();
                                                     @endphp
                                                     <h3>{{ $totalCount8 }}</h3>
                                                     </div>
@@ -504,7 +505,7 @@
                                         <h2 class="h2adj">My Orders History</h2>
                                         
 <!-- Orders Details -->
-<table style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 14px;">
+<table style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 12px;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Name</th>
@@ -525,7 +526,7 @@
   <tbody>
     
 @php
-$data= App\Models\Order::all();
+$data = App\Models\Order::where('user_id', auth()->id())->get();
 $product= App\Models\Products::all();
 @endphp
 

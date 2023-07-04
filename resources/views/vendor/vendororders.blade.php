@@ -32,9 +32,13 @@
 
 <!-- User orders -->
 
+
 @php
-            $data6 = App\Models\Order::all();
-        @endphp
+    use App\Models\Products;
+    $vendorName = Auth::user()->name;
+    $data6 = App\Models\Order::where('seller_name', $vendorName)->get();
+@endphp
+
 
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
   <thead style="background-color: #2864c4; color:white !important;">

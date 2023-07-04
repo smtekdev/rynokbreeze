@@ -108,6 +108,10 @@ public function addcart(Request $request, $id)
             'image_url.*' => 'nullable|string', 
         ]);
 
+
+        $user_id = auth()->id();
+
+
         foreach ($request->productname as $key => $productname) 
         {
             // Create a new order instance
@@ -123,6 +127,8 @@ public function addcart(Request $request, $id)
             $data->name = $request->name ?? '';
             $data->phone = $request->phone ?? '';
             $data->address = $request->address ?? '';
+
+            $data->user_id = $user_id;
 
 
             $data->save();
