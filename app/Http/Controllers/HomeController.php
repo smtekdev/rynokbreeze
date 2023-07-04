@@ -142,7 +142,7 @@ public function addcart(Request $request, $id)
             $emailData = [
                 'orderItems' => $orderItems,
             ];
-            // Email remove from here
+            // Email remove from here  
             $order->is_email_sent = true;
             $order->save();
         }

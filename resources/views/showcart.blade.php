@@ -348,11 +348,9 @@ $newTotalPriceNumeric = floatval($newTotalPriceString);
 ?>
 
 
-<?php 
-session_start(); ob_start();
-$effort = 557;
-$_SESSION['effort'] = $effort;
-?>
+
+
+
 
 
 
@@ -378,6 +376,8 @@ $_SESSION['effort'] = $effort;
         Discount: <span id="discountAmount">${{ $discountAmount }}</span>
     </div>
 @endif
+
+
 
 <div class="prices">            
     Total: <span id="egtotalPrice">${{ $newTotalPrice }}</span>
@@ -672,6 +672,54 @@ function increaseQuantity(itemId) {
 
     inputElement.value = currentValue + 1;
 }
+</script>
+
+<!-- To Calculate price when increasing product quantity -->
+
+<script>
+    var discountAmount = <?php echo json_encode($discountAmount); ?>; // Store the discount amount in a JavaScript variable
+
+    function increaseQuantity(itemId) {
+        var quantityInput = document.getElementById('quantityInput_' + itemId);
+        var quantity = parseInt(quantityInput.value);
+        quantity++;
+        quantityInput.value = quantity;
+        updateTotalPrice();
+    }
+
+    function decreaseQuantity(itemId) {
+        var quantityInput = document.getElementById('quantityInput_' + itemId);
+        var quantity = parseInt(quantityInput.value);
+        if (quantity > 1) {
+            quantity--;
+            quantityInput.value = quantity;
+            updateTotalPrice();
+        }
+    }
+
+    function updateTotalPrice() {
+        var totalPrice = 0;
+        var quantityInputs = document.querySelectorAll('[name="quantity[]"]');
+        quantityInputs.forEach(function (quantityInput) {
+            var itemPrice = parseFloat(quantityInput.dataset.price);
+            var quantity = parseInt(quantityInput.value);
+            totalPrice += itemPrice * quantity;
+        });
+        
+        var subtotalPriceElement = document.getElementById('subtotalPrice');
+        var discountAmountElement = document.getElementById('discountAmount'); // Add this line
+        var egtotalPriceElement = document.getElementById('egtotalPrice');
+        
+        subtotalPriceElement.textContent = '$' + totalPrice.toFixed(2);
+        
+        var newTotalPrice = totalPrice - discountAmount; // Calculate the new total price
+        
+        if (newTotalPrice < 0) {
+            newTotalPrice = 0;
+        }
+        
+        egtotalPriceElement.textContent = '$' + newTotalPrice.toFixed(2);
+    }
 </script>
 
 
