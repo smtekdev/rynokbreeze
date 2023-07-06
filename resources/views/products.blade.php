@@ -25,7 +25,7 @@
                 <!-- Product Image View -->
                 
                 <a href="{{ route('edit', ['id' => $data->id]) }}">
-                  <div class="image-container" style="width: 398px; height: 398px;">
+                  <div class="image-container FeaturedProductsImage" style="width: 398px; height: 398px;">
                     <div class="image" style="background-image: url('/product/{{$data->image}}');"></div>
                   </div>
                 </a>

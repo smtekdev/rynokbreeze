@@ -504,7 +504,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-xxl-5 col-lg-6 col-md-6 col-sm-5 col-12 search-col">
+                                <div class="col-xxl-5 col-lg-6 col-md-6 col-sm-5 col-12 search-col TabletSearch">
                                     <div class="header-search">
                                         <form>
                                             <div class="wrap">
@@ -528,7 +528,7 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-xxl-5 col-lg-4 col-md-3 col-sm-4 col-7">
+                                <div class="col-xxl-5 col-lg-4 col-md-3 col-sm-4 col-7 CartTabletAdjust">
                        
                                 <!-- Welcome Message -->                              
 
@@ -553,8 +553,8 @@
                                             @auth                            
                                             <a href="{{route("user-dashboard")}}"  class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
                                             <!-- logout and user info -->
-                                            <div>       
-                                                    <form method="POST" action="{{ route('logout') }}">
+                                            <div class="LogoutMobile">       
+                                                    <form method="POST" action="{{ route('logout') }}" class="">
                                                       @csrf
                                                       <button type="submit" class="underline text-blue-500 btnst btadjst">{{ __('Logout') }}</button>
                                                     </form>

@@ -207,6 +207,7 @@
         
 
 <br><br>
+
 <!-- logout and user info -->
 <div class="vendorwelcome">                                 
         <form method="POST" action="{{ route('logout') }}">

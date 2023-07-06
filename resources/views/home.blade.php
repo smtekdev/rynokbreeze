@@ -82,7 +82,7 @@
 <!-- Header Ended -->
 
         <section class="rev-6-banner">
-            <div class="container">
+            <div class="container BannerAdjust">
                 <div class="row">
                     
     
@@ -219,7 +219,7 @@
                 </div>
             </div>
         </section>
-        <video width="55%" height="70%" autoplay="" controls="" muted="" style="margin-left: 22%; margin-top: 5%; border-radius: 2rem; border: 2px solid #b43434;" __idm_id__="1925121">
+        <video width="55%" height="70%" autoplay="" controls="" muted="" class="VideoAdjust"style="margin-left: 22%; margin-top: 5%; border-radius: 2rem; border: 2px solid #b43434;" __idm_id__="1925121">
             <source src="assets/images/video ch.mp4" type="video/mp4">
           </video>
 
@@ -293,20 +293,20 @@
                                             <div class="container">
                                                 <div class="row" style="row-gap: 0px;">
                                                     <div class="col-lg-4 col-md-5">
-                                                        <div class="single-area" style="height: 529px;">
+                                                        <div class="single-area AddAdjust" style="height: 529px;">
                                                             
                                                             
                                                         </div>
                                                         <div class="single-area__txt" style="padding-top: 10px;">
                                                             <!-- <h6>We Supply New Products</h6> -->
-                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="{{ route('health-&-beauty') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 22px;">shop now</a></h5>
+                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="{{ route('health-&-beauty') }}" class="def-btn rev-7-def-btn guppy MarginLeft15" style="margin-left: 22px;">shop now</a></h5>
                                                         </div>
                                                     </div>
                                 
                                                     <div class="col-lg-8 col-md-7">
                                                         <div class="rev-7-second-col">
                                                             <div class="row" style="row-gap: 0px;">
-                                                                <div class="col-lg-6 col-md-12 col-sm-6" style="padding-bottom: 20px;">
+                                                                <div class="col-lg-6 col-md-12 col-sm-6 ShopBannerAdjust" style="padding-bottom: 20px;">
                                                                     <div class="single-area single-area-2">
                                                                         
                                                                         <div class="row">
@@ -316,7 +316,7 @@
                                                                     <div class="col-xl-8" style="width: 400px;">
                                                                         <div class="single-area__txt" style="padding-top: 7px;">
                                                                             <!-- <h6>Daily Discount Coupons</h6> -->
-                                                                            <h5>Discount Coupons <a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 40px;">shop now</a><!--5-->
+                                                                            <h5>Discount Coupons <a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn guppy MarginLeft18" style="margin-left: 40px;">shop now</a><!--5-->
                                                                             
                                                                         </h5></div>
                                                                     </div>
@@ -332,13 +332,13 @@
                                                                     <div class="col-xl-8" style="width: 400px;">
                                                                         <div class="single-area__txt" style="padding-top: 7px;">
                                                                             <!-- <h6>-30% Off</h6> -->
-                                                                            <h5>Aftermarket Products <a href="{{ route('home-appliances') }}" class="def-btn rev-7-def-btn guppy" style="margin-left: 15px;">shop now</a></h5>
+                                                                            <h5>Aftermarket Products <a href="{{ route('home-appliances') }}" class="def-btn rev-7-def-btn guppy MarginLeft11" style="margin-left: 15px;">shop now</a></h5>
                                                                             
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                 
-                                                                <div class="col-12" style="height: 300px; padding-top: 20px;">
+                                                                <div class="col-12 AdjustHeightListing" style="height: 300px; padding-top: 20px;">
                                                                     <div class="single-area single-area-4" style="margin-top: 20px;">
                                                                         
                                                                         <div class="row">
@@ -350,7 +350,7 @@
                                                                 <div class="col-xl-8">
                                                                     <div class="single-area__txt" style="padding-left: 7px;">
                                                                         <!-- <h6>Start from $04.99</h6> -->
-                                                                        <h5 style="font-weight: 600; margin-top: 28.5px;">Listings Ads <a href="{{ route('rent-an-office') }}" class="def-btn rev-7-def-btn" style="margin-left: 170px;">shop now</a><!--5-->
+                                                                        <h5 style="font-weight: 600; margin-top: 28.5px;">Listings Ads <a href="{{ route('rent-an-office') }}" class="def-btn rev-7-def-btn AdjustListingLeft" style="margin-left: 170px;">shop now</a><!--5-->
                                                                         
                                                                     </h5></div>
                                                                 </div>
@@ -385,8 +385,8 @@
 
                     <div class="col-lg-12 col-md-7" style="padding: 0px 0px;">
                         <div class="rev-7-second-col">
-                            <div class="row" style="margin: 0px 0px; padding: 0px 0px;">
-                                <div class="col-lg-6 col-md-12 col-sm-6" style="width: 50%;">
+                            <div class="row DiscountAdjustTablet" style="margin: 0px 0px; padding: 0px 0px;">
+                                <div class="col-lg-6 col-md-12 col-sm-6 WidthFull" style="width: 50%;">
                                     <div class="">
                                         <img src="assets/images/special.png" alt="" style="height: 200px; width: 800px; border-radius: 10px;">
                                         <div class="row">
@@ -396,13 +396,13 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Boot Discount Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn" style="margin-left: 19px;">shop now</a></h5>
+                                            <h5>Boot Discount Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft9" style="margin-left: 19px;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12 col-sm-6" style="width: 50%;">
+                                <div class="col-lg-6 col-md-12 col-sm-6 WidthFull" style="width: 50%;">
                                     <div class="">
                                         <img src="assets/images/movie (1).jpg" alt="" style="height: 200px; width: 800px; border-radius: 10px;">
                                         <div class="row">
@@ -412,7 +412,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Entry Pass Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn" style="margin-left: 12%;">shop now</a></h5>
+                                            <h5>Entry Pass Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft18" style="margin-left: 12%;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -530,7 +530,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{ route('ben-haul') }}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{ route('ben-haul') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -571,7 +571,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{ route('john-ceamus') }}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{ route('john-ceamus') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -613,7 +613,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{route('harry-donald')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('harry-donald')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -682,7 +682,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{route('carter-grayson')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('carter-grayson')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -723,7 +723,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{route('james-lincoln')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('james-lincoln')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -764,7 +764,7 @@
                             <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
                         </ul>
                     </div>
-                    <a href="{{route('robert-kane')}}" class="btn btn-xs">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{route('robert-kane')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
@@ -839,12 +839,12 @@
                     <span class="label">Sr. Executive</span>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quo odio iure dolore accusantium soluta, adipisci distinctio. Molestiae dolorem aliquam est quia earum, assumenda quidem rerum autem? Sunt, libero enim.</p>
                 </div>
-                <div class="single-testimony slick-slide slick-current slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 500px;">
+                <div class="single-testimony slick-slide slick-current slick-active TestAdjust" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 500px;">
                     <img src="assets/images/headshot/person-2.png" alt="person">
                     <h6>Steven Phills</h6>
                     <span class="label">Sr. Executive</span>
                     <p>The RynokBay marketplace is a powerful online resource for finding quality products and services at great prices. The marketplace offers an exhaustive selection of products from many different categories, so you can find the perfect product for your needs.</p>
-                </div><div class="single-testimony slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 349px;">
+                </div><div class="single-testimony slick-slide slick-active TabletTestAdjust" data-slick-index="3" aria-hidden="false" tabindex="0" style="width: 349px;">
                     <img src="assets/images/headshot/person-3.png" alt="person">
                     <h6>Mark Nicholas</h6>
                     <span class="label">Model</span>

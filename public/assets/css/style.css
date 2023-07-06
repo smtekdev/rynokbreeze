@@ -20356,6 +20356,9 @@ div.product-title a:hover {
     padding: 0 15px;
   }
 }
+
+/* Mobile Media Query */
+
 @media screen and (max-width: 479px) and (min-width: 320px) {
   body {
     overflow-x: hidden;
@@ -20519,7 +20522,10 @@ div.product-title a:hover {
     background: transparent;
   }
   .header .top-header {
-    padding: 15px 0;
+    padding: 0px 0;
+  }
+  .rev-7-header .bottom-header-bg {
+    margin: 0 0px;
   }
   .header .top-header .top-header-link > * {
     padding: 0 5px;
@@ -20589,8 +20595,99 @@ div.product-title a:hover {
   .header .bottom-header .header-search .nice-select {
     display: none;
   }
-  .header .bottom-header .header-search form {
+  .header .bottom-header .header-search form  {
     border: 1px solid #ddd;
+    margin-top: -4%;
+  }
+  .rev-6-banner {
+    margin-top: -5%;
+  }
+  .BannerAdjust{
+    margin-top: 18%;
+  }
+  .VideoAdjust{
+    margin-left: 3% !important;
+    margin-top: -3% !important;
+    border-radius: 2rem;
+    border: 2px solid #b43434;
+    width: 94%;
+  }
+  .ShopBannerAdjust{
+    padding-bottom: 12% !important;
+    margin-top: 2% !important;
+  }
+  .rev-7-banner .rev-7-second-col .single-area-2{
+    background-size: contain;
+    padding: 165px 35px 0px !important;
+  }
+  .rev-7-banner .rev-7-second-col .single-area-3{
+    background-size: contain;
+    padding: 149px 0px 105px !important;  
+  }
+  .rev-7-banner .rev-7-second-col .single-area-4 {
+    background-size: contain;
+  }
+  .rev-7-banner .single-area {
+    background-size: contain;
+  }
+  .AddAdjust{
+    height: 90% !important;
+  }
+  .AdjustHeightListing{
+    height: 225px !important; 
+  }
+  .AdjustListingLeft{
+    margin-left: 32% !important;
+  }
+  .MarginLeft15{
+    margin-left: 15% !important;
+  }
+  .MarginLeft18{
+    margin-left: 18% !important;
+  }
+  .MarginLeft11{
+    margin-left: 11% !important;
+  }
+  .AdjustListingLeft {
+    margin-left: 35% !important;
+  }
+  .MarginLeft9{
+    margin-left: 9% !important;
+  }
+  .WidthFull{
+    width: 100% !important;
+  }
+  .FeaturedProductsImage{
+    width: 12rem !important;
+    height: 10rem !important;
+  }
+  .mrtp {
+    margin-top: -138% !important;
+  }
+  .rev-7-testimonial-section {
+    margin-top: -28%;
+  }
+  .vendor-wrap .vendor-img-action-wrap img {
+    max-width: 144px;
+    position: relative;
+    margin-left: 59%;
+  }
+  .StoreBtn{
+    margin-left: 38% !important;
+}
+  .btnst {
+    padding: 1px 9px !important;
+  }
+  .LogoutMobile{
+    position: absolute;
+    top: -20px;
+    right: 0%;
+  }
+  .TestAdjust{
+    width: 370px !important;
+  }
+  .header-search{
+    margin:2%;
   }
   .header .bottom-header .header-search form .wrap {
     width: 100%;
@@ -22577,4 +22674,58 @@ div.product-title a:hover {
   height: 3rem;
   border-radius: 1rem;
   margin-top: 1%;
+}
+
+
+/* (1024x768) iPad */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .LogoutMobile{
+    position: absolute;
+    top: -4rem !important;
+    right: 9%;
+  }
+  .TabletTestAdjust{
+    width: 318px;
+  }
+  .CartTabletAdjust{
+    position: absolute !important;
+    right: 2% !important;
+  }
+  .btadjst {
+    margin-right: 2% !important;
+    margin-top: -11.5% !important;
+  }
+  .TabletSearch{
+      position: absolute;
+      left: 11rem;
+  }
+  .header .bottom-header .bottom-header-right .header-cart-options {
+    position: absolute;
+    font-size: 0px;
+  }
+  .rev-7-banner .rev-7-second-col .single-area-2{
+    background-size: contain;
+  }
+  .rev-7-banner .rev-7-second-col .single-area-3{
+    background-size: contain;
+  }
+  .rev-7-banner .rev-7-second-col .single-area-4{
+    background-size: contain;
+  }
+  .rev-7-banner .single-area {
+    background-size: contain;
+  }
+  .WidthFull{
+    width: 75% !important;
+  }
+  .DiscountAdjustTablet{
+      width: 60rem !important;
+  }
+  .MarginLeft9{
+    margin-left: 6% !important;
+  }
+  .FeaturedProductsImage{
+    width: 219px !important;
+    height: 209px !important;
+  }
 }
