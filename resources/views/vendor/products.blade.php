@@ -9,36 +9,40 @@
 
 <div style="background-color: #f7f7f7; padding: 20px;" class="text-center" >
 <h1>Add New Product</h1><br>
-<form action="{{url('/uploadproducts')}}" method="post" enctype="multipart/form-data">
 
-@csrf
+<form action="{{ url('/uploadproducts') }}" method="post" enctype="multipart/form-data">
+  @csrf
 
-<!-- User name field -->
-<input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
+  <!-- User name field -->
+  <input type="hidden" name="user_name" value="{{ Auth::user()->name }}">
 
-  <div style="margin-bottom: 10px;">
-    <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Title</label>
-    <input type="text" name="title" placeholder="Write a title" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" class="form-control" placeholder="Write a title" required>
   </div>
-  <div style="margin-bottom: 10px;">
-    <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Price</label>
-    <input type="text" name="price" placeholder="Write a price" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">
+
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="text" name="price" class="form-control" placeholder="Write a price" required>
   </div>
-  <div style="margin-bottom: 10px;">
-    <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Image</label>
-    <input type="file" name="image" required style="padding: 1px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">
+
+  <div class="form-group">
+    <label for="image">Image</label>
+    <input type="file" name="image" class="form-control-file" required>
   </div>
-  <div style="margin-bottom: 10px;">
-    <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Description</label>
-    <input type="text" name="discription" placeholder="Description" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input type="text" name="description" class="form-control" placeholder="Description" required>
   </div>
-  <div style="margin-bottom: 10px;">
-        <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Category</label>
-        <select name="category" required style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;width: 25rem;">
-            <option value="" disabled selected>Select a category</option>
-            <option value="Featured">Featured</option>
-            <option value="Health & Beauty">Health & Beauty</option>
-            <option value="Home Services">Home Services</option>
+
+  <div class="form-group">
+    <label for="category">Category</label>
+    <select name="category" class="form-control" required>
+      <option value="" disabled selected>Select a category</option>
+      <option value="Featured">Featured</option>
+      <option value="Health & Beauty">Health & Beauty</option>
+      <option value="Home Services">Home Services</option>
             <option value="Fashion">Fashion</option>
             <option value="Sports">Sports</option>
             <option value="Saloon & Spa">Saloon & Spa</option>
@@ -65,13 +69,16 @@
             <option value="Medical Services">Medical Services</option>
             <option value="Orthopaedic Therapy">Orthopaedic Therapy</option>
             <option value="Dance Sessions">Dance Sessions</option>
-            <option value="Fitness Classes">Fitness Classes   </option>            
-        </select>
+            <option value="Fitness Classes">Fitness Classes   </option>    
+            <!-- Add more category here -->
+    </select>
   </div>
-  <div>
-      <input type="submit" value="Save" style="border:1px solid black; padding:5px; border-radius:1rem; background-color:#B43434; color:white; width:7rem">
+
+  <div class="form-group">
+    <input type="submit" value="Save" class="btn btn-primary">
   </div>
 </form>
+
 
 
 <script>

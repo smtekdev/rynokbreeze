@@ -127,7 +127,7 @@ p {
 
 
 <!-- logout -->
-<div class="outset">                                    
+<div class="outset AdjustLogOutProfile">                                    
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>

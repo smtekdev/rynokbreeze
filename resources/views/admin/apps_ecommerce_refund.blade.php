@@ -37,7 +37,7 @@
 
 
         <!--  Content Area Starts  -->
-        <div id="content" class="main-content martp">
+        <div id="content" class="main-content martp VendorAdjust">
             <!--  Navbar Starts / Breadcrumb Area Starts -->
             <div class="sub-header-container">
                 <header class="header navbar navbar-expand-sm" style="margin-top: -85%;">
@@ -74,11 +74,11 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 text-sm-right text-center align-self-center">
+                                        <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 text-sm-right text-center align-self-center">
                                             <div class="d-flex justify-content-sm-end justify-content-center contact-options">
                                                 <button class="btn btn-primary btn-sm"><i class="las la-plus"></i>Add New User</button>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- Start from here -->
@@ -86,7 +86,7 @@
                            <br><br>                            
                            
 
-                           <section class="section" id="menu">
+                           <section class="section SetSection" id="menu">
                             <div class="menu-item-carousel">
                             <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
 

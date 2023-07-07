@@ -2,11 +2,19 @@
    .outset{
     position: absolute;
     right: 3%;
-    top: 4%;
+    top: 1%;
 }
+
 .lgset{
   margin-top: 6%;
 }
+
+@media screen and (max-width: 479px) and (min-width: 320px) {
+    .outset {
+        top: 1% !important;
+    }
+}
+
 </style>
 
 <link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}"> 

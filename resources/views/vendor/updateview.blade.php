@@ -7,9 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fastkart">
-    <meta name="keywords" content="Fastkart">
-    <meta name="author" content="Fastkart">   
    
     <title>RynokBay</title>
 
@@ -150,7 +147,7 @@
     </style>
 </head>
 
-<body>
+<body class="AdjustBody">
 
 <!-- Header Started -->
 
@@ -159,9 +156,8 @@
 
 
 <!-- logout and user info -->
-<div class="vendorwelcome">                                    
+<div class="vendorwelcome AdjustNow LogoutAdjustNow">                                    
     <p class="font-semibold text-xl text-gray-800 leading-tight">
-        Welcome, {{ Auth::user()->name }} <!-- User Name -->
         <form method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="underline text-blue-500 btnst">{{ __('Logout') }}</button>

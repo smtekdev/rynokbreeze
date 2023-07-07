@@ -292,20 +292,20 @@
                                         <section class="rev-7-banner" style="padding: 0px 0px;">
                                             <div class="container">
                                                 <div class="row" style="row-gap: 0px;">
-                                                    <div class="col-lg-4 col-md-5">
+                                                    <div class="col-lg-4 col-md-5 AdjustTabletNgif">
                                                         <div class="single-area AddAdjust" style="height: 529px;">
                                                             
                                                             
                                                         </div>
                                                         <div class="single-area__txt" style="padding-top: 10px;">
                                                             <!-- <h6>We Supply New Products</h6> -->
-                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="{{ route('health-&-beauty') }}" class="def-btn rev-7-def-btn guppy MarginLeft15" style="margin-left: 22px;">shop now</a></h5>
+                                                            <h5 style="font-weight: 600;">Buy Latest Products <a href="{{ route('health-&-beauty') }}" class="def-btn rev-7-def-btn guppy MarginLeft15 MarginSet" style="margin-left: 22px;">shop now</a></h5>
                                                         </div>
                                                     </div>
                                 
                                                     <div class="col-lg-8 col-md-7">
                                                         <div class="rev-7-second-col">
-                                                            <div class="row" style="row-gap: 0px;">
+                                                            <div class="row TabletAdjustGifs" style="row-gap: 0px;">
                                                                 <div class="col-lg-6 col-md-12 col-sm-6 ShopBannerAdjust" style="padding-bottom: 20px;">
                                                                     <div class="single-area single-area-2">
                                                                         
@@ -347,7 +347,7 @@
                                                                     </div>
                                                                     
                                                                 </div>
-                                                                <div class="col-xl-8">
+                                                                <div class="col-xl-8 AdjustAnotherGif">
                                                                     <div class="single-area__txt" style="padding-left: 7px;">
                                                                         <!-- <h6>Start from $04.99</h6> -->
                                                                         <h5 style="font-weight: 600; margin-top: 28.5px;">Listings Ads <a href="{{ route('rent-an-office') }}" class="def-btn rev-7-def-btn AdjustListingLeft" style="margin-left: 170px;">shop now</a><!--5-->
@@ -396,7 +396,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Boot Discount Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft9" style="margin-left: 19px;">shop now</a></h5>
+                                            <h5>Boot Discount Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft9 MarginLeftNew" style="margin-left: 19px;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -412,7 +412,7 @@
                                     <div class="col-xl-8" style="padding-top:10px;padding-left:5px;">
                                         <div class="single-area__txt">
                                             <!-- <h6>All Types of Services</h6> -->
-                                            <h5>Entry Pass Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft18" style="margin-left: 12%;">shop now</a></h5>
+                                            <h5>Entry Pass Coupon<a href="{{ route('department-stores') }}" class="def-btn rev-7-def-btn MarginLeft18 MarginLeftNnew" style="margin-left: 12%;">shop now</a></h5>
                                             
                                         </div>
                                     </div>
@@ -527,7 +527,7 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{ route('ben-haul') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
@@ -568,7 +568,7 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{ route('john-ceamus') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
@@ -610,7 +610,7 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{route('harry-donald')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
@@ -619,33 +619,7 @@
         </div>
         <!--end vendor card-->
     
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-  
-        <!--end vendor card-->
-    
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-   
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-   
-        <!--end vendor card-->
-  
-        <!--end vendor card-->
-     
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-    
-        <!--end vendor card-->
-    </div>
-    <div class="row vendor-grid">
+      
         <div class="col-lg-4 col-md-6 col-12 col-sm-6">
             <div class="vendor-wrap mb-40">
                 <div class="vendor-img-action-wrap">
@@ -679,7 +653,7 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{route('carter-grayson')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
@@ -720,7 +694,7 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{route('james-lincoln')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
@@ -761,40 +735,13 @@
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
                             <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+91) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
                         </ul>
                     </div>
                     <a href="{{route('robert-kane')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
-        <!--end vendor card-->
-    
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-  
-        <!--end vendor card-->
-    
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-   
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-   
-        <!--end vendor card-->
-  
-        <!--end vendor card-->
-     
-        <!--end vendor card-->
-
-        <!--end vendor card-->
-    
-        <!--end vendor card-->
     </div>
 
         </div>

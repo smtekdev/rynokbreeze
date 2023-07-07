@@ -25,7 +25,7 @@
         @endphp
 
         @foreach($data5 as $product)
-            <div style="width:calc(33.33% - 10px); margin-bottom:20px; padding:10px; box-sizing:border-box; background-image:url('/product/{{$product->image}}'); background-size:cover; background-position:center; position:relative; height:25rem;margin-top: 5%;">
+            <div style="width:calc(33.33% - 10px); margin-bottom:20px; padding:10px; box-sizing:border-box; background-image:url('/product/{{$product->image}}'); background-size:cover; background-position:center; position:relative; height:25rem;margin-top: 5%;" class="ProductImageAdjust">
                 <div action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div style="position:absolute; bottom:0; left:0; right:0; background-color:white; color:white !important; padding:10px;">
@@ -51,15 +51,17 @@
                         <div class="button-container">
                             <form action="{{ url('/productdelete', $product->id) }}" method="POST" class="btncr">
                                 @csrf
-                                <button type="submit" class="btn btn-warning sbmbtn">Delete</button>
+                                <button type="submit" class="btn btn-warning sbmbtn DeleteBtn">Delete</button>
                             </form>
         
-                            <a href="{{ route('vendor.updateview', $product->id) }}" class="btn btn-primary btanc">Update</a>
+                            <a href="{{ route('vendor.updateview', $product->id) }}" class="btn btn-primary btanc DeleteBtn">Update</a>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
+
+
         </div>
     </div>
     
@@ -75,16 +77,20 @@
     <br>
     <form action="/coupons" method="POST">
   @csrf
-  <span class="cparea"><input type="number" id="discount" name="discount" placeholder="Discount Amount"></span><br>
-  <span class="cparea"><input type="text" id="coupon" name="coupon" placeholder="Enter coupon code"></span>
-
+  <div class="form-group">
+    <label for="discount">Discount Amount</label>
+    <input type="number" class="form-control" id="discount" name="discount" placeholder="Enter discount amount" required>
+  </div>
+  <div class="form-group">
+    <label for="coupon">Enter coupon code</label>
+    <input type="text" class="form-control" id="coupon" name="coupon" placeholder="Enter coupon code" required style="position:relative; z-index:1;">
+  </div>
+  <button type="submit" class="btn btn-primary">Create Coupon</button>
+</form>
 <br>
-  <button type="submit" class="cparea">Create Coupon</button>
-</form><br>
 <a href="{{ route('vendor.coupons') }}">View All Coupons</a>
 </div>
 </section>
-
 
 <script>
 const openFormButton = document.getElementById("openFormButton");

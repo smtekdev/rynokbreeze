@@ -44,9 +44,11 @@
     </style>
 </head>
 
+@include("admin.adminnavbar")
+
 <body>
 
-@include("admin.adminnavbar")
+
 
 
         <!--  Content Area Starts  -->
@@ -72,11 +74,11 @@
             </div>
             <!--  Navbar Ends / Breadcrumb Area Ends -->
             <!-- Main Body Starts -->
-            <div class="layout-px-spacing">                
+            <div class="layout-px-spacing ProductTop">                
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
                     <div class="col-lg-12">
                         <div class="">
-                            <div class="widget-content searchable-container grid">
+                            <div class="widget-content searchable-container grid ProductAdjust">
                                 <div class="card-box">
                                     <div class="row">
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 filtered-list-search align-self-center">
@@ -135,35 +137,30 @@
 
 
 
-                            <h1 style="margin:0; font-size:18px; display:flex; justify-content:center;color:black;">{{$product->title}}</h1>
+                            <h1 style="margin:0; font-size:18px; display:flex; justify-content:center;color:black;" class="ProductTitle">{{$product->title}}</h1>
                             <p style="margin:0; font-size:14px; display:flex; justify-content:center;color:black;">{{$product->description}}</p>
-                            <p style="margin:0; font-size:14px; display:flex; justify-content:center;color:black;">Seller: {{$product->user_name}}</p>
+                            <p style="margin:0; font-size:14px; display:flex; justify-content:center;color:black;" class="VendorName">Seller: {{$product->user_name}}</p>
                         </div>
-                        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:100%;">
+                        <div style="display:flex; align-items:center; justify-content:space-between; margin-top:100%;" class="">
                             
       
 
                         <div class="button-container nbtn">
                           <form action="{{ url('/productdelete', $product->id) }}" method="POST" class="btncr">
                             @csrf
-                            <button type="submit" class="btn btn-warning sbmbtn ">Delete</button>
+                            <button type="submit" class="btn btn-warning sbmbtn AdjustDelete">Delete</button>
                           </form>
 
                           <a href="{{ route('vendor.updateview', $product->id) }}" class="btn btn-primary btanc">Update</a>
                         </div>
-
                     </div>
-                </div>
-                    
+                </div>                    
             </div>
             @endforeach
         </div>
     </div>
 
 
-     <!-- Upload Product -->
-     <!-- @include("vendor.products") -->
-    <!-- Upload Product End-->
 
 
 <br><br><br>
@@ -192,12 +189,6 @@
                 </div>
             </div>
             <!-- Main Body Ends -->
-            <div class="responsive-msg-component">
-                <p>
-                    <a class="close-msg-component"><i class="las la-times"></i></a>
-                    Please reload the page to view the responsive functionalities
-                </p>
-            </div>
             <!-- Copyright Footer Starts -->
             
             <!-- Copyright Footer Ends -->

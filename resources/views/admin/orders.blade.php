@@ -37,7 +37,7 @@
 
 
         <!--  Content Area Starts  -->
-        <div id="content" class="main-content martp">
+        <div id="content" class="main-content martp OrderAdjust">
             <!--  Navbar Starts / Breadcrumb Area Starts -->
             <div class="sub-header-container">
                 <header class="header navbar navbar-expand-sm" style="margin-top: -85%;">
@@ -59,7 +59,7 @@
             </div>
             <!--  Navbar Ends / Breadcrumb Area Ends -->
             <!-- Main Body Starts -->
-            <div class="layout-px-spacing">                
+            <div class="layout-px-spacing Rem15">                
                 <div class="row layout-spacing layout-top-spacing" id="cancel-row">
                     <div class="col-lg-12">
                         <div class="">
@@ -73,12 +73,7 @@
                                                     <input type="text" id="input-search" class="form-control search-form-control  ml-lg-auto" placeholder="Search Orders">
                                                 </div>
                                             </form>
-                                        </div>
-                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 text-sm-right text-center align-self-center">
-                                            <div class="d-flex justify-content-sm-end justify-content-center contact-options">
-                                                <button class="btn btn-primary btn-sm"><i class="las la-plus"></i> Add New Order</button>
-                                            </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <!-- Start from here -->
@@ -93,7 +88,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Product Name</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Qty</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Update Time</th>
@@ -146,15 +141,6 @@
                 </div>
             </div>
             <!-- Main Body Ends -->
-            <div class="responsive-msg-component">
-                <p>
-                    <a class="close-msg-component"><i class="las la-times"></i></a>
-                    Please reload the page to view the responsive functionalities
-                </p>
-            </div>
-            <!-- Copyright Footer Starts -->
-            
-            <!-- Copyright Footer Ends -->
             <!-- Arrow Starts -->
             <div class="scroll-top-arrow" style="display: none;">
                 <i class="las la-angle-up"></i>

@@ -196,7 +196,7 @@
     </style>
 </head>
 
-<body>
+<body class="UserDashboardBodyAdjust">
 
 <!-- Header Started -->
 
@@ -217,7 +217,7 @@
 
 <div class="vendorlg">
 <a href="{{ route('login') }}">
-<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;" class="LogoSet">
 </a>
 </div>
 <!-- Header Ended -->
@@ -239,7 +239,7 @@
 
 
     <!-- User Dashboard Section Start -->
-    <section class="user-dashboard-section section-b-space">
+    <section class="user-dashboard-section section-b-space AdjustSpace">
         <div class="container-fluid-lg bgw">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4">
@@ -488,8 +488,8 @@
                             <!--Produts Area-->
 
 
-                            <div class="tab-pane fade text-center" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
-                                <h1>All Products</h1>
+                            <div class="tab-pane fade text-center AdjustMarginTop" id="pills-order" role="tabpanel" aria-labelledby="pills-order-tab">
+                                <h1 class="AdjustH1">All Products</h1>
                             @include("vendor.vendor_products")
                             </div>
 

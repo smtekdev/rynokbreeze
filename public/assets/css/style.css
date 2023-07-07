@@ -20632,7 +20632,7 @@ div.product-title a:hover {
   }
   .AddAdjust{
     height: 90% !important;
-  }
+  }  
   .AdjustHeightListing{
     height: 225px !important; 
   }
@@ -22687,6 +22687,15 @@ div.product-title a:hover {
   .TabletTestAdjust{
     width: 318px;
   }
+  .mrtp {
+    margin-top: -75%;
+  }
+  .TestAdjust{
+    width: 703px !important;
+  }
+  .rev-7-testimonial-section {
+    margin-top: -16% !important;
+  }
   .CartTabletAdjust{
     position: absolute !important;
     right: 2% !important;
@@ -22704,13 +22713,13 @@ div.product-title a:hover {
     font-size: 0px;
   }
   .rev-7-banner .rev-7-second-col .single-area-2{
-    background-size: contain;
+    background-size: cover;
   }
   .rev-7-banner .rev-7-second-col .single-area-3{
-    background-size: contain;
+    background-size: cover;
   }
   .rev-7-banner .rev-7-second-col .single-area-4{
-    background-size: contain;
+    background-size: cover;
   }
   .rev-7-banner .single-area {
     background-size: contain;
@@ -22727,5 +22736,57 @@ div.product-title a:hover {
   .FeaturedProductsImage{
     width: 219px !important;
     height: 209px !important;
+  }
+  .rev-7-mobile-menu{
+    display: none !important;
+  }
+  .AddAdjust{
+    margin-top: 49rem !important;
+    width: 251% !important;
+  }
+  .rev-7-banner .single-area {
+    height: 10% !important;
+  }
+  .rev-7-banner .rev-7-second-col .single-area {
+    padding: 229px 20px 148px !important;
+  }
+  .TabletAdjustGifs{
+    position: absolute !important;
+    left: 0 !important;
+    width: 92% !important;
+    margin-left: 4% !important;
+  }
+  .AdjustTabletNgif{
+    margin-top: 36rem;
+  }
+  .VideoAdjust{
+    margin-top: 1% !important;
+  }
+  .MarginLeft18{
+    margin-left: 26% !important;
+  }
+  .MarginLeft11{
+    margin-left:20% !important;
+  }
+  .AdjustAnotherGif{
+    margin-top: 14%;
+  }
+  .AdjustListingLeft{
+    margin-left: 25%;
+  }
+  .MarginLeft15{
+    margin-left: 16%;
+    position: absolute;
+  }
+  
+.MarginLeftNew{
+  position: absolute;
+  margin-left: 13% !important;
+  }
+  .MarginLeftNnew{
+    margin-left: 22% !important;
+  }
+  .MarginSet{
+    margin-left: 16% !important;
   }
 }

@@ -5,9 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fastkart">
-    <meta name="keywords" content="Fastkart">
-    <meta name="author" content="Fastkart">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>Rynokbay Admin Dashboard</title>
@@ -248,7 +245,7 @@
         <div class="container-fluid-lg">
             <div class="row">
                 <div class="col-12">
-                    <div class="breadscrumb-contain">
+                    <div class="breadscrumb-contain AdminAdjust">
                         <!-- <h2>Admin Profile</h2> -->
                         <nav>
                             <ol class="breadcrumb mb-0">

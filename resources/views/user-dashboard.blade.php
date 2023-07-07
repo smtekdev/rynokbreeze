@@ -203,7 +203,7 @@
 <!-- Header Ended -->
 
 
-<body>
+<body class="UserDashboardBodyAdjust">
         
 
 <br><br>
@@ -221,7 +221,7 @@
 
 <div class="vendorlg">
 <a href="{{ route('login') }}">
-<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;">
+<img src="../assets/images/logos/logo-6.png" alt="logo" style="max-width: 14% !important; margin-top: -16%;position: relative; z-index: 10; background: white; margin-left:1%;" class="LogoAdjust">
 </a>
 </div>
 <!-- Header Ended -->
@@ -342,8 +342,8 @@
                     </div>
                 </div>
 
-                <div class="col-xxl-9 col-lg-8">
-                    <button class="btn left-dashboard-show btn-animation btn-md fw-bold d-block mb-4 d-lg-none">Show
+                <div class="col-xxl-9 col-lg-8 UserDashboardAdjust">
+                    <button class="btn left-dashboard-show btn-animation btn-md fw-bold d-block mb-4 d-lg-none MarginLeft">Show
                         Menu</button>
                     <div class="dashboard-right-sidebar ">
                         <div class="tab-content" id="pills-tabContent">
@@ -506,7 +506,7 @@
                                         <h2 class="h2adj">My Orders History</h2>
                                         
 <!-- Orders Details -->
-<table style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 12px;">
+<table class="OrderTable" style="border-collapse: collapse; width: 100% !important; font-family: Arial, sans-serif;margin-left: -6%;font-size: 12px;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Name</th>
@@ -516,7 +516,7 @@
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Seller</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Image</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Price</th>
-      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Quantity</th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Qty</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Total Price</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Delivery Status</th>
       <th style="border: 1px solid #ddd; padding: 8px; text-align: center;">Update Time</th>
@@ -540,7 +540,7 @@ $product= App\Models\Products::all();
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->productname}}</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->seller_name}}</td>
       <td style="border: 1px solid #ddd;text-align: center;">
-            <img src="/product/{{$data->image_url}}" alt="Product Image" width="75" height="50" style="max-width: none;">
+            <img src="/product/{{$data->image_url}}" alt="Product Image" width="75" height="50" style="max-width: none;" class="ImageSizeFix">
       </td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->price}} $</td>
       <td style="border: 1px solid #ddd; padding: 8px; text-align: center;">{{$data->quantity}}</td>

@@ -44,7 +44,7 @@
         <div class="rightbar-overlay"></div>
         <!--  Sidebar Starts  -->
 
-        <div class="sidebar-wrapper sidebar-theme" style="margin-top:5% !important;">
+        <div class="sidebar-wrapper sidebar-theme SideBarAdjust" style="margin-top:5% !important;z-index: 9999999; border-radius: 0 7rem 0 0;">
             <nav id="sidebar" >
                 <ul class="list-unstyled menu-categories" id="accordionExample">
                     <li class="menu">

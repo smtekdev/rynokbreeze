@@ -17,7 +17,7 @@
 @include("admin.adminnavbar")
     
 <!--  Content Area Starts  -->
-<div id="content" class="main-content mcst">
+<div id="content NewAdjustClass" class="main-content mcst">
             <!--  Navbar Starts / Breadcrumb Area  -->
             <div class="sub-header-container">
                 <header class="header navbar navbar-expand-sm">
@@ -135,12 +135,6 @@
                 </div>
             </div>
             <!-- Main Body Ends -->
-            <div class="responsive-msg-component">
-                <p>
-                    <a class="close-msg-component"><i class="las la-times"></i></a>
-                    Please reload the page to view the responsive functionalities
-                </p>
-            </div>
             <!-- Copyright Footer Starts -->
             
             <!-- Copyright Footer Ends -->

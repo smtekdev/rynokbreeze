@@ -35,7 +35,7 @@
 
 
         <!--  Content Area Starts  -->
-        <div id="content" class="main-content martp">
+        <div id="content" class="main-content martp UserDetails">
             <!--  Navbar Starts / Breadcrumb Area Starts -->
             <div class="sub-header-container">
                 <header class="header navbar navbar-expand-sm" style="margin-top: -85%;">
@@ -84,7 +84,7 @@
                            <br><br>                            
                            
 
-                           <section class="section" id="menu">
+                           <section class="section SetSection" id="menu">
                             <div class="menu-item-carousel">
                             <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
 
