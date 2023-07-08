@@ -166,7 +166,7 @@
 
 </head>
 
-<body>
+<body class="BodyAdjust">
 
     
 <!-- Header Started -->

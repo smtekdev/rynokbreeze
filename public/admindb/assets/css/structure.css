@@ -1817,8 +1817,8 @@ input:checked + .slider:before {
     }
     .UserDetails{
         margin-top: -55rem !important;
-        margin-left: 10rem !important;
-        width: 120% !important;
+        margin-left: 8rem !important;
+         width: 84% !important;
         font-size: 14px !important;
     }   
     .navbar-expand-sm{
@@ -1854,7 +1854,24 @@ input:checked + .slider:before {
 
 /* Mobile Media Query */
 
-@media screen and (max-width: 479px) and (min-width: 320px) {}
+@media screen and (max-width: 479px) and (min-width: 320px) {
+    .SideBarAdjust{
+        border-radius: 0 2rem 0 0 !important;
+        width: 8% !important;
+    }
+    .mcst {
+        margin-top: -47rem !important;
+        width: 71% !important;
+        margin-left: 7.5rem !important;
+    }
+    .OrderNavControl{
+        display: none;
+    }
+    .martp{
+        margin-top: -46rem !important;
+        margin-left: 7rem !important;
+    }
+}
 
 
 /* Laptop */
@@ -1880,5 +1897,5 @@ and (max-width: 1605px){
         margin-top: -45% !important;
         width: 82%;
         margin-left: 17%;
-    }
+    }    
 } 

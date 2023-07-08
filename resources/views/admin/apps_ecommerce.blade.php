@@ -106,7 +106,7 @@
 
 <section class="section pdadjst" id="menu">
     <div class="menu-item-carousel">
-        <div style="display:flex; flex-wrap:wrap; justify-content:space-between;">
+        <div style="display:flex; flex-wrap:wrap; justify-content:space-between;" class="AdjustWrap">
 
 
 
@@ -116,12 +116,12 @@
 
 
             @foreach($data5 as $product)
-                <div style="width:calc(33.33% - 10px); margin-bottom:20px; padding:10px; box-sizing:border-box; background-image:url('/product/{{$product->image}}'); background-size:cover; background-position:center; position:relative; height:25rem;margin-top: 5%;">
+                <div style="width:calc(33.33% - 10px); margin-bottom:20px; padding:10px; box-sizing:border-box; background-image:url('/product/{{$product->image}}'); background-size:cover; background-position:center; position:relative; height:25rem;margin-top: 5%;" class="AdjustProductMobile">
                 <div action="" method="post" enctype="multipart/form-data">
                         @csrf
                         <div style="position:absolute; bottom:0; left:0; right:0; background-color:white; color:white !important; padding:10px;">
                         <div style="display: flex; justify-content: center;">
-                          <h6 style="margin: 0; color: black;">
+                          <h6 style="margin: 0; color: black;" class="PriceAdjust">
                             @if ($product->discounted_price)
                               <span style="text-decoration: line-through;">{{$product->price}}$</span>
                             @else

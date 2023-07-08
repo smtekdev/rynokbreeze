@@ -30035,5 +30035,11 @@ header .offcanvas-backdrop {
     .LogoutAdjustNow{
         margin-top: -25% !important;
     }
+    .section-b-space {
+        margin-top: -13% !important;
+    }
+    .modal-dialog{
+        width: 83%;
+    }
 }
 

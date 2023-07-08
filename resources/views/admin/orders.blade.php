@@ -33,8 +33,9 @@
 
 <body>
 
+<div class="">
 @include("admin.adminnavbar")
-
+</div>
 
         <!--  Content Area Starts  -->
         <div id="content" class="main-content martp OrderAdjust">
@@ -77,7 +78,7 @@
                                     </div>
                                 </div>
                                 <!-- Start from here -->
-
+<div class="MobileShow"style="">
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
@@ -133,6 +134,12 @@
 </tbody>
 <!-- below code new added need to remove if any issue -->
 </table>
+</div>
+
+
+<!-- Mobile View -->
+
+
 
 
                             </div>

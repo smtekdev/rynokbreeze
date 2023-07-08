@@ -7,7 +7,7 @@
 }
 </style>
 
-
+<div style="width: 100%; overflow-x: auto; white-space: nowrap;">
 <table style="border-collapse: collapse; width: 100%; font-family: Arial, sans-serif;">
   <thead style="background-color: #2864c4; color:white !important;">
     <tr>
@@ -42,14 +42,7 @@
     </tr>
     @endif
     @endforeach
-
-
-    
-
-
-
-
 </tbody>
 <!-- below code new added need to remove if any issue -->
 </table>
-
+</div>
