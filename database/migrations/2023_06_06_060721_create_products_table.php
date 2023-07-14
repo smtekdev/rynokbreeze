@@ -20,7 +20,8 @@ class CreateProductsTable extends Migration
             $table->string("image")->nullable();
             $table->string("description")->nullable();
             $table->string("category")->nullable();
-            $table->timestamps();            
+            $table->boolean("featured")->default(false);
+            $table->timestamps();
         });
     }
 

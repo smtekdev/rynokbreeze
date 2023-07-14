@@ -49,13 +49,13 @@
         </a>
     </form>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a role="button" class="">
                                     <i class="fa-light fa-image"></i>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a href="#" class="">
+                                <a href="{{ route('edit', ['id' => $data->id]) }}" class="">
                                     <i class="fa-light fa-eye"></i>
                                 </a>
                             </li>
@@ -63,8 +63,10 @@
                     </div>
                 </div>
                 <div class="part-txt">
-                    <h4 class="product-name"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
-                    <h4 class="product-name">Seller: {{$data->user_name}}</h4>
+                    <h4 class="product-name MrBtm"><a href="{{ route('edit', ['id' => $data->id]) }}">{{$data->title}}</a></h4>
+                    <h4 class="product-name MrBtm">Seller: {{$data->user_name}}</h4>
+                    <h4 class="product-name MrBtm">City: {{$data->location}}</h4>
+                    <h4 class="product-name">Area: {{$data->town}}</h4>
                     <p class="dscr">{{$data->description}}</p>
                     @if ($data->discounted_price)
                       <p class="price" style="display: inline-block; text-decoration: line-through; margin-right: 10px;">${{$data->price}}</p>

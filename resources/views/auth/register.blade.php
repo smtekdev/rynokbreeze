@@ -41,6 +41,13 @@
                 <x-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required />
             </div>
 
+            <!-- Referral Code -->
+            <div class="mt-4">
+                <x-label for="referral_code" :value="__('Referral Code')" />
+            
+                <x-input id="referral_code" class="block mt-1 w-full" type="text" name="referral_code" :value="old('referral_code')"  />
+            </div> 
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />

@@ -9,16 +9,16 @@
         ---------------------------*/
         var html5Slider = document.getElementById('priceFilter');
         noUiSlider.create(html5Slider, {
-            start: [100, 600],
+            start: [0, 10000],
             connect: true,
             step: 1,
             range: {
-                'min': 20,
-                'max': 1000
+                'min': 0,
+                'max': 100000
             }
         });
-        var inputNumber = document.getElementById('minNumber');
-        var inputNumber2 = document.getElementById('maxNumber');
+        var inputNumber = document.getElementById('maxNumber');
+        var inputNumber2 = document.getElementById('minNumber');
         html5Slider.noUiSlider.on('update', function (values, handle) {
 
             var value = values[handle];

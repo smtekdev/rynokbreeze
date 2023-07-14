@@ -91,7 +91,7 @@ width: 112%;
                                     </div>
                                 </div>
                                         
-                                <div class="col-xl-6 col-lg-7 col-md-6">
+                                <div class="col-xl-6 col-lg-7 col-md-6 MakeCenterIpad">
                                     <div class="part-txt">
                                         <h2 class="main-product-title">{{$product->title}}</h2>                                        
                                         <h2 class="main-product-price">{{$product->price}}$</h2>
@@ -114,10 +114,10 @@ width: 112%;
 
 <!-- Add to cart and add to wishlist button -->
 
-<div class="btn-box">
+<div class="btn-box IpadBtnSetting">
     <form action="{{ route('add-to-cart', $product->id) }}" method="POST" style="display: inline;">
         @csrf        
-        <div class="WrapCartBtn">
+        <div class="WrapCartBtn IpadCartBtnAdjust">
           <button type="button" onclick="decreaseQuantity()" class="BtnAdjust">-</button>
           <div class="InputWrapper">
           <input type="number" name="quantity" id="quantityInput" value="1" class="InputAdjust">
@@ -126,7 +126,7 @@ width: 112%;
         </div>
         <button type="submit" id="addToCart"><span><i class="fa-light fa-cart-shopping"></i></span> Add to Cart</button>
      </form>
-     <label class="QuantityLable">Select<br> Quantity</label>
+     <label class="QuantityLable IpadLabelSet">Select<br> Quantity</label>
     <form action="{{ route('add-to-wishlist', $product->id) }}" method="POST" style="display: inline;">
         @csrf
         <button type="submit" id="addToWishList" style="width: calc(121% - 10px);"><span><i class="fa-light fa-heart"></i></span> Add to Wishlist</button>

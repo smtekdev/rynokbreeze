@@ -480,7 +480,8 @@
     @include("products")
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class="panel-header mrtp">
+    
+<div class="panel-header mrtp">
         <div class="row align-items-center">
             <div class="col-lg-12 col-md-12 col-12" style="text-align: center;">
                 <h1 class="title" >Premium Vendors</h1>
@@ -494,12 +495,26 @@
         </div>
     </div>
     <div class="row vendor-grid">
+
+    <?php     
+    use App\Models\User;
+    $vendors = User::where('usertype', 2)->get();
+    $sortedVendors = $vendors->sortByDesc(function ($vendor) {
+        return $vendor->orders()->avg('rating');
+    })->take(3);
+    ?>
+
+
+
+    <!-- Vendor Cart Start -->
+
+    @foreach($sortedVendors as $vendor)
         <div class="col-lg-4 col-md-6 col-12 col-sm-6">
             <div class="vendor-wrap mb-40">
                 <div class="vendor-img-action-wrap">
                     <div class="vendor-img">
                         <a href="#">
-                            <img class="default-img" src="assets/images/fotor_2023-3-10_16_26_51.png" alt="">
+                            <img class="default-img" src="/avatars/{{ $vendor->avatar }}" alt="" style="width:152px; height:135px;border-radius: 50%;">
                         </a>
                     </div>
                     <div class="product-badges product-badges-position product-badges-mrg">
@@ -509,239 +524,32 @@
                 <div class="vendor-content-wrap">
                     <div class="d-flex justify-content-between align-items-end mb-30">
                         <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2012</span>
-                            </div>
-                            <h4 class="mb-5"><a href="{{route('ben-haul')}}">Ben Haul</a></h4>
+                            <h4 class="mb-5"><a href="#">{{ $vendor->name }}</a></h4>
                             <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
+                                <div class="product-rate d-inline-block" style="color:Golden">
+                                    Rating:                                    
                                 </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                <span class="font-small ml-5 text-muted"> ({{ number_format($vendor->orders()->avg('rating'), 1) }})</span>
+
                             </div>
                         </div>
                         <div class="mb-10">
-                            <span class="font-small total-product">380 products</span>
+                            <span class="font-small total-product">{{ $vendor->products->count() }} products</span>
                         </div>
                     </div>
                     <div class="vendor-info mb-30">
                         <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>{{ $vendor->address }}</span></li>
+                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
                         </ul>
                     </div>
-                    <a href="{{ route('ben-haul') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
+                    <a href="{{ url('single_vendor', $vendor->id) }}" class="btn btn-xs SetVisit">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
                 </div>
             </div>
         </div>
-        <!--end vendor card-->
-        <div class="col-lg-4 col-md-6 col-12 col-sm-6">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="#">
-                            <img class="default-img" src="assets/images/fotor_2023-3-10_16_34_59.png" alt="">
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <!-- <span class="best">Preferred</span> -->
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2019</span>
-                            </div>
-                            <h4 class="mb-5"><a href="{{ route('john-ceamus') }}">John Seamus</a></h4>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <span class="font-small total-product">18 products</span>
-                        </div>
-                    </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
-                        </ul>
-                    </div>
-                    <a href="{{ route('john-ceamus') }}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
-                </div>
-            </div>
-        </div>
-        
-        <!--end vendor card-->
-        <div class="col-lg-4 col-md-6 col-12 col-sm-6">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="#">
-                            <img class="default-img" src="assets/images/fotor_2023-3-10_16_39_5.png" alt="">
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <!-- <span class="hot">Mall</span> -->
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2012</span>
-                            </div>
-                            <h4 class="mb-5"><a href="#">Harry Donald</a></h4>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <span class="font-small total-product">63 products</span>
-                        </div>
-                    </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
-                        </ul>
-                    </div>
-                    <a href="{{route('harry-donald')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
-                </div>
-            </div>
-        </div>
-        <!--end vendor card-->
-    
-      
-        <div class="col-lg-4 col-md-6 col-12 col-sm-6">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="#">
-                            <img class="default-img" src="assets/images/pexels-joão-jesus-1080213-modified.png" alt="">
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <!-- <span class="hot">Mall</span> -->
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2012</span>
-                            </div>
-                            <h4 class="mb-5"><a href="#">Carter Grayson</a></h4>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <span class="font-small total-product">380 products</span>
-                        </div>
-                    </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
-                        </ul>
-                    </div>
-                    <a href="{{route('carter-grayson')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
-                </div>
-            </div>
-        </div>
-        <!--end vendor card-->
-        <div class="col-lg-4 col-md-6 col-12 col-sm-6">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="#">
-                            <img class="default-img" src="assets/images/pexels-andrea-piacquadio-3778133-modified.png" alt="">
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <!-- <span class="best">Preferred</span> -->
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2019</span>
-                            </div>
-                            <h4 class="mb-5"><a href="#">James Lincoln</a></h4>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <span class="font-small total-product">18 products</span>
-                        </div>
-                    </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
-                        </ul>
-                    </div>
-                    <a href="{{route('james-lincoln')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
-                </div>
-            </div>
-        </div>
-        <!--end vendor card-->
-        <div class="col-lg-4 col-md-6 col-12 col-sm-6">
-            <div class="vendor-wrap mb-40">
-                <div class="vendor-img-action-wrap">
-                    <div class="vendor-img">
-                        <a href="#">
-                            <img class="default-img" src="assets/images/pexels-pavel-danilyuk-7654586-modified.png" alt="">
-                        </a>
-                    </div>
-                    <div class="product-badges product-badges-position product-badges-mrg">
-                        <!-- <span class="hot">Mall</span> -->
-                    </div>
-                </div>
-                <div class="vendor-content-wrap">
-                    <div class="d-flex justify-content-between align-items-end mb-30">
-                        <div>
-                            <div class="product-category">
-                                <span class="text-muted">Since 2012</span>
-                            </div>
-                            <h4 class="mb-5"><a href="#">Robert Kane</a></h4>
-                            <div class="product-rate-cover">
-                                <div class="product-rate d-inline-block">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
-                                <span class="font-small ml-5 text-muted"> (4.0)</span>
-                            </div>
-                        </div>
-                        <div class="mb-10">
-                            <span class="font-small total-product">63 products</span>
-                        </div>
-                    </div>
-                    <div class="vendor-info mb-30">
-                        <ul class="contact-infor text-muted">
-                            <li><img src="assets/imgs/theme/icons/icon-location.svg" alt=""><strong>Address: </strong> <span>5171 W Campbell Ave undefined Kent, Utah 53127 United States</span></li>
-                            <li><img src="assets/imgs/theme/icons/icon-contact.svg" alt=""><strong>Call Us:</strong><span>(+1) - 540-025-124553</span></li>
-                        </ul>
-                    </div>
-                    <a href="{{route('robert-kane')}}" class="btn btn-xs StoreBtn">Visit Store <i class="fi-rs-arrow-small-right"></i></a>
-                </div>
-            </div>
-        </div>
+    @endforeach
+    <!--end vendor card-->
+
     </div>
 
         </div>

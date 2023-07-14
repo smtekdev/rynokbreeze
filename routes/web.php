@@ -39,6 +39,7 @@ Route::get('Add_new_vendor', [AdminController::class, 'Add_new_vendor'])->name('
 
 // Admin->E-commerce
 Route::get('apps_ecommerce', [AdminController::class, 'apps_ecommerce'])->name('apps_ecommerce');
+Route::get('feature_request', [AdminController::class, 'feature_request'])->name('feature_request');
 Route::get('apps_ecommerce_add_category', [AdminController::class, 'apps_ecommerce_add_category'])->name('apps_ecommerce_add_category');
 Route::get('apps_ecommerce_add_customer', [AdminController::class, 'apps_ecommerce_add_customer'])->name('apps_ecommerce_add_customer');
 Route::get('apps_ecommerce_add_product', [AdminController::class, 'apps_ecommerce_add_product'])->name('apps_ecommerce_add_product');
@@ -71,6 +72,7 @@ Route::get('/vendors', [AdminController::class, 'vendors'])->name('vendors');
 Route::get('/admin-dashboard', [AdminController::class, 'admin_dashboard'])->name('admin-dashboard');
 Route::get('/chart', [ChartController::class, 'show'])->name('chart');
 Route::get('/approveuser/{id}', [AdminController::class, 'approveUser']);
+Route::post('admin/featured/{id}', [AdminController::class, 'setFeatured'])->name('admin.featured');
 
 //Functions & Component
 route::get('/navbar', [HomeController::class, 'navbar'])->name('navbar');
@@ -146,6 +148,7 @@ Route::get('/login/google/callback', function () {$user = Socialite::driver('goo
 Route::get('/admin/orders/{orderId}/send-email', [AdminController::class, 'sendOrderConfirmationEmail']);
 Route::get('/aproducts/template', function () {return view('aproducts.template');})->name('aproducts.template');
 Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
+Route::get('/user/{id}/show', [HomeController::class, 'showVendor'])->name('showVendor');
 Route::get('/vendor/vendororders', [VendorController::class, 'vendorOrders'])->name('vendor.vendororders');
 Route::get('/vendor/editprofile', [VendorController::class, 'editprofile'])->name('vendor.editprofile');
 Route::post('/add-review/{id}', [HomeController::class, 'addReview'])->name('add-review');
@@ -194,16 +197,18 @@ Route::get('/coupons', [VendorController::class, 'coupons'])->name('vendor.coupo
 Route::delete('/coupons/{id}', '\App\Http\Controllers\VendorController@destroy')->name('coupons.destroy');
 Route::post('/coupons/apply', [VendorController::class, 'applyCoupon'])->name('apply_coupon');
 
-//Vendors (Static Vendor Pages)
+//Vendors (Vendor Pages)
 route::get('/ben-haul', [HomeController::class, 'ben_haul'])->name('ben-haul');
 route::get('/carter-grayson', [HomeController::class, 'carter_grayson'])->name('carter-grayson');
 route::get('/harry-donald', [HomeController::class, 'harry_donald'])->name('harry-donald');
 route::get('/james-lincoln', [HomeController::class, 'james_lincoln'])->name('james-lincoln');
 route::get('/john-ceamus', [HomeController::class, 'john_ceamus'])->name('john-ceamus');
 route::get('/robert-kane', [HomeController::class, 'robert_kane'])->name('robert-kane');
+route::get('/single_vendor/{id}', [HomeController::class, 'showVendor'])->name('single_vendor');
+
 
 // Payments
 Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
 Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
 
-
+// Redeem points

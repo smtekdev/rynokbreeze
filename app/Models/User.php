@@ -27,6 +27,8 @@ class User extends Authenticatable
         'cover_photo',
         'google_id',
         'usertype',
+        'referral_count',
+        'referral_code',
     ];
 
     /**
@@ -53,4 +55,18 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
+    public function products()
+    {  
+        return $this->hasMany(Products::class, 'user_name', 'name');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'seller_name', 'name');
+    }
 }

@@ -770,6 +770,9 @@ img {
   color: #222222;
   margin-bottom: 0;
 }
+.AdjustVendorProductPage{
+  width:132% !important;
+}
 .header-cart-wrap .cart-list .title button {
   width: 35px;
   height: 35px;
@@ -1960,8 +1963,7 @@ img {
   background-color: #f74258;
 }
 
-.header-banner-bg-wrapper {
-  /* background: url(../images/bg/banner-bg-index-7.jpg) no-repeat 50% 0; */
+.header-banner-bg-wrapper{
   background-size: cover;
 }
 
@@ -4930,7 +4932,7 @@ div.product-title a:hover {
   overflow: hidden;
   -webkit-animation: gridView 0.5s ease-in;
           animation: gridView 0.5s ease-in;
-          width: 33% !important;
+          /* width: 33% !important; */
 }
 @media screen and (max-width: 991px) {
   .single-product-card {
@@ -4978,8 +4980,7 @@ div.product-title a:hover {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
-  font-size: 20px;
-  font-weight: 600;
+          font-size: 14px;
 }
 .single-product-card.product-card-list .part-txt .dscr {
   -webkit-box-ordinal-group: 4;
@@ -5074,7 +5075,7 @@ div.product-title a:hover {
 }
 .single-product-card .part-txt .product-name {
   font-size: 18px;
-  line-height: 3.4;
+  line-height: 2;
   font-weight: 400;
   color: #000;
   margin-top: -5px;
@@ -12904,7 +12905,7 @@ div.product-title a:hover {
 
 @media screen and (max-width: 1399px) and (min-width: 1200px) {
   .container {
-    max-width: 1200px;
+    /* max-width: 1200px; */
   }
 }
 @media screen and (max-width: 1529px) and (min-width: 1200px) {
@@ -13057,7 +13058,7 @@ div.product-title a:hover {
   }
   .single-product-card .part-txt .product-name {
     font-size: 16px;
-  }
+  }  
   .single-product-card .cart-option ul li a {
     padding: 7px 10px;
   }
@@ -20364,6 +20365,53 @@ div.product-title a:hover {
     overflow-x: hidden;
     padding-bottom: 50px;
   }
+  .HamBurg{
+    display: inline !important;
+  }
+  .AdjustVendorProductPage {
+    width: 100% !important;
+    margin-top: 3rem !important;
+  }
+  .IpadImageSingleVendor{
+    width: 80% !important;
+  }
+  .background-image{
+    width: 358px !important;
+    height: 227px !important;
+  }
+  .MakeCenterIpad {
+    text-align: center !important;
+  }
+  .IpadBtnSetting{
+    margin-left: 10% !important;
+  }
+  .WrapCartBtn {
+    display: flex;
+    position: absolute;
+    width: 13% !important;
+    margin-left: 29% !important;
+    margin-top: 12% !important;
+  }
+  .InputWrapper {
+    text-align: center !important;
+    width: 90% !important;
+  }
+  .QuantityLable {
+    position: absolute;
+    margin-top: 24.5% !important;
+    font-size: 12px !important;
+    margin-left: 7rem !important;
+  }
+  .HideMobileList{
+    display: none !important;
+  }
+  .AdjustHamb{
+    position: absolute;
+    top: 5rem;
+    left: 0rem;
+    z-index: 9;
+    display: block;
+  }
   .flash-deal.flash-deal-2 .panel.panel-3 .col-md-4.col-6 {
     width: 100%;
     -webkit-box-flex: 0;
@@ -20670,7 +20718,11 @@ div.product-title a:hover {
   .vendor-wrap .vendor-img-action-wrap img {
     max-width: 144px;
     position: relative;
-    margin-left: 59%;
+    margin-left: 64%;
+  }
+  .SetVisit{
+    left: 36% !important;
+    position: relative !important;
   }
   .StoreBtn{
     margin-left: 38% !important;
@@ -20680,14 +20732,20 @@ div.product-title a:hover {
   }
   .LogoutMobile{
     position: absolute;
-    top: -20px;
-    right: 0%;
+    top: -18px;
+    right: 7%;
+  }
+  .setbtnlog{
+    font-size: 12px !important;
+    padding: 3px !important;
   }
   .TestAdjust{
     width: 370px !important;
   }
   .header-search{
-    margin:2%;
+    margin: 2%;
+    width: 75% !important;
+    margin-left: 5rem !important;
   }
   .header .bottom-header .header-search form .wrap {
     width: 100%;
@@ -22606,7 +22664,6 @@ div.product-title a:hover {
 }
 
 .btnst{
-  padding: 6px 14px !important;
   position: absolute;
   right: 2%;
   margin-top: -2.5%;
@@ -22684,11 +22741,47 @@ div.product-title a:hover {
     top: -4rem !important;
     right: 9%;
   }
+  .AdjustVendorProductPage {
+    width: 101% !important;
+  }
+  .IpadImageSingleVendor{
+    width: 55% !important;
+  }
+  .AdjustTopLogo{
+    margin-left: 6rem !important;
+  }
+  .header-search{
+    width: 71%;
+    margin-left: 5rem;
+  }
+  .AdjustHamb{
+    position: absolute !important;
+    margin-top: 8% !important;
+    z-index: 9 !important;
+    left: 6% !important;
+    display: block;
+  }
   .TabletTestAdjust{
     width: 318px;
   }
   .mrtp {
     margin-top: -75%;
+  }
+  .IpadBtnSetting {
+    margin-left: 2rem !important;
+  }
+  .IpadLabelSet {
+    font-size: 10px !important;
+  }
+  .IpadCartBtnAdjust {
+    margin-top: 6% !important;
+  }
+  .background-image{
+  width: 351px !important;
+  height: 300px !important;
+  }  
+  .MakeCenterIpad{
+    text-align: center;
   }
   .TestAdjust{
     width: 703px !important;
@@ -22798,4 +22891,16 @@ div.product-title a:hover {
     margin-left: 24% !important;
     }
 
+}
+
+
+
+@media only screen and (min-width: 992px) {
+  .HideMobileNav{
+    display: none !important;
+  }
+}
+
+.MrBtm{
+  margin-bottom: -0.2rem !important;
 }

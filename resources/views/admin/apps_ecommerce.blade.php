@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-5 text-sm-right text-center align-self-center">
                                             <div class="d-flex justify-content-sm-end justify-content-center contact-options">
-                                                <!-- <a href=""><button class="btn btn-primary btn-sm"><i class="las la-plus"></i> Add New Product</button></a> -->
+                                                <a href="{{route ('feature_request')}}"><button class="btn btn-primary btn-sm"><i class="las la-plus"></i>Feature Product Requests</button></a>
                                             </div>
                                         </div>
                                     </div>

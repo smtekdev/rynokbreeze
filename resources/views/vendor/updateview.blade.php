@@ -206,6 +206,24 @@
       <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Description</label>
       <input type="text" name="discription" value="{{$data->discription}}"  style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
     </div>
+
+    <div style="margin-bottom: 10px;">
+      <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">City</label>
+      <input type="text" name="location" value="{{$data->location}}"  style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Area</label>
+      <input type="text" name="Area" value="{{$data->town}}"  style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+
+    <div style="margin-bottom: 10px;">
+    <label for="checkboxField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Feature Request</label>
+    <input type="checkbox" name="featureRequest" value="1" {{$data->featured ? 'checked' : ''}}>
+    </div>
+
+
+
     <div style="margin-bottom: 10px;">
       <label for="inputField" style="display: block; font-size: 16px; font-weight: bold; margin-bottom: 5px;">Old Image</label>
       <img src="/product/{{$data->image}}" style="padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;">

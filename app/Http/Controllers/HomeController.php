@@ -7,6 +7,7 @@ use App\Models\Products;
 use App\Models\Carts;
 use App\Models\WishList;
 use App\Models\Order;
+use App\Models\User;
 use App\Mail\OrderMail;
 use App\Mail\OrderConfirmationMail;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +18,6 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
 
-    
 // Auth Validation
 
 public function redirects()
@@ -313,9 +313,20 @@ public function addcart(Request $request, $id)
         }
     }
 
+    // Create Dynamic Vendor Page
+
+    public function showVendor($id, $view = 'single_vendor')
+    {
+    $user = User::find($id);
+
+    if ($user) {
+        return view($view, compact('user'));
+    } else {
+        return redirect()->back()->with('error', 'User not found.');
+    }
+    }
 
 
-    
 
 //Functions & Component
 
@@ -405,5 +416,6 @@ public function addcart(Request $request, $id)
     public function james_lincoln(){return view("james-lincoln");}
     public function john_ceamus(){return view("john-ceamus");}
     public function robert_kane(){return view("robert-kane");}
+    public function single_vendor(){return view("single_vendor");}
    
 }

@@ -327,19 +327,29 @@ use Illuminate\Support\Facades\Session;
 <br>
 
 
-
 <?php
-    $egtotalPrice = $totalPrice;
-    $discountAmount = session('discountAmount') ?? 0;
-    if ($discountAmount > $egtotalPrice) {
-        $discountAmount = $egtotalPrice;
+$egtotalPrice = $totalPrice;
+$discountAmount = session('discountAmount') ?? 0;
+
+// Subtract the referral count discount if the user has a referral count
+if (auth()->check() && auth()->user()->referral_count > 0) {
+    $referralCount = auth()->user()->referral_count;
+    $referralDiscount = $referralCount * 10;
+
+    if ($referralDiscount > $egtotalPrice) {
+        $referralDiscount = $egtotalPrice;
     }
-    
-    $newTotalPrice = $egtotalPrice - floatval($discountAmount);
-    if ($newTotalPrice < 0) {
-        $newTotalPrice = 0;
-    }
+
+    $discountAmount += $referralDiscount;
+}
+
+$newTotalPrice = $egtotalPrice - floatval($discountAmount);
+if ($newTotalPrice < 0) {
+    $newTotalPrice = 0;
+}
 ?>
+
+
 
 <?php
 $newTotalPriceString = sprintf("%.2f", $newTotalPrice); // convert to string with 2 decimal places
@@ -377,9 +387,12 @@ $newTotalPriceNumeric = floatval($newTotalPriceString);
 @endif
 
 
-
 <div class="prices">            
-    Total: <span id="egtotalPrice">${{ $newTotalPrice }}</span>
+    Total:
+    <span id="egtotalPrice">${{ $newTotalPrice }}</span>
+    @if (auth()->check() && auth()->user()->referral_count > 0)
+    <br><span style="color: green;">(Referral discount: ${{ $referralDiscount }})</span>
+    @endif
 </div>
 
 </div>

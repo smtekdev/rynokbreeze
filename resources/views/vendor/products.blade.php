@@ -37,40 +37,49 @@
   </div>
 
   <div class="form-group">
+    <label for="description">City</label>
+    <input type="text" name="location" class="form-control" placeholder="City" required>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Area</label>
+    <input type="text" name="town" class="form-control" placeholder="Area" required>
+  </div>
+
+  <div class="form-group">
     <label for="category">Category</label>
     <select name="category" class="form-control" required>
       <option value="" disabled selected>Select a category</option>
-      <option value="Featured">Featured</option>
       <option value="Health & Beauty">Health & Beauty</option>
       <option value="Home Services">Home Services</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Sports">Sports</option>
-            <option value="Saloon & Spa">Saloon & Spa</option>
-            <option value="Food & Drink">Food & Drink</option>
-            <option value="Clothing">Clothing</option>
-            <option value="Home Appliances">Home Appliances</option>
-            <option value="Fun & Entertainment">Fun & Entertainment</option>
-            <option value="Sports & Fitness">Sports & Fitness</option>
-            <option value="Department Stores">Department Stores</option>
-            <option value="Home Appliances Aftermarket">Home Appliances Aftermarket</option>
-            <option value="Automotive">Automotive</option>
-            <option value="Furniture & Home decor">Furniture & Home decor</option>
-            <option value="Kids Entertainment">Kids Entertainment</option>
-            <option value="Rent a House / Room">Rent a House / Room</option>
-            <option value="Rent an Office">Rent an Office</option>
-            <option value="Buying & Selling">Buying & Selling</option>
-            <option value="Digital Services">Digital Services</option>
-            <option value="Beauty & Spa">Beauty & Spa</option>
-            <option value="Things to do">Things to do</option>
-            <option value="Restaurant">Restaurant</option>
-            <option value="Hotels & Travels">Hotels & Travels</option>
-            <option value="Health & Fitness">Health & Fitness</option>
-            <option value="Aromatherapy">Aromatherapy</option>
-            <option value="Medical Services">Medical Services</option>
-            <option value="Orthopaedic Therapy">Orthopaedic Therapy</option>
-            <option value="Dance Sessions">Dance Sessions</option>
-            <option value="Fitness Classes">Fitness Classes   </option>    
-            <!-- Add more category here -->
+      <option value="Fashion">Fashion</option>
+      <option value="Sports">Sports</option>
+      <option value="Saloon & Spa">Saloon & Spa</option>
+      <option value="Food & Drink">Food & Drink</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Home Appliances">Home Appliances</option>
+      <option value="Fun & Entertainment">Fun & Entertainment</option>
+      <option value="Sports & Fitness">Sports & Fitness</option>
+      <option value="Department Stores">Department Stores</option>
+      <option value="Home Appliances Aftermarket">Home Appliances Aftermarket</option>
+      <option value="Automotive">Automotive</option>
+      <option value="Furniture & Home decor">Furniture & Home decor</option>
+      <option value="Kids Entertainment">Kids Entertainment</option>
+      <option value="Rent a House / Room">Rent a House / Room</option>
+      <option value="Rent an Office">Rent an Office</option>
+      <option value="Buying & Selling">Buying & Selling</option>
+      <option value="Digital Services">Digital Services</option>
+      <option value="Beauty & Spa">Beauty & Spa</option>
+      <option value="Things to do">Things to do</option>
+      <option value="Restaurant">Restaurant</option>
+      <option value="Hotels & Travels">Hotels & Travels</option>
+      <option value="Health & Fitness">Health & Fitness</option>
+      <option value="Aromatherapy">Aromatherapy</option>
+      <option value="Medical Services">Medical Services</option>
+      <option value="Orthopaedic Therapy">Orthopaedic Therapy</option>
+      <option value="Dance Sessions">Dance Sessions</option>
+      <option value="Fitness Classes">Fitness Classes   </option>    
+      <!-- Add more category here -->
     </select>
   </div>
 

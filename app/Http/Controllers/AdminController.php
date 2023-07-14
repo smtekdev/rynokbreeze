@@ -46,10 +46,23 @@ class AdminController extends Controller
         $data->delete();
         return redirect()->back();
     }
+
+    // Feature Product
+    public function setFeatured($id)
+    {
+        $product = Products::find($id);
+        if ($product) {
+            $product->category = 'Featured';
+            $product->save();
+        }
+        return redirect()->back();
+    }
+
  
     // E-commerce
 
     public function apps_ecommerce(){return view("admin.apps_ecommerce");}
+    public function feature_request(){return view("admin.feature_request");}
     public function apps_ecommerce_add_category(){return view("admin.apps_ecommerce_add_category");}
     public function apps_ecommerce_add_customer(){return view("admin.apps_ecommerce_add_customer");}
     public function apps_ecommerce_add_product(){return view("admin.apps_ecommerce_add_product");}

@@ -21,6 +21,11 @@
     <link rel="stylesheet" href="assets/vendor/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/vendor/css/meanmenu.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .setbtnlog{
+        margin-right: 17rem !important;
+    }
+    </style>
 </head>
 
 <body class="inner">

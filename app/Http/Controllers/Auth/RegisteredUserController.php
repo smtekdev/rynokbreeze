@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
+
 
 class RegisteredUserController extends Controller
 {
@@ -38,8 +40,23 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => ['required', 'string'],
-            'address' => ['required', 'string']
+            'address' => ['required', 'string'],
+            'referral_code' => ['nullable', 'exists:users,referral_code'],
         ]);
+
+        $referralCode = $request->referral_code;
+
+        // Generate referral code
+        $userReferralCode = Str::random(8); 
+
+        if ($referralCode) {
+            $referrer = User::where('referral_code', $referralCode)->first();
+
+            if ($referrer) {
+                $referrer->increment('referral_count');
+                $userReferralCode =  Str::random(8); 
+            }
+        }
 
         $user = User::create([
             'name' => $request->name,
@@ -47,6 +64,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),            
             'phone' => $request->phone,
             'address' => $request->address,
+            'referral_code' => $userReferralCode, // Set the referral code for the new user
         ]);
 
         event(new Registered($user));
@@ -56,7 +74,9 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
+    // Redeem Points
     
+
     /**
      * Display the vendor registration view.
      *

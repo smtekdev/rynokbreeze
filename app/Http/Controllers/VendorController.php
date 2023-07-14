@@ -23,6 +23,8 @@ public function upload(Request $request)
     $product->title = $request->title;
     $product->price = $request->price;
     $product->description = $request->description;
+    $product->location = $request->location;
+    $product->town = $request->town;
     $product->category = $request->category;
     $product->user_name = Auth::user()->name; 
     $product->save();
@@ -66,7 +68,8 @@ public function upload(Request $request)
         $data->price = $request->filled('price') ? $request->price : $data->price;
         $data->discounted_price = $request->filled('discounted_price') ? $request->discounted_price : $data->discounted_price;
         $data->description = $request->filled('description') ? $request->description : $data->description;
-
+        $data->featureRequest = $request->has('featureRequest');
+        
         $data->save();
 
         return redirect()->back();
@@ -216,23 +219,25 @@ public function upload(Request $request)
     // Redeem Coupon Code
 
     public function applyCoupon(Request $request)
-{
-    $couponCode = $request->input('couponCode');
-    $coupon = Coupon::where('code', $couponCode)->first();
+    {
+       $couponCode = $request->input('couponCode');
+       $coupon = Coupon::where('code', $couponCode)->first();
 
-    if (!$coupon) {
-        return redirect()->back()->withErrors(['Invalid coupon code']);
+       if (!$coupon) {
+           return redirect()->back()->withErrors(['Invalid coupon code']);
+       }
+
+       // Store discount amount in session data
+       session(['discountAmount' => number_format($coupon->discount, 2)]);
+       return redirect()->back();
     }
 
-    // Store discount amount in session data
-    session(['discountAmount' => number_format($coupon->discount, 2)]);
+    public function vendorOrders(){return view('vendor.vendororders');}
+    public function editprofile(){return view('vendor.editprofile');}
 
-    return redirect()->back();
-}
 
-public function vendorOrders(){return view('vendor.vendororders');}
-public function editprofile(){return view('vendor.editprofile');}
 
+    
 }
 
 

@@ -256,11 +256,7 @@
                         <form method="POST" action="{{ route('user.profile.updateCoverPhoto') }}" enctype="multipart/form-data">
                            @csrf
 
-                           @if (session('success'))
-                               <div class="alert alert-success upsuccess" role="alert">
-                                   {{ session('success') }}
-                               </div>
-                           @endif
+                          
 
                            <div class="row mb-3">
                                <div class="col-md-6">
@@ -1301,6 +1297,12 @@
         // Submit the form
         form.submit();
     });
+</script>
+
+<script>
+   setTimeout(function() {
+     document.getElementById('success-message').style.display = 'none';
+   }, 4000);
 </script>
 
 

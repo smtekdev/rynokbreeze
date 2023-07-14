@@ -653,9 +653,14 @@ $product= App\Models\Products::all();
         <label for="address">Address:</label>
         <input type="address" name="address" id="address" class="form-control" value="{{ auth()->user()->address }}" readonly>
     </div>
-      <!-- <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </div> -->
+    <div class="form-group">
+        <label for="address">Referral Code</label>
+        <input type="referral_code" name="referral_code" id="address" class="form-control" value="{{ auth()->user()->referral_code }}" readonly>
+    </div>
+    <div class="form-group">
+        <label for="address">Referral Count</label>
+        <input type="referral_count" name="referral_count" id="address" class="form-control" value="{{ auth()->user()->referral_count }}" readonly>
+    </div>
 </form>
 
 
