@@ -153,6 +153,7 @@ Route::get('/vendor/vendororders', [VendorController::class, 'vendorOrders'])->n
 Route::get('/vendor/editprofile', [VendorController::class, 'editprofile'])->name('vendor.editprofile');
 Route::post('/add-review/{id}', [HomeController::class, 'addReview'])->name('add-review');
 
+
 // Profile Picture Upload
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('user.profile');
 Route::post('/profile', [App\Http\Controllers\ProfileController::class, 'store'])->name('user.profile.store');
@@ -210,5 +211,8 @@ route::get('/single_vendor/{id}', [HomeController::class, 'showVendor'])->name('
 // Payments
 Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
 Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
+
+
+
 
 // Redeem points

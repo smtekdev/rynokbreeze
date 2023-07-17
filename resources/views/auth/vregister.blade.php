@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="text-center" style="position: absolute;margin-left: -5%; margin-top: -3%;">
-                <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 25% !important;margin-left: -1%;">
+            <a href="/" class="text-center RegisterLogoSet">
+                <img src="assets/images/logos/logo-6.png" alt="logo" class="RegisterLogoWidth" style="max-width: 25%;margin-left: -1%;">
             </a>
         </x-slot>
 
@@ -10,7 +10,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <!-- Vendor Registration Form -->
-        <form method="POST" action="{{ route('vregister') }}" style="padding: 30% 0%;margin-top: -29%;">
+        <form method="POST" action="{{ route('vregister') }}" class="RegisterFormSet">
             @csrf
 
             <!-- Business Name -->
@@ -50,16 +50,16 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}" style="position:absolute; margin-top: 8%;margin-right: 10%;">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 AlreadyRegister" href="{{ route('login') }}" >
                     {{ __('Already registered?') }}
                 </a>
-                <x-button class="ml-4" style="background-color: #b43434; position: absolute;  margin-left: 13%;margin-top: 3%;margin-right: 11%;">
+                <x-button class="ml-4 RegisterBtn" >
                     {{ __('Register') }}
                 </x-button>
             </div>
 
             <div class="flex items-center center mt-4">
-                <a href="{{ route('register') }}" style="position: absolute; margin-left: 11.2%;margin-top: 9%;font-size:1.1rem;color:#0D7AD1;">
+                <a href="{{ route('register') }}" class="RegisterAsUser">
                     Register As User
                 </a>
             </div>

@@ -192,11 +192,11 @@ use Illuminate\Support\Facades\Session;
 <table style="border-collapse: collapse; width: 100%; height:100%; margin: 0 auto;">
   <thead>  
     <tr style="text-align: center;">      
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Product Name</th>
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Product Image</th>
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; width: 15%;">Seller</th>
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white; ">Price</th>
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white;">Quantity</th>
+      <th class="TableTh">Product Name</th>
+      <th class="TableThTwo">Product Image</th>
+      <th class="TableThTwo">Seller</th>
+      <th class="TableTh">Price</th>
+      <th class="TableTh">Quantity</th>
     </tr>  
   </thead>
   <tbody>
@@ -221,7 +221,7 @@ use Illuminate\Support\Facades\Session;
 
 
             <tr style="text-align: center;">
-                <td style="padding: 10px; border: 1px solid #ddd;height: 121px !important;">
+                <td class="ItemTitle">
                     {{ $item->title }}
                     <input type="hidden" name="productname[]" value="{{ $item->title }}">
                 </td>
@@ -232,17 +232,17 @@ use Illuminate\Support\Facades\Session;
                  </div>
                 </td>
 
-                <td style="padding: 10px; border: 1px solid #ddd; height: 121px !important; text-align: center; width: 11%;">
+                <td class="UserSet">
                     {{ $item->user_name }}
                         <input type="hidden" name="seller_name" value="{{ $item->user_name }}">
                 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; height: 121px !important; text-align: center; width: 11%;">
+                <td class="UserSet">
                     <div style="display: flex;margin-left: 36%;">
                     $<input type="number" name="price[]" value="{{ $item->discounted_price ?? $item->price }}" min="0">
                     </div>
                 </td>
 
-                <td style="padding: 10px; border: 1px solid #ddd;width: 11%; text-align: center;">
+                <td class="BottonSet">
                    <div class="WrapCartBtn">
                        <button type="button" onclick="decreaseQuantity({{ $item->id }})" class="BtnAdjust"><span class="SymbolControl">-</span></button>
                        <div class="InputWrapper">
@@ -260,7 +260,7 @@ use Illuminate\Support\Facades\Session;
     </table>
 
 
-    <button class="btn hidden-button" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-5%; display:none;">Confirm Order</button>
+    <button class="btn hidden-button customOrderBtn" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-5%; display:none;">Confirm Order</button>
     
 
 
@@ -299,16 +299,16 @@ use Illuminate\Support\Facades\Session;
 <table style="border-collapse: collapse; width: 12%; height:100%; margin: 0 auto;">
   <thead>
     <tr style="text-align: center;">
-      <th style="padding: 10px; background-color: #136ABF; border: 1px solid #ddd; color:white;">Action</th>
+      <th class="ActionSet">Action</th>
     </tr>  
   </thead>
   <tbody>
     @foreach($data2 as $data2) 
       <tr>
-        <td style="padding: 3px; border: 1px solid #ddd; text-align: center;height: 121px !important;">
+        <td class="RemoveSet">
           <form action="{{url('/remove' , $data2->id)}}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-warning">Remove</button>
+            <button type="submit" class="btn btn-warning RemoveBottonSet">Remove</button>
           </form>
         </td>
       </tr>
@@ -319,7 +319,7 @@ use Illuminate\Support\Facades\Session;
 </div>
 
 <!-- New button at the bottom -->
-<button class="btn new-btn" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-10%;">Confirm Order</button>
+<button class="btn new-btn ConfirmAdjust" type="button" id="order" style="background-color:#136ABF; color:white; margin-left: 49%; position: absolute; margin-top:-10%;">Confirm Order</button>
 
 
 <!-- Discount Coupon -->
@@ -734,6 +734,23 @@ function increaseQuantity(itemId) {
     }
 </script>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.customOrderBtn').on('click', function() {
+        var totalValue = $('#egtotalPrice').text().replace('$', '');
+
+        $('<input>').attr({
+            type: 'hidden',
+            name: 'total',
+            value: totalValue
+        }).appendTo('form');
+
+        $('form').submit();
+    });
+});
+</script>
 
 </body>
 

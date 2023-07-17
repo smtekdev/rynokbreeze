@@ -101,6 +101,7 @@ public function addcart(Request $request, $id)
         $validatedData = $request->validate([
             'productname.*' => 'required|string',
             'price.*' => 'required|numeric|min:0',
+            'total.*' => 'required|numeric|min:0',
             'quantity.*' => 'required|integer|min:1',
             'name' => 'nullable|string|max:255',
             'phone' => 'nullable|string|max:255',
@@ -122,7 +123,6 @@ public function addcart(Request $request, $id)
             $data->price = (int)$request->price[$key];
             $data->quantity = (int)$request->quantity[$key];   
             $data->image_url = $request->image_url[$key] ?? '';    
-            $data->image_url = $request->image_url[$key] ?? '';    
 
             $data->name = $request->name ?? '';
             $data->phone = $request->phone ?? '';
@@ -130,10 +130,15 @@ public function addcart(Request $request, $id)
 
             $data->user_id = $user_id;
 
+            $totalValue = $request->input('total');
+            $data->total = $totalValue;
 
             $data->save();
+
         }
     
+
+
 // Send email for orders those email have not sent
 
         $orderItems = Order::where('is_email_sent', false)->get();
@@ -149,7 +154,11 @@ public function addcart(Request $request, $id)
 
         // Clear the carts table
         Carts::truncate();
-        return redirect()->route('checkout.credit-card');
+        
+        return redirect()->route('checkout.credit-card')->with('total', $totalValue);
+
+
+
     }
 
 

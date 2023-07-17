@@ -1432,6 +1432,30 @@ select {
   --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.LoginLogo {
+  max-width: 16%;
+  margin-top: 13%;
+  margin-left: 43%;
+}
+.LoginH1{
+  font-size:2rem;
+   text-align:center;
+    margin-top: 23%;
+}
+.LoginFormAdjust{
+  padding: 30% 0%;
+  margin-top: -29%;
+}
+.AdjustForgetPassword{
+  position:absolute;
+   margin-top: 8%;
+   margin-left: 11%;
+}
+.LoginGoogleImageAdjust{
+  margin-left: 7em;
+  position: absolute;
+  margin-top: 5%;
+}
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
@@ -1467,6 +1491,13 @@ select {
 .ring-gray-300 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
+}
+.RegisterAsUser {
+  position: absolute;
+  margin-left: 11.9%;
+  margin-top: 9%;
+  font-size: 1.1rem;
+  color: #0D7AD1;
 }
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
@@ -1519,6 +1550,12 @@ select {
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.RegisterBtn {
+  background-color: #b43434;
+  position: absolute;
+  margin-top: 2%;
+  left: 45% !important;
 }
 .hover\:text-gray-700:hover {
   --tw-text-opacity: 1;
@@ -1843,8 +1880,265 @@ select {
     font-weight: bold;
     margin-left: 3%;
   }
-  
+  .RegisterLogoWidth{
+    max-width: 55% !important;
+    margin-left: -1%;
+  }
+  .RegisterLogoSet {
+    position: absolute;
+    margin-left: -18% !important;
+    margin-top: -1% !important;
+  }
+  .RegisterBtn {
+    background-color: #b43434;
+    position: absolute;
+    margin-top: 4% !important;
+    left: 32% !important;
+  }
+  .AlreadyRegister {
+    position: absolute;
+    margin-top: 18% !important;
+    margin-right: 29% !important;
+  } 
+  .RegisterAsVendor {
+    position: absolute;
+    margin-left: 25.2% !important;
+    margin-top: 19% !important;
+  }
+  .GoogleRegisterBtn {
+    margin-left: 5em !important;
+    position: absolute;
+    margin-top: 8% !important;
+  }
+  .RegisterAsUser {
+    position: absolute;
+    margin-left: 26.9%;
+    margin-top: 20%;
+    font-size: 1.1rem;
+    color: #0D7AD1;
+  }
+  .LoginLogo {
+    max-width: 40%;
+    margin-top: 1%;
+    margin-left: 34%;
+  }
+.LoginAdjustIpad {
+    background-color: #b43434;
+    position: absolute;
+    margin-left: 35%;
+    margin-top: -3%;
+  }
+  .AdjustForgetPassword {
+    position: absolute;
+    margin-top: 11%;
+    margin-left: 27%;
+  }
+  .LoginGoogleImageAdjust {
+    margin-left: 5em;
+    position: absolute;
+    margin-top: 5%;
+  }  
+  .LoginAdjustIpad {
+    background-color: #b43434;
+    position: absolute;
+    margin-left: 34% !important;
+    margin-top: -5% !important;
+  }
+}
+
+
+.LoginAdjustIpad{
+background-color: #b43434;
+position: absolute;
+margin-left: 13%;
+margin-top: 3%;
+}
+
+.RegisterLogoSet{
+position: absolute;
+margin-left: -5%;
+ margin-top: -3%;
+}
+
+
+.RegisterFormSet{
+  padding: 30% 0%;
+  margin-top: -23%;
+}
+
+.AlreadyRegister{
+position:absolute;
+margin-top: 8%;
+margin-right: 10%;
 }
 
 
 
+.RegisterAsVendor{
+position: absolute;
+margin-left: 10.2%;
+margin-top: 9%;
+font-size:1.1rem;
+color:#0D7AD1;
+}
+
+.GoogleRegisterBtn{
+margin-left: 7em;
+position: absolute;
+margin-top: 5%;
+}
+
+
+/* Boss Screen FHD*/
+@media only screen   
+and (min-width: 1370px)  
+and (max-width: 1920px)  
+{
+  .RegisterAsVendor {
+    margin-left: 4% !important;
+  }
+  .GoogleRegisterBtn {
+    margin-left: 3%;
+  }
+  .RegisterLogoSet {
+    position: absolute;
+    margin-left: -7%;
+    margin-top: -3%;
+  }
+  .GoogleRegisterBtn {
+    margin-left: 5%;
+  }
+  .RegisterAsVendor {
+    margin-left: 6% !important;
+  }
+  .AlreadyRegister {
+    position: absolute;
+    margin-top: 8%;
+    margin-right: 8%;
+  }
+  .RegisterBtn {
+    left: 46% !important;
+  }
+  .RegisterAsUser {
+    position: absolute;
+    margin-left: 6.4%;
+    margin-top: 9%;
+    font-size: 1.1rem;
+    color: #0D7AD1;
+  }
+  .LoginAdjustIpad {
+    background-color: #b43434;
+    position: absolute;
+    margin-left: 9%;
+    margin-top: 0%;
+  }
+  .AdjustForgetPassword {
+    position: absolute;
+    margin-top: 4%;
+    margin-left: 7%;
+  }
+  .LoginGoogleImageAdjust {
+    margin-left: 7em;
+    position: absolute;
+    margin-top: 2%;
+  }
+  .LoginLogo {
+    max-width: 16%;
+    margin-top: -5%;
+    margin-left: 43%;
+  }
+}  
+
+
+/* Laptop */
+@media only screen   
+and (min-device-width : 768px)   
+and (max-device-width : 1366px)  
+{
+  .RegisterLogoSet{
+     margin-top: 1%;
+    }
+    .RegisterAsUser {
+      position: absolute;
+      margin-left: 9.9%;
+      margin-top: 9%;
+      font-size: 1.1rem;
+      color: #0D7AD1;
+  }
+  .LoginAdjustIpad {
+    background-color: #b43434;
+    position: absolute;
+    margin-left: 11%;
+    margin-top: 0%;
+  }
+  .AdjustForgetPassword {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 9%;
+  }
+.LoginGoogleImageAdjust {
+    margin-left: 6em;
+    position: absolute;
+    margin-top: 2%;
+  }  
+}  
+
+
+/* ipad */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+
+  .RegisterLogoSet {
+    margin-top: 1%;
+    margin-left: -7%;
+  }
+  .RegisterBtn {
+    left: 43% !important;
+  }
+  .AlreadyRegister {
+    position: absolute;
+    margin-top: 11%;
+    margin-right: 16%;
+  }
+  .RegisterAsVendor {
+    position: absolute;
+    margin-left: 19.2%;
+    margin-top: 12%;
+    font-size: 1.1rem;
+    color: #0D7AD1;
+  }
+  .GoogleRegisterBtn {
+    margin-left: 8em;
+    position: absolute;
+    margin-top: 7%;
+  }
+  .RegisterAsUser {
+    position: absolute;
+    margin-left: 19.9%;
+    margin-top: 12%;
+    font-size: 1.1rem;
+    color: #0D7AD1;
+  }
+.LoginAdjustIpad {
+    background-color: #b43434;
+    position: absolute;
+    margin-left: 21%;
+    margin-top: -3%;
+  }
+  .AdjustForgetPassword {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 17%;
+  }
+  .LoginGoogleImageAdjust {
+    margin-left: 7em;
+    position: absolute;
+    margin-top: 3%;
+  }
+  .LoginLogo {
+    max-width: 16%;
+    margin-top: -5%;
+    margin-left: 43%;
+  }
+
+  }

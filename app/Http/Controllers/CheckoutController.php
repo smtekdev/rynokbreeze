@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function checkout()
+    public function checkout(Request $request)
     {
     // Enter Your Stripe Secret
     \Stripe\Stripe::setApiKey('sk_test_51NIAIxB5vlQfw5KsXvPxRiagZ3aqGQyECC6rOllCLXgyPsRveeCZXUl3bixD1vgrcAuLMB3FEF6jzE3g0Ibsx7DS00HfxrGhK6');
@@ -32,7 +32,9 @@ class CheckoutController extends Controller
     ]);
     $intent = $payment_intent->client_secret;
 
-    return view('checkout.credit-card', compact('intent', 'effort'));
+    $total = $request->session()->get('total');
+
+    return view('checkout.credit-card', compact('intent', 'total'));
     }
 
 

@@ -236,7 +236,19 @@ img {
   padding-top: 60px;
   padding-bottom: 60px;
 }
-
+.TableTh{
+  padding: 10px;
+  background-color: #136ABF;
+  border: 1px solid #ddd;
+  color:white;
+  }
+  .TableThTwo{
+    padding: 10px;
+    background-color: #136ABF;
+    border: 1px solid #ddd;
+    color:white;
+    width: 15%;
+  }
 .pt-60 {
   padding-top: 60px;
 }
@@ -439,7 +451,36 @@ img {
           box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.1);
   border-color: transparent;
 }
-
+.ItemTitle{
+ padding: 10px;
+ border: 1px solid #ddd;
+ height: 121px !important;
+}
+.UserSet{
+  padding: 10px;
+  border: 1px solid #ddd;
+  height: 121px !important;
+  text-align: center;
+  width: 11%;
+}
+.BottonSet{
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 11%;
+  text-align: center;
+}
+.ActionSet{
+  padding: 10px;
+  background-color: #136ABF;
+  border: 1px solid #ddd;
+  color:white;
+}
+.RemoveSet{
+  padding: 3px;
+  border: 1px solid #ddd;
+  text-align: center;
+  height: 121px !important;
+}
 .month-picker-month-table {
   width: 100%;
 }
@@ -20368,12 +20409,38 @@ div.product-title a:hover {
   .HamBurg{
     display: inline !important;
   }
+  .totalWrapper {
+    position: absolute;
+    margin-left: -27% !important;
+    width: 171% !important;
+    font-size: 12px !important;
+    margin-top: 13% !important;
+  }
+  .prices {
+    font-size: 13px !important;
+  }
+  .ConfirmAdjust{
+    background-color: #136ABF;
+    color: white;
+    margin-left: 37% !important;
+    position: absolute;
+    margin-top: -13% !important;
+  }
   .AdjustVendorProductPage {
     width: 100% !important;
     margin-top: 3rem !important;
   }
+  .ItemTitle {
+    font-size: 12px !important;
+  }
+  .UserSet {
+    font-size: 12px !important;
+  }
   .IpadImageSingleVendor{
     width: 80% !important;
+  }
+  .cartalign {
+    margin-top: 16% !important;
   }
   .background-image{
     width: 358px !important;
@@ -20385,16 +20452,36 @@ div.product-title a:hover {
   .IpadBtnSetting{
     margin-left: 10% !important;
   }
+  .TableTh{
+    font-size: 12px !important;
+  }
+  .TableThTwo{
+      font-size: 12px !important;
+  }
+  .image-wrapper {
+    width: 5rem !important;
+    height: 5rem !important;
+    overflow: hidden;
+  }
   .WrapCartBtn {
     display: flex;
     position: absolute;
     width: 13% !important;
-    margin-left: 29% !important;
-    margin-top: 12% !important;
+    margin-left: 0% !important;
+    margin-top: -6% !important;
   }
   .InputWrapper {
     text-align: center !important;
     width: 90% !important;
+  }
+  .ActionSet {
+    font-size: 12px !important;
+    height: 57px !important;
+  }
+  .RemoveBottonSet {
+    font-size: 10px !important;
+    width: 94% !important;
+    margin-left: -3% !important;
   }
   .QuantityLable {
     position: absolute;
@@ -20404,6 +20491,9 @@ div.product-title a:hover {
   }
   .HideMobileList{
     display: none !important;
+  }
+  .UserSet {
+    padding: 0px !important;
   }
   .AdjustHamb{
     position: absolute;
@@ -22740,13 +22830,34 @@ div.product-title a:hover {
     position: absolute;
     top: -4rem !important;
     right: 9%;
+  }  
+  .InputWrapper {
+    margin-top: 31% !important;
   }
   .AdjustVendorProductPage {
     width: 101% !important;
   }
+  .WrapCartBtn {
+    width: 82% !important;
+  }
   .IpadImageSingleVendor{
     width: 55% !important;
   }
+  .ConfirmAdjust{
+    background-color: #136ABF;
+    color: white;
+    margin-left: 46% !important;
+    position: absolute;
+    margin-top: -13% !important;
+  }
+  .ConfirmAdjust{
+    background-color: #136ABF;
+    color: white;
+    margin-left: 38% !important;
+    position: absolute;
+    margin-top: -10% !important;
+    font-size: 12px !important;
+  }  
   .AdjustTopLogo{
     margin-left: 6rem !important;
   }
@@ -22760,6 +22871,12 @@ div.product-title a:hover {
     z-index: 9 !important;
     left: 6% !important;
     display: block;
+  }
+  .totalWrapper {
+    position: absolute;
+    margin-left: -11% !important;
+    width: 120% !important;
+    margin-top: 3% !important;
   }
   .TabletTestAdjust{
     width: 318px;

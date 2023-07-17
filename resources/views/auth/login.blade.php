@@ -9,8 +9,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="text-center" style="position: absolute;margin-left: -5%; margin-top: -3%;">
-            <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 25% !important;margin-top: 13%;margin-left: -1%;">
+            <a href="/" class="text-center">
+            <img src="assets/images/logos/logo-6.png" alt="logo" class="LoginLogo">
             </a>
         </x-slot>
 
@@ -20,10 +20,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4 adjst" :errors="$errors" />
 
-        <h1 style="font-size:2rem; text-align:center; margin-top: 23%;">Login</h1><br>
+        <h1 class="LoginH1">Login</h1><br>
         <p>Don't have an account? <a href="{{ route('register') }}">Create here</a></p><br>
 
-        <form method="POST" action="{{ route('login') }}" style="padding: 30% 0%;margin-top: -29%;">
+        <form method="POST" action="{{ route('login') }}" class="LoginFormAdjust">
             @csrf
 
             <!-- Email Address -->
@@ -48,19 +48,19 @@
 
             <div class="flex items-center center mt-10">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}" style="position:absolute; margin-top: 8%;margin-left: 11%;">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 AdjustForgetPassword" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
-                <x-button class="ml-3" style="background-color: #b43434; position: absolute;  margin-left: 13%;margin-top: 3%;">
+                <x-button class="ml-3 LoginAdjustIpad">
                     {{ __('Log in') }}
                 </x-button>
             </div>
 
             <div class="flex items-center center mt-4">
                 <a href="{{ route('login.google') }}">
-                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 7em;position: absolute;margin-top: 5%;">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" class="LoginGoogleImageAdjust">
                 </a>
             </div>
 

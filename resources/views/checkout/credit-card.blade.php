@@ -27,7 +27,6 @@
 
     @php
     $stripe_key = 'pk_test_51NIAIxB5vlQfw5Ks79xOflDSnsKA2taR1TTDJPq8BOThrsvizTugvlW96D9olSRAdaPCoN8vOrlrOckb3x2HoTcB00Cv32Kpn2';
-    $totalPrice = session('totalPrice');
     @endphp
 
 <div class="vendorlg">
@@ -52,9 +51,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="">
-                
-
-                    <p>Your Total Amount is ${{ session('totalPrice') }} </p>
+                    <p>Your Total Amount is ${{ $total }}</p>
                 </div>
                 <div class="card">
                     <form action="{{route('checkout.credit-card')}}"  method="post" id="payment-form">

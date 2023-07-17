@@ -1,256 +1,4 @@
-Steps Taken:
-
-1st June: 
-
-1- Installed project.
-2- Copied public folder and pasted. 
-3- Pasted views files inside view.
-4- Make Controller (Home, Admin, User & Vendor).
-5- After setup the project we replace welcome to index view. 
-6- We were getting error of app-layout issue which was due to app-layout was been called in the index.blade.php file (in the preview project) so after remove it error gone.
-7- There were few other errors for variable which were used for products,add to carts and some other function including user auth etc. so we remove all of such things from index.blade.php and also from navbar.blade.php component.
-8- Now we are going to install Breeze.
-9- Run command: composer require laravel/breeze --dev
-10- run command: php artisan breeze:install
-when we run above command default there will be new controller inside controllers by folder name Auth and also there will be new migration files. 
-11- I removed node.js version and installed old version v16.13.0
-12- run command: npm install
-13- run command: npm run dev
-14- We were gtting layout issue that for we run commmand (for run this command we shall run migration before): composer require laravel/breeze:1.9.2
-15- Then run Command:  php artisan breeze:install
-16- Then Run command: npm install
-17- Then run command: npm run dev
-18- Customized Login Page. 
-
-2nd June: 
-19- Customized register page. 
-20- Properly arranged function on the HomeController and AdminController also commented according to the category.
-
-5th June:
-21- Properly arranged Web.php all routes and commented according to the category. 
-22- User Auth Work in progress. 
-
-6th June: 
-23- Auth is working now and users are able to login according to the usertype i.e. vendor or user etc.
-24- Start work on Vendor Dashboard. 
-25- Craete product model and migration. 
-26- Created carts model and migration. 
-27- Created Wishlist model and migration. 
-28- Created Order table and migration.
-29- Created Image controller for uploading profile image. 
-30- Created profile controller for editing profile and other profile related functions. 
-31- Added routes for Add to cart, Add wishlist, Confirmorder, delete order, remove from cart, remove from wishlist and also activated functions for this in the related controller and web.php.
-
-7th June:
-32- Activated cart and wishlist functionality on the github related project. 
-33- Replaced featured products with original layout.
-
-8th June:
-34- Logout option and user info area showing next add to cart. 
-35- Dashboard route to redirect at user-dashboard when click on dashboard at homepage. 
-36- Added navbar at user-dashboard. 
-37- Fied error for : Unable to utilize logo for coming at home page because of redirects route is not working to bring user/vendor at related homepage.  By giving login route as it's use logic if user is login it'll redirect to concern page. 
-38- Fixed error for: no user id assigned after logout by adding code for check if user id assigned or not logic. 
-39- Without login when click on add to cart on product it'll bring at login page. 
-40- Added navbar and footer at add cart and add wishlist pages. 
-41- Forget password. (Updated .env file with my mailtrap so will get reset password link on my mail trap id with user id). 
-42- Fixed profile picture upload and get in the user dashboard. By adding code: 'avatar', in the user model.
-43- Confirm Order was giving error for quantity is 0 not acceptable so gave default quantity as one. 
-44- Get and show loged in user name and id at user/vendor dashboard. 
-45- Add to cart/wishlist error fixed for always adding same product even when adding other. 
-46- Created function for when user confirm order cart page should come empty.
-
-47- Login with Google ID. (Followed chatGPT guide and updated old project of jetstraem according to breeze and it's working now).
-A- Ran command for google login: composer require laravel/socialite 
-B- From  google client id and secret copied the Credentials (in client id inside the google app account).
-C- Updated code in the services (config) file and also updated migration, user (model) and web.php file
-D- Create/Edit GoogleController.php. And login.blade.php file was already updated with the view related to google login so as now not updated there just added related route. 
-
-48- Getting confirmed order details at user dashboard.
-49- Order confirmation email. 
- 
-9th June:
-
-50- Cart quantity Increment and Decrement function. (getting wrong quantity)
-51- Added logic for delete user and vendor and not allowed to delete admin id. 
-52- Created seperate blade (view) files for users and vendor (before all were in one) with function to show only related data on each view. 
-53- For admin Edit profile (with image change, edit password and other profile update functions). 
-54- For Vendor getting real numbers/count of orders (from backend) and products at below icons below. 
-55- For User getting real numbers/count of orders and wishlist (from backend) below dashboard icons. 
-
-10th June:
-
-56- Order Delivery status function. (in progress)
-57- Fixed error for: order email was getting all old order data in the order confirmation email. Added boolean data column in the order table at backend. 
-58- Arranged routes and commented all uncommented functions.
-59- Fixed missing routes at home page. 
-
-12th June: 
-
-60- Dynamically create a new view blade file of each product(one single product page code to render each product).
-
-A- Created a view file name edit.blade.php
-B- Define Route: Route::get('/product/{id}/edit', [HomeController::class, 'show'])->name('edit');
-C- In HomeController craeted function: 
-public function show($id)
-    {
-        $product = Products::find($id);
-
-        if ($product) {
-            return view('edit', compact('product'));
-        } else {
-            return redirect()->back()->with('error', 'Product not found.');
-        }
-    }
-
-61- Created functionality for add to cart and add to wishlist for single product page (which are creating dynamically)  
-62- Vendor delivery status update to be show at User and Admin dashboard. 
-
-63- Stripe Payment Deployment. 
-
-A- Install Composer: Command - composer require stripe/stripe-php
-B- Create Controller: CheckoutController.
-C- Updated Routes: 
-Route::get('checkout','App\Http\Controllers\CheckoutController@checkout');
-Route::post('checkout','App\Http\Controllers\CheckoutController@afterpayment')->name('checkout.credit-card');
-D- Updated controller and created blade file checkout.credit-card
-
-64- Send order delivery status email to the user when vendor update (In progress).
-
-13th June: 
-65- Live order count update at Admin DB. 
-66- Adjusted HTML Homepage view of Admin DB as per actual Admin DB. 
-
-14th June: 
-67- Product Edit function for vendor. 
-68- Fixed error: Call to a member function getClientOriginalExtension() on null. It was coming when not uploading image while updating price or other product info. Added login in the function to fix it. 
-69- Added product price discount option for vendor and store it at backend. 
-70- Added logics and function to display the discount price at front end. 
-81- Added function to get/check discount price and get price accordingly in the cart. 
-82- Fixed error of product price wasn't coming at backend when order was submitting. In showcart blade file the value was hidden which was causing this issue. 
-
-15th June: 
-83- Fixed error for getting wrong quantity and price at backend.   (using fake filler was issue , also followe AI recomeneded method to fix price and quantity values were not being passed correctly to the orderconfirm function)
-84- Applied discount function at Wishlist. 
-85- Added logic if order deliver then user can't cancel the order. 
-86- Added refund order function for user. 
-87- Total cart items price calculation function. 
-88- Fuction to create discount coupon code for vendor. 
-89- Retrive Discount Coupon Code from backend to show at vendor dashboard. 
-
-16th June: 
-90- Added coupon delete function for vendor. 
-91- Apply discount coupon at user checkout. 
-92- Show discount coupons at Admin Dashboard. 
-93- Restrict admin from canceling order if order delivered by vendor. 
-94- Added function for admin to Initiate refund request. 
-95- Added Refund status column with getting data from backend at Vendor Dashboard. 
-96- Admin Dashboard live count update with number of pending,delivered and total orders. 
-97- Admin Dashboard Order Graph with live count update. 
-98- Vendor Dashboard Order Graph with live count update. 
-
-17th June:
-99- Show product image on cart and wishlist page.
-100- Fixed user Dashboard Layout issue.
-101- Fixed all pages title and favicon.
-
-19th June:
-102- Fixed Layout issues for Vendor Dashboard (Products, Orders View and profile page).
-103- Fixed Layout issues for product image at feature product area.
-
-20th June: 
-104- Fixed layout of Admin Dashboard. 
-105- Added Phone and Address at Registration form with Backend functionality.
-106- Dynamically resize image for Single Product pages. 
-107- Dynamically resize image for profile image (User, Vendor and Admin all Dashboards). 
-108- Fixed layout for Cart and Wishlist pages. 
-
-21st June: 
-109- Fixed error of Order Delivery Status update for vendor dashboard(It was updating all orders instead of specific order id).
-110- Added Pending and Deliver Order live count at vendor Dashboard. 
-111- Added function for user to submit rating of delivered product.
-112- Retrieve product rating at user dashboard (which submited by the users). 
-113- Restrict user from rewritting rating. 
-114- Rating at front end (Featured Products Area). (This all code done at products.blade.php file by join method for tables of ordes and products)
-115- Dynamilcally Rating stars (according to live average rating) at front end (Featured Products Area).  (This all code done at products.blade.php file by join method for tables of ordes and products)
-116- Fixed error of not showing cart and wishlist count on navbar for inner pages by using Laravel's session.
-
-22nd June: 
-117- Fixed error for negative total price if coupon amount is more then total amount. 
-118- Strip integration with live total price, Before stripe was working on fixed static price. (In Progress)(If I write manually then it's get the value and auto not get value. Three files to work showcart, Checkoutcontroller & credit-.blade.php file)
-119- Rendering sub category pages with related products (In Prgoress)
-
-23rd June:
-120- Dynamically upload product in the specific category.  ( I am using products.blade.php file which is related to vendor)	
-121- Dynamically show Related product on each category pages with functionality of add cart/wishlist,rating and rendering these product at single product page and also fixed layout issues. (Products has been uploaded related to 12 out of 30 category pages).
-
-24th June: 
-122- Uploaded remaining porodcut in concern categories. 
-123- Welcome message with user name with the timer on all dashboards.
-124- Fix vendor logout layout.
-125- Cancel order count with icon on the user dashboard
-
-26th June:
-126- Favicon changed for login page of breeze at file \resources\views\layouts\guest.blade.php by adding code <link rel="icon" href="{{ asset('assets/images/favicon.png') }}">
-127- Customized error message at resources\views\components\auth-validation-errors.blade.php.
-128- Pop-up msg on successful payment on the same payment page instead of going at next page.
-129- To get product image when confirming order then retrieve at orders. Ran comman of ALTER TABLE orders ADD COLUMN image_url VARCHAR(255) AFTER quantity; insde myphpadmin to have this table. 
-130- First created function to get image url in the cart then created function to take this image url code into order table then created function to show this product image at orders history. 
-131. Products picture in user dashboard at orders list.
-132. Products picture in vendor & Admin dashboard of orderds.
-133. Fix login error msg on bottom of the field (At time of login in case of wrong login info).
-134. Disable edit option on user profile info & put condition on edit user information to allow seperate info update instead of all together.
-135. Change the option of user and vendor picture profile upload to one click instead of two.
-136. Add cover picture functionality on vendor dashboard with storing at backend. 
-137. Fix layout of wish list and fix the graph of auto detect quantity of wishlist count.
-
-27th June: 
-138- There was CSS clash coming due of navbar with user-dashboard that for removed navbar from user-dashboard. 
-139- Show pending orders as Pending instead of empty area at order history table of User and Admin. 
-140- Order Delivery time at User and Admin dashboard.
-141- Put Order confirm button at bottom. (I created a new independent button at buttom of showcart page which will trigger original button which I couldn't align and make this old button hidden)
-142- Add filter to search product by price (used JS)
-
-28th June:
-143- Added function to increase/decrease quantity with backend function to store this quantity. 
-144- Added function to increase/decrease quantity at Cart View page. 
-145- Craeted vendor registration blade view file. 
-146- Created function, route and assigned it value for vendor usertype 2 when user register via vendor registeration form. ( Need to take care of two things one is the migration file must shall have usertype and second the model which should must have usertype fillable)
-147- Created function to check if user approved or not approved. Allow to proceed further to login dashboard only for status with approve vendor.
-
-1st July:
-148- Admin Give approval for vendor. (First I created new form which will register vendor and whenever user register via this form he'll get usertype of 2 and then he'll redirect at new created view file named custom where he'll see message that user should wait tille admin approval for this vendor and he have only option to logout, Then I added one new column at backend table of users by name of status where have two things waiting and approved and in the admin vendor view file i craeted new row/column where admin can click on approve so when admin approve it then vendor can login. (Worked at web.php, vendor.blade.php, customer.blade.php, HomeCotnroller & AdminController)
-149- Logout/kill session when close all tabs by user due of chrome issue some time not work on chrome. (go to config\session.php  and change 'expire_on_close' => true, )
-
-3rd July:
-150- Added new column and configure it at product table to handle the vendor name who is uploading the product and store vendor name at backend. 
-151- Show vendor names at each product at Admin panel.
-152- Show vendor name at cart page and store vendor name when confirming order (at backend).
-153- Show vendor names at user dashboard (order history section).
-154- Added function to filter products by vendor name (for user)at products page.(checkbox). (Achieved via JS)
-
-4th July:
-155- Restrict Vendors to only see own products instead of all.
-156- Updated code of Product, Orders, Delivered Orders and Pending Orders count at vendor dashboard to count only related to login vendor. 
-157- Updated graph function at vendor dashboard to show graph only related to login vendor data.
-158- Updated code at user dashboard for Total Orders, Delivered Orders, Pending Orders, Cancelled Orders and Wishlist Items count to show only related to login user. 
-159- Updated code at user dashboard Order Table to only show orders which belong to loged in user. 
-160- Fixed issue of cart total price wasn't increasing when more product quantity were added at cart page. 
-
-6th July:
-161- Landing Page mobile and ipad responsive.
-
-7th July:
-162- User Dashboard ipad and mobile responsive.
-163- Vendor Dashboard ipad and mobile responsive.
-164- Admin Dashboard ipad responsive. 
-
-8th July:
-01- Admin Dashboard mobile resposive. 
-02- Made list of all remaining functionalities. 
-03- Made list of all working functionalities. 
-
-8th July
+17th July
 
 Steps Taken: 
 
@@ -500,7 +248,55 @@ D- Updated controller and created blade file checkout.credit-card
 164- Admin Dashboard ipad responsive. 
 
 8th July:
-01- Admin Dashboard mobile resposive. 
-02- Made list of all remaining functionalities. 
-03- Made list of all working functionalities. 
+165- Admin Dashboard mobile resposive. 
+166- Made list of all remaining functionalities. 
+167- Made list of all working functionalities. 
+168- Hamburger For Mobile and ipad (In Progress). Need to give route names and adjust all the way at ipad and mobile. 
+169- Push code at GitHub. 
 
+10th July: 
+170- Added column of referral_code & referral_count for user referral system via migration file. 
+171- Created function in RegisteredUserController.php to create and store referral_code when new user register. 
+172- At user profile called referral_code so it's visible now at front end at user dashboard so user can copy and share this code. 
+173- Create function to update count of referral for old (code generator user) when new user register via using his code.
+174- Retrieve count at user dashboard so user can see how many users used his referral code. 
+175- Added redeem function of that referral. It'll work at checkout (confirm order) and it'll also show the amount user getting discount for referral. One referral get one point and one point equal to 10$ discount. 
+176- For referral function I worked on RegisteredUserController.php, Register.blade.php, showcart.blade.php, user-dashboard.blade.php & also created new migration to add two column of referral_count & referral_code.
+177- Created Ham Burger (Navbar for ipad and mobile).
+178- Created Function for the Vendor to raise request to feature the product.
+
+11th July: 
+179- Create functionality for admin to see feature product request and approve it after that product will show at feature product section at landing page. 
+180- Dynamically render all vendors data (Before it was static data at landing page). 
+181- Dynamically show real top vendors, Whos rating is more good to be first/top of the list. 
+
+12th July:
+182- Activate list view on products page. 
+183- Added functionality of Price Range Slider.
+
+13th July:
+184- Created function to generate url to render dynamically vendor page. 
+
+14th July:
+185- Retrieve vendor related  products on Single Vendor Page with functionality of add to cart/wishlist.
+186- Updated code in view file to mention location(city) while uploading product. 
+187- Updated code at controller and Migration file to store uploade product location at backend. 
+188- Updated view files to retrieve location from backend. 
+189- Updated code in view file to mention area while uploading product. 
+190- Updated view files to retrieve area address from backend. 
+191- Single Product page iPad responsive. 
+192- Single Product page Mobile responsive. 
+193- Seller page iPad responsive.
+194- Seller page Mobile responsive.
+
+17th July:
+01- Register page FHD Screen responsive. 
+02- Register page ipad Screen responsive. 
+03- Register page mobile Screen responsive. 
+04- Vendor Register page FHD Screen responsive. 
+05- Vendor Register page ipad Screen responsive. 
+06- Vendor Register page mobile Screen responsive. 
+07- Login page ipad responsive. 
+08- Login page mobile responsive. 
+09- Created column in orders table and function to store total amount of order. 
+10- Retrieve total order amount at stripe payment page (before it was static amount). 

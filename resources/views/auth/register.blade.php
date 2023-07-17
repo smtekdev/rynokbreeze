@@ -1,8 +1,8 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/" class="text-center" style="position: absolute;margin-left: -5%; margin-top: -3%;">
-            <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 25% !important;margin-left: -1%;">
+            <a href="/" class="text-center RegisterLogoSet">
+            <img src="assets/images/logos/logo-6.png" alt="logo" style="max-width: 25%;margin-left: -1%;" class="RegisterLogoWidth">
             </a>
         </x-slot>
 
@@ -10,7 +10,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}" style="padding: 30% 0%;margin-top: -29%;">
+        <form method="POST" action="{{ route('register') }}" class="RegisterFormSet">
             @csrf
 
             <!-- Name -->
@@ -68,24 +68,24 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}"  style="position:absolute; margin-top: 8%;margin-right: 10%;">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 AlreadyRegister" href="{{ route('login') }}"  >
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4" style="background-color: #b43434; position: absolute;  margin-left: 13%;margin-top: 3%;margin-right: 11%;">
+                <x-button class="ml-4 RegisterBtn" >
                     {{ __('Register') }}
                 </x-button>
             </div>
 
             <div class="flex items-center center mt-4">
-                <a href="{{ route('vregister') }}" style="position: absolute; margin-left: 10.2%;margin-top: 9%;font-size:1.1rem;color:#0D7AD1;">
+                <a href="{{ route('vregister') }}" class="RegisterAsVendor">
                     Register As Vendor
                 </a>
             </div>
 
             <div class="flex items-center center mt-4">
                 <a href="">
-                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 7em;position: absolute;margin-top: 5%;">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" class="GoogleRegisterBtn">
                 </a>
             </div>
 
